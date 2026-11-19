@@ -8297,7 +8297,7 @@ unsafe extern "C" fn rfu_STC_UNI_receive(
                 })
                     .errorCode = (0x700 as ::core::ffi::c_int | 0x1 as ::core::ffi::c_int
                     | 0x8 as ::core::ffi::c_int) as u16_0;
-                current_block = 15158603796962424607;
+                current_block = 15401290982862751289;
             } else {
                 current_block = 11650488183268122163;
             }
@@ -8320,7 +8320,7 @@ unsafe extern "C" fn rfu_STC_UNI_receive(
             current_block = 11650488183268122163;
         }
         match current_block {
-            15158603796962424607 => {}
+            15401290982862751289 => {}
             _ => {
                 (*if !UNI_recv.is_null() {
                     UNI_recv

@@ -2644,17 +2644,17 @@ unsafe extern "C" fn AnimTask_HazeScrollingFog_Step(mut taskId: u8_0) {
                 .offset(taskId as isize))
                 .data[12 as ::core::ffi::c_int as usize];
             *fresh83 += 1;
-            current_block_36 = 552284807196668465;
+            current_block_36 = 13163467591269913071;
         }
         4 => {
-            current_block_36 = 552284807196668465;
+            current_block_36 = 13163467591269913071;
         }
         _ => {
             current_block_36 = 11932355480408055363;
         }
     }
     match current_block_36 {
-        552284807196668465 => {
+        13163467591269913071 => {
             if IsContest() == 0 {
                 SetAnimBgAttribute(
                     1 as u8_0,
@@ -2894,17 +2894,17 @@ unsafe extern "C" fn AnimTask_MistBallFog_Step(mut taskId: u8_0) {
                 .offset(taskId as isize))
                 .data[12 as ::core::ffi::c_int as usize];
             *fresh91 += 1;
-            current_block_33 = 13436285313998670199;
+            current_block_33 = 17629710739059735707;
         }
         4 => {
-            current_block_33 = 13436285313998670199;
+            current_block_33 = 17629710739059735707;
         }
         _ => {
             current_block_33 = 13550086250199790493;
         }
     }
     match current_block_33 {
-        13436285313998670199 => {
+        17629710739059735707 => {
             if IsContest() == 0 {
                 SetAnimBgAttribute(
                     1 as u8_0,

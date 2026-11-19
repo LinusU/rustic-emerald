@@ -22589,10 +22589,10 @@ pub unsafe extern "C" fn ApplyImageProcessingEffects(
             ApplyImageEffect_BlackOutline();
             ApplyImageEffect_Invert();
             ApplyImageEffect_BlackAndWhite();
-            current_block_34 = 1790437362318976608;
+            current_block_34 = 11025674784923152216;
         }
         31 => {
-            current_block_34 = 1790437362318976608;
+            current_block_34 = 11025674784923152216;
         }
         11 => {
             ApplyImageEffect_BlackOutline();
@@ -22639,7 +22639,7 @@ pub unsafe extern "C" fn ApplyImageProcessingEffects(
         }
     }
     match current_block_34 {
-        1790437362318976608 => {
+        11025674784923152216 => {
             ApplyImageEffect_Invert();
         }
         _ => {}

@@ -10357,10 +10357,10 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_ReelTimeNumber(mut sprite: *mut Spr
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh33 += 1;
-            current_block_16 = 14418000428235331355;
+            current_block_16 = 947228179756735760;
         }
         1 => {
-            current_block_16 = 14418000428235331355;
+            current_block_16 = 947228179756735760;
         }
         2 => {
             let ref mut fresh36 = (*if !sprite.is_null() {
@@ -10453,7 +10453,7 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_ReelTimeNumber(mut sprite: *mut Spr
         }
     }
     match current_block_16 {
-        14418000428235331355 => {
+        947228179756735760 => {
             let ref mut fresh34 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -10503,10 +10503,10 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_PokeballRocking(mut sprite: *mut Sp
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh62 += 1;
-            current_block_22 = 10693000854370546959;
+            current_block_22 = 12717459259107082177;
         }
         1 => {
-            current_block_22 = 10693000854370546959;
+            current_block_22 = 12717459259107082177;
         }
         2 => {
             if (*if !sprite.is_null() {
@@ -10624,7 +10624,7 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_PokeballRocking(mut sprite: *mut Sp
         }
     }
     match current_block_22 {
-        10693000854370546959 => {
+        12717459259107082177 => {
             let ref mut fresh63 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -11075,10 +11075,10 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_RegBonus(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh21 += 1;
-            current_block_15 = 11477443392506837243;
+            current_block_15 = 4049670823543782160;
         }
         1 => {
-            current_block_15 = 11477443392506837243;
+            current_block_15 = 4049670823543782160;
         }
         2 => {
             if (*if !sprite.is_null() {
@@ -11171,7 +11171,7 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_RegBonus(mut sprite: *mut Sprite) {
         }
     }
     match current_block_15 {
-        11477443392506837243 => {
+        4049670823543782160 => {
             let ref mut fresh22 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -11332,10 +11332,10 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_AButtonStart(mut sprite: *mut Sprit
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh11 += 1;
-            current_block_34 = 1036258319426464896;
+            current_block_34 = 1021565174899576911;
         }
         1 => {
-            current_block_34 = 1036258319426464896;
+            current_block_34 = 1021565174899576911;
         }
         2 => {
             if (*if !sSlotMachine.is_null() {
@@ -11394,18 +11394,18 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_AButtonStart(mut sprite: *mut Sprit
                     &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
                 })
                     .data[1 as ::core::ffi::c_int as usize] = 0 as s16;
-                current_block_34 = 13308939357329192513;
+                current_block_34 = 12710328288989683708;
             }
         }
         3 => {
-            current_block_34 = 13308939357329192513;
+            current_block_34 = 12710328288989683708;
         }
         _ => {
             current_block_34 = 13550086250199790493;
         }
     }
     match current_block_34 {
-        13308939357329192513 => {
+        12710328288989683708 => {
             let ref mut fresh15 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -11517,7 +11517,7 @@ unsafe extern "C" fn SpriteCB_DigitalDisplay_AButtonStart(mut sprite: *mut Sprit
                     | (1 as ::core::ffi::c_int) << 5 as ::core::ffi::c_int) as u16_0;
             }
         }
-        1036258319426464896 => {
+        1021565174899576911 => {
             let ref mut fresh12 = (*if !sprite.is_null() {
                 sprite
             } else {

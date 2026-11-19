@@ -1028,10 +1028,10 @@ pub unsafe extern "C" fn CB2_InitOptionMenu() {
             PutWindowTilemap(WIN_OPTIONS as ::core::ffi::c_int as u8_0);
             DrawOptionMenuTexts();
             gMain.state = gMain.state.wrapping_add(1);
-            current_block_75 = 8821053502193679540;
+            current_block_75 = 8968959140657936097;
         }
         9 => {
-            current_block_75 = 8821053502193679540;
+            current_block_75 = 8968959140657936097;
         }
         10 => {
             let mut taskId: u8_0 = CreateTask(
@@ -1144,7 +1144,7 @@ pub unsafe extern "C" fn CB2_InitOptionMenu() {
         }
     }
     match current_block_75 {
-        8821053502193679540 => {
+        8968959140657936097 => {
             DrawBgWindowFrames();
             gMain.state = gMain.state.wrapping_add(1);
         }

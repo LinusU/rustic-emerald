@@ -443,6 +443,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -130737,6 +130738,7 @@ unsafe extern "C" fn ClearObjectEvent(mut objectEvent: *mut ObjectEvent) {
             previousMovementDirection: 0,
             directionSequenceIndex: 0,
             playerCopyableMovement: 0,
+            padding2: 0,
         };
         init.set_active(0);
         init.set_singleMovementActive(0);
@@ -152349,17 +152351,17 @@ unsafe extern "C" fn MoveUnionRoomObjectUp(mut sprite: *mut Sprite) {
             })
                 .data[4 as ::core::ffi::c_int as usize];
             *fresh338 += 1;
-            current_block_8 = 5185556531264606898;
+            current_block_8 = 1930179443685316612;
         }
         1 => {
-            current_block_8 = 5185556531264606898;
+            current_block_8 = 1930179443685316612;
         }
         _ => {
             current_block_8 = 6937071982253665452;
         }
     }
     match current_block_8 {
-        5185556531264606898 => {
+        1930179443685316612 => {
             let ref mut fresh339 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -152427,17 +152429,17 @@ unsafe extern "C" fn MoveUnionRoomObjectDown(mut sprite: *mut Sprite) {
             })
                 .data[4 as ::core::ffi::c_int as usize];
             *fresh340 += 1;
-            current_block_6 = 11389393195496702815;
+            current_block_6 = 4500431815550214442;
         }
         1 => {
-            current_block_6 = 11389393195496702815;
+            current_block_6 = 4500431815550214442;
         }
         _ => {
             current_block_6 = 2473556513754201174;
         }
     }
     match current_block_6 {
-        11389393195496702815 => {
+        4500431815550214442 => {
             let ref mut fresh341 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -190374,6 +190376,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<ObjectEventGraphicsInfo>() == 56, "size of ObjectEventGraphicsInfo");
     assert!(align_of::<ObjectEventGraphicsInfo>() == 4, "alignment of ObjectEventGraphicsInfo");
     assert!(offset_of!(ObjectEventGraphicsInfo, tileTag) == 0, "ObjectEventGraphicsInfo.tileTag");

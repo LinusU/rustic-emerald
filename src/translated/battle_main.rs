@@ -838,6 +838,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -10976,17 +10977,17 @@ unsafe extern "C" fn CB2_HandleStartBattle() {
                     as ::core::ffi::c_int as usize]
                 .wrapping_add(1);
             gBattleCommunication[1 as ::core::ffi::c_int as usize] = 1 as u8_0;
-            current_block_121 = 11600600136415632188;
+            current_block_121 = 14101504844839806649;
         }
         6 | 10 | 14 => {
-            current_block_121 = 11600600136415632188;
+            current_block_121 = 14101504844839806649;
         }
         _ => {
             current_block_121 = 2705889988320590074;
         }
     }
     match current_block_121 {
-        11600600136415632188 => {
+        14101504844839806649 => {
             gBattleCommunication[1 as ::core::ffi::c_int as usize] = gBattleCommunication[1
                     as ::core::ffi::c_int as usize]
                 .wrapping_sub(1);
@@ -11025,10 +11026,10 @@ unsafe extern "C" fn CB2_HandleStartMultiPartnerBattle() {
             if gWirelessCommType != 0 {
                 LoadWirelessStatusIndicatorSpriteGfx();
             }
-            current_block_153 = 6650145172979469069;
+            current_block_153 = 8346647299983057755;
         }
         1 => {
-            current_block_153 = 6650145172979469069;
+            current_block_153 = 8346647299983057755;
         }
         2 => {
             if GetBlockReceivedStatus() as ::core::ffi::c_int & 3 as ::core::ffi::c_int
@@ -11441,7 +11442,7 @@ unsafe extern "C" fn CB2_HandleStartMultiPartnerBattle() {
         }
     }
     match current_block_153 {
-        6650145172979469069 => {
+        8346647299983057755 => {
             if gBattleTypeFlags
                 & ((1 as ::core::ffi::c_int) << 1 as ::core::ffi::c_int) as u32_0 != 0
             {
@@ -12042,13 +12043,13 @@ unsafe extern "C" fn CB2_HandleStartMultiBattle() {
                 gBattleCommunication[0 as ::core::ffi::c_int as usize] = gBattleCommunication[0
                         as ::core::ffi::c_int as usize]
                     .wrapping_add(1);
-                current_block_155 = 12684763486994553302;
+                current_block_155 = 2104542877578505530;
             } else {
                 current_block_155 = 14133002253412689704;
             }
         }
         3 => {
-            current_block_155 = 12684763486994553302;
+            current_block_155 = 2104542877578505530;
         }
         4 => {
             if GetBlockReceivedStatus() as ::core::ffi::c_int & 0xf as ::core::ffi::c_int
@@ -12439,7 +12440,7 @@ unsafe extern "C" fn CB2_HandleStartMultiBattle() {
         }
     }
     match current_block_155 {
-        12684763486994553302 => {
+        2104542877578505530 => {
             if IsLinkTaskFinished() != 0 {
                 SendBlock(
                     BitmaskAllOtherLinkPlayers(),
@@ -12562,10 +12563,10 @@ unsafe extern "C" fn SpriteCB_UnusedBattleInit_Main(mut sprite: *mut Sprite) {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
             })
                 .data[4 as ::core::ffi::c_int as usize] = 1 as s16;
-            current_block_23 = 8867844052455262793;
+            current_block_23 = 9350934801698506497;
         }
         1 => {
-            current_block_23 = 8867844052455262793;
+            current_block_23 = 9350934801698506497;
         }
         2 => {
             let ref mut fresh182 = (*if !sprite.is_null() {
@@ -12592,7 +12593,7 @@ unsafe extern "C" fn SpriteCB_UnusedBattleInit_Main(mut sprite: *mut Sprite) {
         }
     }
     match current_block_23 {
-        8867844052455262793 => {
+        9350934801698506497 => {
             let ref mut fresh179 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -21208,6 +21209,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

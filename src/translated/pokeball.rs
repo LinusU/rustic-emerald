@@ -2369,11 +2369,11 @@ unsafe extern "C" fn Task_PlayCryWhenReleasedFromBall(mut taskId: u8_0) {
                     .offset(taskId as isize))
                     .data[15 as ::core::ffi::c_int as usize];
                 *fresh55 += 1;
-                current_block_33 = 3181618914532459458;
+                current_block_33 = 1061549160212432160;
             }
         }
         31 => {
-            current_block_33 = 3181618914532459458;
+            current_block_33 = 1061549160212432160;
         }
         32 => {
             if (*(&raw mut gTasks as *mut Task).offset(taskId as isize))
@@ -2419,7 +2419,7 @@ unsafe extern "C" fn Task_PlayCryWhenReleasedFromBall(mut taskId: u8_0) {
         }
     }
     match current_block_33 {
-        3181618914532459458 => {
+        1061549160212432160 => {
             if IsCryPlayingOrClearCrySongs() == 0 {
                 StopCryAndClearCrySongs();
                 (*(&raw mut gTasks as *mut Task).offset(taskId as isize))

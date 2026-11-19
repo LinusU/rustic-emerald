@@ -34,6 +34,8 @@ unsafe extern "C" {
     fn native_engine_display_buffer(engine: *mut c_void) -> *const u8;
     fn NativeDecodePointer(word: c_ulong) -> *mut u8;
     fn GetPlayerIDAsU32() -> u32;
+    static mut gSaveBlock1Ptr: *mut c_void;
+    fn VarGet(id: u16) -> u16;
     fn RtcInit();
     fn m4aSoundInit();
 }
@@ -122,6 +124,19 @@ impl Game {
 
     pub fn trainer_id(&self) -> u32 {
         unsafe { GetPlayerIDAsU32() }
+    }
+
+    pub fn birch_lab_progress(&self) -> Option<(u16, u16)> {
+        // VarGet reads these two script variables through the live save block.
+        // Boot and soft reset can both leave that pointer unset for early frames.
+        const VAR_BIRCH_LAB_STATE: u16 = 0x4084;
+        const VAR_STARTER_MON: u16 = 0x4023;
+        unsafe {
+            if gSaveBlock1Ptr.is_null() {
+                return None;
+            }
+            Some((VarGet(VAR_BIRCH_LAB_STATE), VarGet(VAR_STARTER_MON)))
+        }
     }
 
     pub fn save_data(&self) -> &[u8] {

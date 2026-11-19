@@ -823,10 +823,10 @@ unsafe extern "C" fn RunMinigameCountdownDigitsAnim(mut spriteId: u8_0) -> bool3
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh12 += 1;
-            current_block_37 = 13324303851515523670;
+            current_block_37 = 1159277795358873123;
         }
         1 => {
-            current_block_37 = 13324303851515523670;
+            current_block_37 = 1159277795358873123;
         }
         2 => {
             if (*if !sprite.is_null() {
@@ -998,7 +998,7 @@ unsafe extern "C" fn RunMinigameCountdownDigitsAnim(mut spriteId: u8_0) -> bool3
         }
     }
     match current_block_37 {
-        13324303851515523670 => {
+        1159277795358873123 => {
             if (*if !sprite.is_null() {
                 sprite
             } else {
@@ -1099,10 +1099,10 @@ unsafe extern "C" fn SpriteCB_Start(mut sprite: *mut Sprite) {
             }
                 .offset(0 as ::core::ffi::c_int as isize);
             *fresh2 += 1;
-            current_block_27 = 1727821533710937703;
+            current_block_27 = 8218151169205044809;
         }
         1 => {
-            current_block_27 = 1727821533710937703;
+            current_block_27 = 8218151169205044809;
         }
         2 => {
             let ref mut fresh6 = *if !data.is_null() {
@@ -1225,7 +1225,7 @@ unsafe extern "C" fn SpriteCB_Start(mut sprite: *mut Sprite) {
         }
     }
     match current_block_27 {
-        1727821533710937703 => {
+        8218151169205044809 => {
             let ref mut fresh3 = *if !data.is_null() {
                 data
             } else {

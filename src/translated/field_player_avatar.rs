@@ -846,6 +846,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -1406,6 +1407,7 @@ pub static mut gObjectEvents: [ObjectEvent; 16] = [ObjectEvent {
     previousMovementDirection: 0,
     directionSequenceIndex: 0,
     playerCopyableMovement: 0,
+    padding2: 0,
 }; 16];
 #[unsafe(no_mangle)]
 #[cfg_attr(target_vendor = "apple", unsafe(link_section = "__DATA,native_game_data"))]
@@ -5133,10 +5135,10 @@ unsafe extern "C" fn Task_DoPlayerSpinExit(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize);
             *fresh35 += 1;
-            current_block_19 = 6908931552308235042;
+            current_block_19 = 456106258909086075;
         }
         1 => {
-            current_block_19 = 6908931552308235042;
+            current_block_19 = 456106258909086075;
         }
         2 => {
             DestroyTask(taskId);
@@ -5147,7 +5149,7 @@ unsafe extern "C" fn Task_DoPlayerSpinExit(mut taskId: u8_0) {
         }
     }
     match current_block_19 {
-        6908931552308235042 => {
+        456106258909086075 => {
             TrySpinPlayerForWarp(
                 object,
                 if !data.is_null() {
@@ -5388,10 +5390,10 @@ unsafe extern "C" fn Task_DoPlayerSpinEntrance(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize);
             *fresh23 += 1;
-            current_block_35 = 16088674759196842116;
+            current_block_35 = 2420314548429255169;
         }
         1 => {
-            current_block_35 = 16088674759196842116;
+            current_block_35 = 2420314548429255169;
         }
         2 => {
             TrySpinPlayerForWarp(
@@ -5482,7 +5484,7 @@ unsafe extern "C" fn Task_DoPlayerSpinEntrance(mut taskId: u8_0) {
         }
     }
     match current_block_35 {
-        16088674759196842116 => {
+        2420314548429255169 => {
             TrySpinPlayerForWarp(
                 object,
                 if !data.is_null() {
@@ -5685,6 +5687,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

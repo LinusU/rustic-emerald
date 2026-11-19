@@ -909,11 +909,11 @@ unsafe extern "C" fn SoundTask_PlayCryWithEcho_Step(mut taskId: u8_0) {
             if IsCryPlaying() != 0 {
                 current_block_8 = 2979737022853876585;
             } else {
-                current_block_8 = 10257332211620502908;
+                current_block_8 = 10529052135152361689;
             }
         }
         0 => {
-            current_block_8 = 10257332211620502908;
+            current_block_8 = 10529052135152361689;
         }
         _ => {
             if (*(&raw mut gTasks as *mut Task).offset(taskId as isize))
@@ -928,7 +928,7 @@ unsafe extern "C" fn SoundTask_PlayCryWithEcho_Step(mut taskId: u8_0) {
         }
     }
     match current_block_8 {
-        10257332211620502908 => {
+        10529052135152361689 => {
             StopCryAndClearCrySongs();
             let ref mut fresh13 = (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))

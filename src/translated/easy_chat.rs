@@ -831,6 +831,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -32195,11 +32196,11 @@ unsafe extern "C" fn CloseKeyboard() -> bool8 {
                 })
                     .funcState;
                 *fresh143 = (*fresh143).wrapping_add(1);
-                current_block_13 = 1934536649255414314;
+                current_block_13 = 8302495313068954701;
             }
         }
         2 => {
-            current_block_13 = 1934536649255414314;
+            current_block_13 = 8302495313068954701;
         }
         3 => {
             if IsDma3ManagerBusyWithBgCopy() == 0 {
@@ -32222,7 +32223,7 @@ unsafe extern "C" fn CloseKeyboard() -> bool8 {
         }
     }
     match current_block_13 {
-        1934536649255414314 => {
+        8302495313068954701 => {
             if UpdateLowerWindowAnim() == 0 {
                 let ref mut fresh144 = (*if !sScreenControl.is_null() {
                     sScreenControl
@@ -32330,17 +32331,17 @@ unsafe extern "C" fn GroupNamesScrollDown() -> bool8 {
             })
                 .funcState;
             *fresh87 = (*fresh87).wrapping_add(1);
-            current_block_6 = 14662734468541356179;
+            current_block_6 = 15376662234209886929;
         }
         1 => {
-            current_block_6 = 14662734468541356179;
+            current_block_6 = 15376662234209886929;
         }
         _ => {
             current_block_6 = 15619007995458559411;
         }
     }
     match current_block_6 {
-        14662734468541356179 => {
+        15376662234209886929 => {
             if UpdateLowerWindowScroll() == 0 {
                 UpdateRectangleCursorPos();
                 UpdateScrollIndicatorsVisibility();
@@ -32370,10 +32371,10 @@ unsafe extern "C" fn GroupNamesScrollUp() -> bool8 {
             })
                 .funcState;
             *fresh85 = (*fresh85).wrapping_add(1);
-            current_block_7 = 16781423531721359318;
+            current_block_7 = 840273185710244394;
         }
         1 => {
-            current_block_7 = 16781423531721359318;
+            current_block_7 = 840273185710244394;
         }
         2 => return 0 as bool8,
         _ => {
@@ -32381,7 +32382,7 @@ unsafe extern "C" fn GroupNamesScrollUp() -> bool8 {
         }
     }
     match current_block_7 {
-        16781423531721359318 => {
+        840273185710244394 => {
             if UpdateLowerWindowScroll() == 0 {
                 UpdateScrollIndicatorsVisibility();
                 let ref mut fresh86 = (*if !sScreenControl.is_null() {
@@ -39224,6 +39225,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

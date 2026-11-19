@@ -2015,6 +2015,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -84894,10 +84895,10 @@ unsafe extern "C" fn DrawSearchMenuItemBgHighlight(
                         - SEARCH_TOPBAR_COUNT as ::core::ffi::c_int) as usize]
                     .titleBgWidth,
             );
-            current_block_6 = 6587566033312022276;
+            current_block_6 = 14533216206668228492;
         }
         5 | 6 => {
-            current_block_6 = 6587566033312022276;
+            current_block_6 = 14533216206668228492;
         }
         10 => {
             SetSearchRectHighlight(
@@ -84947,7 +84948,7 @@ unsafe extern "C" fn DrawSearchMenuItemBgHighlight(
         }
     }
     match current_block_6 {
-        6587566033312022276 => {
+        14533216206668228492 => {
             SetSearchRectHighlight(
                 highlightFlags,
                 sSearchMenuItems[(searchBg as ::core::ffi::c_int
@@ -87234,6 +87235,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

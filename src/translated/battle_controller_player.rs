@@ -9237,10 +9237,10 @@ unsafe extern "C" fn PlayerHandleLinkStandbyMsg() {
     {
         0 => {
             PrintLinkStandbyMsg();
-            current_block_4 = 17200917488034785120;
+            current_block_4 = 8316608713803412501;
         }
         1 => {
-            current_block_4 = 17200917488034785120;
+            current_block_4 = 8316608713803412501;
         }
         2 => {
             PrintLinkStandbyMsg();
@@ -9251,7 +9251,7 @@ unsafe extern "C" fn PlayerHandleLinkStandbyMsg() {
         }
     }
     match current_block_4 {
-        17200917488034785120 => {
+        8316608713803412501 => {
             EndBounceEffect(gActiveBattler, 0x1 as u8_0);
             EndBounceEffect(gActiveBattler, 0 as u8_0);
         }

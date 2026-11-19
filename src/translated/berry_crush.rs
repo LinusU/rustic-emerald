@@ -5030,10 +5030,10 @@ unsafe extern "C" fn HideGameDisplay() -> s32 {
             if IsLinkTaskFinished() == 0 {
                 return 0 as s32;
             }
-            current_block_31 = 9283933972640213052;
+            current_block_31 = 9434614864058806380;
         }
         2 => {
-            current_block_31 = 9283933972640213052;
+            current_block_31 = 9434614864058806380;
         }
         3 => {
             if UpdatePaletteFade() != 0 {
@@ -5117,7 +5117,7 @@ unsafe extern "C" fn HideGameDisplay() -> s32 {
         }
     }
     match current_block_31 {
-        9283933972640213052 => {
+        9434614864058806380 => {
             BeginNormalPaletteFade(
                 0xffff as u32_0 | 0xffff0000 as u32_0,
                 0 as s8,
@@ -9969,10 +9969,10 @@ unsafe extern "C" fn Cmd_Countdown(
             if IsMinigameCountdownRunning() != 0 {
                 return 0 as u32_0;
             }
-            current_block_18 = 11953265987517255491;
+            current_block_18 = 10143065084778638279;
         }
         0 => {
-            current_block_18 = 11953265987517255491;
+            current_block_18 = 10143065084778638279;
         }
         3 => {
             if IsLinkTaskFinished() == 0 {
@@ -10058,7 +10058,7 @@ unsafe extern "C" fn Cmd_Countdown(
         }
     }
     match current_block_18 {
-        11953265987517255491 => {
+        10143065084778638279 => {
             Rfu_SetLinkStandbyCallback();
         }
         _ => {}

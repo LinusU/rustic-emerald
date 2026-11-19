@@ -755,6 +755,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -3502,17 +3503,17 @@ unsafe extern "C" fn Mailbox_HandleConfirmMoveToBag(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_2 = 12371211995656565223;
+            current_block_2 = 3173610998868650474;
         }
         1 => {
-            current_block_2 = 12371211995656565223;
+            current_block_2 = 3173610998868650474;
         }
         -2 | _ => {
             current_block_2 = 7095457783677275021;
         }
     }
     match current_block_2 {
-        12371211995656565223 => {
+        3173610998868650474 => {
             Mailbox_CancelMoveToBag(taskId);
         }
         _ => {}
@@ -5379,6 +5380,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

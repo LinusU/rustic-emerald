@@ -1936,17 +1936,17 @@ pub unsafe extern "C" fn GetTileMapIndexFromCoords(
             if y >= 0x20 as ::core::ffi::c_int {
                 y += 0x20 as ::core::ffi::c_int;
             }
-            current_block_7 = 6841436637983569216;
+            current_block_7 = 11583166945325255909;
         }
         1 => {
-            current_block_7 = 6841436637983569216;
+            current_block_7 = 11583166945325255909;
         }
         0 | 2 | _ => {
             current_block_7 = 17216689946888361452;
         }
     }
     match current_block_7 {
-        6841436637983569216 => {
+        11583166945325255909 => {
             if x >= 0x20 as ::core::ffi::c_int {
                 x -= 0x20 as ::core::ffi::c_int;
                 y += 0x20 as ::core::ffi::c_int;

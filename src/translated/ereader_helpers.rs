@@ -195,6 +195,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -2612,10 +2613,10 @@ pub unsafe extern "C" fn EReaderHandleTransfer(
             SetUpTransferManager(size, data, recvBuffer);
             sSendRecvMgr.state = EREADER_XFR_STATE_TRANSFER as ::core::ffi::c_int
                 as u8_0;
-            current_block_43 = 11856555663060363599;
+            current_block_43 = 6630463093712648196;
         }
         3 => {
-            current_block_43 = 11856555663060363599;
+            current_block_43 = 6630463093712648196;
         }
         4 => {
             OpenSerialMulti();
@@ -2649,7 +2650,7 @@ pub unsafe extern "C" fn EReaderHandleTransfer(
         }
     }
     match current_block_43 {
-        11856555663060363599 => {
+        6630463093712648196 => {
             if gShouldAdvanceLinkState as ::core::ffi::c_int == 2 as ::core::ffi::c_int {
                 sSendRecvMgr.cancellationReason = 2 as u8_0;
                 sSendRecvMgr.state = EREADER_XFR_STATE_DONE as ::core::ffi::c_int
@@ -5073,6 +5074,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<Berry2>() == 36, "size of Berry2");
     assert!(align_of::<Berry2>() == 4, "alignment of Berry2");
     assert!(offset_of!(Berry2, name) == 0, "Berry2.name");

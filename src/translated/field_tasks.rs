@@ -315,6 +315,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -2622,19 +2623,19 @@ unsafe extern "C" fn FortreeBridgePerStepCallback(mut taskId: u8_0) {
                         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
                     }
                         .offset(1 as ::core::ffi::c_int as isize) = 2 as s16;
-                    current_block_39 = 16623217663169587593;
+                    current_block_39 = 1824582038660942957;
                 }
             }
         }
         2 => {
-            current_block_39 = 16623217663169587593;
+            current_block_39 = 1824582038660942957;
         }
         _ => {
             current_block_39 = 8180496224585318153;
         }
     }
     match current_block_39 {
-        16623217663169587593 => {
+        1824582038660942957 => {
             let ref mut fresh13 = *if !data.is_null() {
                 data
             } else {
@@ -3689,6 +3690,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<Camera>() == 12, "size of Camera");
     assert!(align_of::<Camera>() == 4, "alignment of Camera");
     assert!(offset_of!(Camera, x) == 4, "Camera.x");

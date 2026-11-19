@@ -61,10 +61,12 @@ python3 tools/translate.py --check
 cargo test --release
 ```
 
-To compare the port with the independent C game build, run the following command. Both executables use the same input, clock and desktop devices. The comparison checks the framebuffer after every frame from the moving truck through Mudkip's first battle, Birch's lab and soft reset. The accompanying tests check 1,158 serialized party Pokémon across all 386 species at levels 5, 50 and 100, then write and reload an Emerald flash save.
+To compare the port with the C game build, run the command below. Both executables receive the same input and clock. The comparison checks the framebuffer after every frame from the moving truck through the first battle and a soft reset. With `--all-starters`, it verifies that Birch gives the player Mudkip, Treecko and Torchic on their respective routes.
+
+The tests also check 1,158 serialized party Pokémon across all 386 species at levels 5, 50 and 100. Each build writes and reloads a 128 KiB flash save, and the comparison checks that the two files match byte for byte.
 
 ```sh
-python3 tools/compare-replay.py
+python3 tools/compare-replay.py --all-starters
 ```
 
 To capture named checkpoints from the starter replay as 240×160 PPM images, run the replay directly.

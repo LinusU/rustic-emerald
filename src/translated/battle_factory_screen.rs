@@ -15047,17 +15047,17 @@ unsafe extern "C" fn Swap_PrintActionStrings() {
                 0 as u32_0,
                 SWAP_WIN_ACTION_FADE as ::core::ffi::c_int as u32_0,
             );
-            current_block_2 = 5328431533297232253;
+            current_block_2 = 16527924835773316633;
         }
         0 => {
-            current_block_2 = 5328431533297232253;
+            current_block_2 = 16527924835773316633;
         }
         _ => {
             current_block_2 = 10680521327981672866;
         }
     }
     match current_block_2 {
-        5328431533297232253 => {
+        16527924835773316633 => {
             Swap_PrintActionString(
                 &raw const gText_Cancel3 as *const u8_0,
                 24 as u32_0,
@@ -15091,17 +15091,17 @@ unsafe extern "C" fn Swap_PrintActionStrings2() {
                 8 as u32_0,
                 SWAP_WIN_OPTIONS as ::core::ffi::c_int as u32_0,
             );
-            current_block_2 = 1475025897251626547;
+            current_block_2 = 6365572156584329555;
         }
         0 => {
-            current_block_2 = 1475025897251626547;
+            current_block_2 = 6365572156584329555;
         }
         _ => {
             current_block_2 = 10680521327981672866;
         }
     }
     match current_block_2 {
-        1475025897251626547 => {
+        6365572156584329555 => {
             Swap_PrintActionString(
                 &raw const gText_Cancel3 as *const u8_0,
                 32 as u32_0,

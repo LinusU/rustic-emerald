@@ -2913,17 +2913,17 @@ pub unsafe extern "C" fn StringExpandPlaceholders(
                             &raw mut gNativeMemory as *mut ::core::ffi::c_uchar
                                 as *const u8_0
                         };
-                        current_block_8 = 13907140399557391546;
+                        current_block_8 = 11024102821435407803;
                     }
                     11 => {
-                        current_block_8 = 13907140399557391546;
+                        current_block_8 = 11024102821435407803;
                     }
                     _ => {
-                        current_block_8 = 11024102821435407803;
+                        current_block_8 = 4989878659340383963;
                     }
                 }
                 match current_block_8 {
-                    13907140399557391546 => {
+                    11024102821435407803 => {
                         let fresh16 = src;
                         src = src.offset(1);
                         let fresh17 = dest;
@@ -2939,12 +2939,12 @@ pub unsafe extern "C" fn StringExpandPlaceholders(
                             &raw mut gNativeMemory as *mut ::core::ffi::c_uchar
                                 as *const u8_0
                         };
-                        current_block_8 = 11024102821435407803;
+                        current_block_8 = 4989878659340383963;
                     }
                     _ => {}
                 }
                 match current_block_8 {
-                    11024102821435407803 => {
+                    4989878659340383963 => {
                         let fresh18 = src;
                         src = src.offset(1);
                         let fresh19 = dest;

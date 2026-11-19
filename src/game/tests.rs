@@ -17,12 +17,33 @@ unsafe extern "C" {
         ot_id: u32,
     );
     static gBattleOutcome: u8;
-    fn VarGet(id: u16) -> u16;
     static mut gHeap: u8;
+    static mut gObjectEvents: [[u8; 0x24]; 16];
+    fn SaveObjectEvents();
+    fn LoadObjectEvents();
     fn PutFirstMemBlockHeader(heap: *mut u8, size: u32);
     fn AllocInternal(heap: *mut u8, size: u32) -> *mut u8;
     fn AllocZeroedInternal(heap: *mut u8, size: u32) -> *mut u8;
     fn FreeInternal(heap: *mut u8, allocation: *mut u8);
+}
+
+fn check_object_event_round_trip() {
+    // Cartridge map-object records include a reserved byte at offset 0x23.
+    // Imported saves can contain any value there, and its value affects the checksum.
+    let objects = &raw mut gObjectEvents;
+    unsafe {
+        for slot in 0..16 {
+            (*objects)[slot][0x23] = 0x80 + slot as u8;
+        }
+        SaveObjectEvents();
+        for slot in 0..16 {
+            (*objects)[slot][0x23] = 0;
+        }
+        LoadObjectEvents();
+        for slot in 0..16 {
+            assert_eq!((*objects)[slot][0x23], 0x80 + slot as u8);
+        }
+    }
 }
 
 fn check_heap_allocations() {
@@ -101,20 +122,20 @@ fn check_rescue_and_save() {
 
     // Keep choosing FIGHT and TACKLE, then advance Birch's dialogue. Only
     // the script in his lab sets this variable to 3 after giving the starter.
-    const VAR_BIRCH_LAB_STATE: u16 = 0x4084;
     for frame in 27229..35000 {
         let press_a = frame >= 27240 && (frame - 27240) % 24 < 4;
+        crate::rtc::set_replay_frame(frame);
         game.set_keys(u16::from(press_a));
         game.frame();
-        if unsafe { VarGet(VAR_BIRCH_LAB_STATE) } == 3 {
+        if game.birch_lab_progress() == Some((3, 2)) {
             break;
         }
     }
     assert_eq!(unsafe { gBattleOutcome }, 1, "Mudkip won the first battle");
     assert_eq!(
-        unsafe { VarGet(VAR_BIRCH_LAB_STATE) },
-        3,
-        "Birch gave the starter in his lab"
+        game.birch_lab_progress(),
+        Some((3, 2)),
+        "Birch gave Mudkip to the player in his lab"
     );
 
     check_party_records();
@@ -158,6 +179,7 @@ fn check_rescue_and_save() {
         assert_eq!(unsafe { NativeTestLoad() }, 0);
     }
     game.set_keys(0);
+    check_object_event_round_trip();
 
     // The save deletion screen erases physical flash before its BIOS reset.
     // Preserve that erasure as faithfully as a populated cartridge.

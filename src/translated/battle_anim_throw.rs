@@ -3162,11 +3162,11 @@ unsafe extern "C" fn SpriteCB_Ball_Wobble_Step(mut sprite: *mut Sprite) {
                         BALL_ROTATE_RIGHT as ::core::ffi::c_int as u8_0,
                     );
                 }
-                current_block_84 = 1983573293088203018;
+                current_block_84 = 2095197924694622056;
             }
         }
         4 => {
-            current_block_84 = 1983573293088203018;
+            current_block_84 = 2095197924694622056;
         }
         5 => {
             let ref mut fresh132 = (*if !sprite.is_null() {
@@ -3318,7 +3318,7 @@ unsafe extern "C" fn SpriteCB_Ball_Wobble_Step(mut sprite: *mut Sprite) {
         }
     }
     match current_block_84 {
-        1983573293088203018 => {
+        2095197924694622056 => {
             let fresh122 = (*if !gBattleSpritesDataPtr.is_null() {
                 gBattleSpritesDataPtr
             } else {

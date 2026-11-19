@@ -797,6 +797,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -3843,10 +3844,10 @@ unsafe extern "C" fn Chat_Join() {
             })
                 .funcState;
             *fresh95 = (*fresh95).wrapping_add(1);
-            current_block_7 = 13422918053017960950;
+            current_block_7 = 8049759303087815519;
         }
         1 => {
-            current_block_7 = 13422918053017960950;
+            current_block_7 = 8049759303087815519;
         }
         2 => {
             if IsLinkTaskFinished() != 0 {
@@ -3859,7 +3860,7 @@ unsafe extern "C" fn Chat_Join() {
         }
     }
     match current_block_7 {
-        13422918053017960950 => {
+        8049759303087815519 => {
             if IsLinkTaskFinished() as ::core::ffi::c_int != 0
                 && Rfu_IsPlayerExchangeActive() == 0
             {
@@ -4853,11 +4854,11 @@ unsafe extern "C" fn Chat_SendMessage() {
                 })
                     .funcState;
                 *fresh86 = (*fresh86).wrapping_add(1);
-                current_block_11 = 16033517191761464365;
+                current_block_11 = 15896007953923632378;
             }
         }
         1 => {
-            current_block_11 = 16033517191761464365;
+            current_block_11 = 15896007953923632378;
         }
         2 => {
             ResetMessageEntryBuffer();
@@ -4898,7 +4899,7 @@ unsafe extern "C" fn Chat_SendMessage() {
         }
     }
     match current_block_11 {
-        16033517191761464365 => {
+        15896007953923632378 => {
             if IsLinkTaskFinished() as ::core::ffi::c_int == 1 as ::core::ffi::c_int
                 && Rfu_IsPlayerExchangeActive() == 0
                 && SendBlock(
@@ -6155,17 +6156,17 @@ unsafe extern "C" fn ProcessReceivedChatMessage(
                     .hostName as *mut u8_0,
                 name,
             );
-            current_block_21 = 17824276414774237962;
+            current_block_21 = 6457523094176324614;
         }
         3 => {
-            current_block_21 = 17824276414774237962;
+            current_block_21 = 6457523094176324614;
         }
         _ => {
             current_block_21 = 8457315219000651999;
         }
     }
     match current_block_21 {
-        17824276414774237962 => {
+        6457523094176324614 => {
             if (*if !sChat.is_null() {
                 sChat
             } else {
@@ -6506,13 +6507,13 @@ unsafe extern "C" fn Task_ReceiveChatMessage(mut taskId: u8_0) {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
             }
                 .offset(0 as ::core::ffi::c_int as isize) = 1 as s16;
-            current_block_60 = 7910166181503699293;
+            current_block_60 = 6254669830711273607;
         }
         1 => {
-            current_block_60 = 7910166181503699293;
+            current_block_60 = 6254669830711273607;
         }
         3 => {
-            current_block_60 = 16243483976351766853;
+            current_block_60 = 3234038476215401847;
         }
         7 => {
             if IsDisplaySubtaskActive(2 as u8_0) == 0 {
@@ -6637,7 +6638,7 @@ unsafe extern "C" fn Task_ReceiveChatMessage(mut taskId: u8_0) {
         }
     }
     match current_block_60 {
-        7910166181503699293 => {
+        6254669830711273607 => {
             *if !data.is_null() {
                 data
             } else {
@@ -6706,12 +6707,12 @@ unsafe extern "C" fn Task_ReceiveChatMessage(mut taskId: u8_0) {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
             }
                 .offset(0 as ::core::ffi::c_int as isize) = 3 as s16;
-            current_block_60 = 16243483976351766853;
+            current_block_60 = 3234038476215401847;
         }
         _ => {}
     }
     match current_block_60 {
-        16243483976351766853 => {
+        3234038476215401847 => {
             while (*if !data.is_null() {
                 data
             } else {
@@ -7575,19 +7576,19 @@ unsafe extern "C" fn Display_ScrollChat(mut state: *mut u8_0) -> bool32 {
                 };
                 *fresh15 = (*fresh15).wrapping_add(1);
             }
-            current_block_26 = 11951394494212832280;
+            current_block_26 = 9458777824578972758;
         }
         2 => {
-            current_block_26 = 11951394494212832280;
+            current_block_26 = 9458777824578972758;
         }
         3 => {
-            current_block_26 = 17723404973154825194;
+            current_block_26 = 5438055126735504012;
         }
         4 => return 0 as bool32,
         _ => return 1 as bool32,
     }
     match current_block_26 {
-        11951394494212832280 => {
+        9458777824578972758 => {
             ScrollWindow(
                 WIN_CHAT_HISTORY as ::core::ffi::c_int as u8_0,
                 0 as u8_0,
@@ -7613,12 +7614,12 @@ unsafe extern "C" fn Display_ScrollChat(mut state: *mut u8_0) -> bool32 {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut u8_0
             };
             *fresh17 = (*fresh17).wrapping_add(1);
-            current_block_26 = 17723404973154825194;
+            current_block_26 = 5438055126735504012;
         }
         _ => {}
     }
     match current_block_26 {
-        17723404973154825194 => {
+        5438055126735504012 => {
             if IsDma3ManagerBusyWithBgCopy() != 0 {
                 return 1 as bool32;
             }
@@ -10662,6 +10663,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

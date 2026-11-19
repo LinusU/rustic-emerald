@@ -42,6 +42,11 @@ def prepare(unit, tmp):
     # The Magnitude animation writes and branches on slot 15. Upstream's
     # eight-element declaration makes that script use an out-of-bounds slot.
     raw = raw.replace(b"s16 gBattleAnimArgs[8]", b"s16 gBattleAnimArgs[16]")
+    # SaveBlock1 stores the entire 36-byte ObjectEvent, including its final
+    # byte at 0x23. Give it a field so Rust initializes it when clearing an
+    # event and preserves it when copying an event to or from a loaded save.
+    raw = re.sub(rb"\bu8 playerCopyableMovement;(?=\s*};)",
+                 b"u8 playerCopyableMovement;\n             u8 padding2;", raw)
     if unit == "battle_factory_screen":
         # On the retail ROM the two 16-color ball palettes at 0x60f13c
         # precede the interface palette. Gray[37] is Interface[5] (0x79d4).

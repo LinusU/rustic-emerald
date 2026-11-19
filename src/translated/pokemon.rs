@@ -1619,6 +1619,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -43496,10 +43497,10 @@ pub unsafe extern "C" fn GetItemEffectParamOffset(
                                         & !(0x40 as ::core::ffi::c_int >> 2 as ::core::ffi::c_int))
                                         as u8_0;
                                 }
-                                current_block_27 = 8351248481474833784;
+                                current_block_27 = 9049707799214341418;
                             }
                             0 => {
-                                current_block_27 = 8351248481474833784;
+                                current_block_27 = 9049707799214341418;
                             }
                             1 => {
                                 if i == effectByte as ::core::ffi::c_int
@@ -43532,7 +43533,7 @@ pub unsafe extern "C" fn GetItemEffectParamOffset(
                             }
                         }
                         match current_block_27 {
-                            8351248481474833784 => {
+                            9049707799214341418 => {
                                 if i == effectByte as ::core::ffi::c_int
                                     && effectFlags as ::core::ffi::c_int
                                         & effectBit as ::core::ffi::c_int != 0
@@ -101051,6 +101052,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

@@ -952,6 +952,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -37051,10 +37052,10 @@ unsafe extern "C" fn CB2_CreateTradeMenu() {
             ComputePartyTradeableFlags(1 as u8_0);
             PrintPartyNicknames(1 as u8_0);
             gMain.state = gMain.state.wrapping_add(1);
-            current_block_152 = 1192377193928252055;
+            current_block_152 = 15076965625509200843;
         }
         16 => {
-            current_block_152 = 1192377193928252055;
+            current_block_152 = 15076965625509200843;
         }
         17 => {
             LoadTradeBgGfx(1 as u8_0);
@@ -37107,7 +37108,7 @@ unsafe extern "C" fn CB2_CreateTradeMenu() {
         }
     }
     match current_block_152 {
-        1192377193928252055 => {
+        15076965625509200843 => {
             LoadTradeBgGfx(0 as u8_0);
             gMain.state = gMain.state.wrapping_add(1);
         }
@@ -42921,17 +42922,17 @@ unsafe extern "C" fn HandleLinkDataSend() {
                     .scheduleLinkTransfer;
                 *fresh22 = (*fresh22).wrapping_add(1);
             }
-            current_block_4 = 651606478061252931;
+            current_block_4 = 1621323459796529931;
         }
         2 => {
-            current_block_4 = 651606478061252931;
+            current_block_4 = 1621323459796529931;
         }
         _ => {
             current_block_4 = 15240798224410183470;
         }
     }
     match current_block_4 {
-        651606478061252931 => {
+        1621323459796529931 => {
             (*if !sTradeAnim.is_null() {
                 sTradeAnim
             } else {
@@ -51954,6 +51955,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

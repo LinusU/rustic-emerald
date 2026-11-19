@@ -1860,10 +1860,10 @@ unsafe extern "C" fn LoopedTask_MoveSearchListCursorUp(mut state: s32) -> u32_0 
             if PokenavList_IsMoveWindowTaskActive() != 0 {
                 return 2 as u32_0;
             }
-            current_block_11 = 8635772522869788871;
+            current_block_11 = 2063745687273250266;
         }
         2 => {
-            current_block_11 = 8635772522869788871;
+            current_block_11 = 2063745687273250266;
         }
         3 => {
             if IsDma3ManagerBusyWithBgCopy() != 0 {
@@ -1908,10 +1908,10 @@ unsafe extern "C" fn LoopedTask_MoveSearchListCursorDown(mut state: s32) -> u32_
             if PokenavList_IsMoveWindowTaskActive() != 0 {
                 return 2 as u32_0;
             }
-            current_block_11 = 508098088236629965;
+            current_block_11 = 1734715445409302261;
         }
         2 => {
-            current_block_11 = 508098088236629965;
+            current_block_11 = 1734715445409302261;
         }
         3 => {
             if IsDma3ManagerBusyWithBgCopy() != 0 {
@@ -1956,10 +1956,10 @@ unsafe extern "C" fn LoopedTask_MoveSearchListPageUp(mut state: s32) -> u32_0 {
             if PokenavList_IsMoveWindowTaskActive() != 0 {
                 return 2 as u32_0;
             }
-            current_block_11 = 8754769984919088228;
+            current_block_11 = 511349658304490062;
         }
         2 => {
-            current_block_11 = 8754769984919088228;
+            current_block_11 = 511349658304490062;
         }
         3 => {
             if IsDma3ManagerBusyWithBgCopy() != 0 {
@@ -2004,10 +2004,10 @@ unsafe extern "C" fn LoopedTask_MoveSearchListPageDown(mut state: s32) -> u32_0 
             if PokenavList_IsMoveWindowTaskActive() != 0 {
                 return 2 as u32_0;
             }
-            current_block_11 = 95490912413675634;
+            current_block_11 = 10279160749600888415;
         }
         2 => {
-            current_block_11 = 95490912413675634;
+            current_block_11 = 10279160749600888415;
         }
         3 => {
             if IsDma3ManagerBusyWithBgCopy() != 0 {

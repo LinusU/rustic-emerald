@@ -209,6 +209,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -2100,13 +2101,13 @@ unsafe extern "C" fn AnimateUnionRoomPlayerSpawn(
                                 as *mut s8
                         };
                         *fresh1 += 1;
-                        current_block_11 = 9121154670559605463;
+                        current_block_11 = 3994437240559174246;
                     }
                 }
             }
         }
         3 => {
-            current_block_11 = 9121154670559605463;
+            current_block_11 = 3994437240559174246;
         }
         2 => {
             if TryReleaseUnionRoomPlayerObjectEvent(leaderId) != 0 {
@@ -2124,7 +2125,7 @@ unsafe extern "C" fn AnimateUnionRoomPlayerSpawn(
         }
     }
     match current_block_11 {
-        9121154670559605463 => {
+        3994437240559174246 => {
             if SetUnionRoomPlayerEnterExitMovement(
                 leaderId,
                 &raw const sMovement_UnionPlayerEnter as *const u8_0,
@@ -2237,13 +2238,13 @@ unsafe extern "C" fn AnimateUnionRoomPlayer(
                         as *mut UnionRoomObject
                 })
                     .animState = 0 as s8;
-                current_block_15 = 14121867561516531824;
+                current_block_15 = 2346692697102523595;
             } else {
                 current_block_15 = 4956146061682418353;
             }
         }
         2 => {
-            current_block_15 = 14121867561516531824;
+            current_block_15 = 2346692697102523595;
         }
         1 => {
             if (*if !object.is_null() {
@@ -2270,18 +2271,18 @@ unsafe extern "C" fn AnimateUnionRoomPlayer(
                         as *mut UnionRoomObject
                 })
                     .animState = 0 as s8;
-                current_block_15 = 18403587549558498242;
+                current_block_15 = 11625472914977279201;
             }
         }
         3 => {
-            current_block_15 = 18403587549558498242;
+            current_block_15 = 11625472914977279201;
         }
         _ => {
             current_block_15 = 4956146061682418353;
         }
     }
     match current_block_15 {
-        14121867561516531824 => {
+        2346692697102523595 => {
             if IsUnionRoomPlayerInvisible(leaderId, 0 as u32_0) == 0
                 && (*if !object.is_null() {
                     object
@@ -2328,7 +2329,7 @@ unsafe extern "C" fn AnimateUnionRoomPlayer(
                     .state = 1 as u8_0;
             }
         }
-        18403587549558498242 => {
+        11625472914977279201 => {
             if AnimateUnionRoomPlayerDespawn(
                 &raw mut (*if !object.is_null() {
                     object
@@ -2997,6 +2998,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

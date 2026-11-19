@@ -1633,10 +1633,10 @@ unsafe extern "C" fn AnimTask_EruptionLaunchRocks_Step(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh35 += 1;
-            current_block_59 = 17891158661738545175;
+            current_block_59 = 10546004591836724124;
         }
         1 => {
-            current_block_59 = 17891158661738545175;
+            current_block_59 = 10546004591836724124;
         }
         2 => {
             let ref mut fresh40 = (*if !task.is_null() {
@@ -1953,7 +1953,7 @@ unsafe extern "C" fn AnimTask_EruptionLaunchRocks_Step(mut taskId: u8_0) {
         }
     }
     match current_block_59 {
-        17891158661738545175 => {
+        10546004591836724124 => {
             let ref mut fresh36 = (*if !task.is_null() {
                 task
             } else {
@@ -2455,10 +2455,10 @@ unsafe extern "C" fn AnimEruptionFallingRock_Step(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh59 += 1;
-            current_block_17 = 1939739042109569175;
+            current_block_17 = 17982221608841753917;
         }
         1 => {
-            current_block_17 = 1939739042109569175;
+            current_block_17 = 17982221608841753917;
         }
         2 => {
             let ref mut fresh62 = (*if !sprite.is_null() {
@@ -2519,7 +2519,7 @@ unsafe extern "C" fn AnimEruptionFallingRock_Step(mut sprite: *mut Sprite) {
         }
     }
     match current_block_17 {
-        1939739042109569175 => {
+        17982221608841753917 => {
             let ref mut fresh60 = (*if !sprite.is_null() {
                 sprite
             } else {

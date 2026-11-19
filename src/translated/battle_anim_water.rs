@@ -3009,10 +3009,10 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh92 += 1;
-            current_block_50 = 3321337894142066877;
+            current_block_50 = 18019133822719951476;
         }
         1 => {
-            current_block_50 = 3321337894142066877;
+            current_block_50 = 18019133822719951476;
         }
         2 => {
             let ref mut fresh96 = (*if !task.is_null() {
@@ -3087,10 +3087,10 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh99 += 1;
-            current_block_50 = 12766349834733685609;
+            current_block_50 = 921014338214990409;
         }
         5 => {
-            current_block_50 = 12766349834733685609;
+            current_block_50 = 921014338214990409;
         }
         6 => {
             gSprites[(*if !task.is_null() {
@@ -3156,7 +3156,7 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
         }
     }
     match current_block_50 {
-        3321337894142066877 => {
+        18019133822719951476 => {
             let ref mut fresh93 = (*if !task.is_null() {
                 task
             } else {
@@ -3244,7 +3244,7 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
                 *fresh95 += 1;
             }
         }
-        12766349834733685609 => {
+        921014338214990409 => {
             let ref mut fresh100 = (*if !task.is_null() {
                 task
             } else {
@@ -3508,17 +3508,17 @@ unsafe extern "C" fn AnimSmallWaterOrb(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh40 += 1;
-            current_block_10 = 5339340440139523279;
+            current_block_10 = 12280221764675984621;
         }
         1 => {
-            current_block_10 = 5339340440139523279;
+            current_block_10 = 12280221764675984621;
         }
         _ => {
             current_block_10 = 5720623009719927633;
         }
     }
     match current_block_10 {
-        5339340440139523279 => {
+        12280221764675984621 => {
             let ref mut fresh41 = (*if !sprite.is_null() {
                 sprite
             } else {

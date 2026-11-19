@@ -783,10 +783,10 @@ unsafe extern "C" fn SetMenuInputHandler(mut menu: *mut Pokenav_Menu) {
     {
         0 => {
             SetPokenavMode(POKENAV_MODE_NORMAL as ::core::ffi::c_int as u16_0);
-            current_block_3 = 5472343710530609817;
+            current_block_3 = 16247983610400723914;
         }
         1 | 2 => {
-            current_block_3 = 5472343710530609817;
+            current_block_3 = 16247983610400723914;
         }
         3 => {
             let fresh1 = &raw mut (*if !menu.is_null() {
@@ -819,7 +819,7 @@ unsafe extern "C" fn SetMenuInputHandler(mut menu: *mut Pokenav_Menu) {
         }
     }
     match current_block_3 {
-        5472343710530609817 => {
+        16247983610400723914 => {
             let fresh0 = &raw mut (*if !menu.is_null() {
                 menu
             } else {

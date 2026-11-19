@@ -797,6 +797,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -6438,10 +6439,10 @@ unsafe extern "C" fn Task_FossilFallAndSink(mut taskId: u8_0) {
                 })
                     .spriteId as usize]
                 .data[1 as ::core::ffi::c_int as usize] = 1 as s16;
-            current_block_51 = 5108631329993292107;
+            current_block_51 = 1262995005442470763;
         }
         5 => {
-            current_block_51 = 5108631329993292107;
+            current_block_51 = 1262995005442470763;
         }
         6 => {
             i = 0 as u16_0;
@@ -6609,7 +6610,7 @@ unsafe extern "C" fn Task_FossilFallAndSink(mut taskId: u8_0) {
         }
     }
     match current_block_51 {
-        5108631329993292107 => {
+        1262995005442470763 => {
             i = 0 as u16_0;
             while (i as ::core::ffi::c_int) < 0x100 as ::core::ffi::c_int {
                 let fresh36 = (*if !sFallingFossil.is_null() {
@@ -7019,6 +7020,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

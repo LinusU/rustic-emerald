@@ -744,6 +744,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -4463,10 +4464,10 @@ unsafe extern "C" fn CB2_InitTrainerCard() {
             FreeAllSpritePalettes();
             ResetPaletteFade();
             gMain.state = gMain.state.wrapping_add(1);
-            current_block_26 = 8020934351460958390;
+            current_block_26 = 15292686426192330627;
         }
         4 => {
-            current_block_26 = 8020934351460958390;
+            current_block_26 = 15292686426192330627;
         }
         5 => {
             LoadMonIconGfx();
@@ -4506,7 +4507,7 @@ unsafe extern "C" fn CB2_InitTrainerCard() {
         }
     }
     match current_block_26 {
-        8020934351460958390 => {
+        15292686426192330627 => {
             InitBgsAndWindows();
             gMain.state = gMain.state.wrapping_add(1);
         }
@@ -4807,10 +4808,10 @@ unsafe extern "C" fn SetPlayerCardData(
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut TrainerCard
             })
                 .battleTowerStraightWins = 0 as u16_0;
-            current_block_38 = 12945839337719742012;
+            current_block_38 = 7351085214173646437;
         }
         0 => {
-            current_block_38 = 12945839337719742012;
+            current_block_38 = 7351085214173646437;
         }
         1 => {
             (*if !trainerCard.is_null() {
@@ -4856,7 +4857,7 @@ unsafe extern "C" fn SetPlayerCardData(
         }
     }
     match current_block_38 {
-        12945839337719742012 => {
+        7351085214173646437 => {
             (*if !trainerCard.is_null() {
                 trainerCard
             } else {
@@ -7508,10 +7509,10 @@ unsafe extern "C" fn SetCardBgsAndPals() -> u8_0 {
                 32 as u8_0,
                 32 as u8_0,
             );
-            current_block_19 = 8056481084984700922;
+            current_block_19 = 14414900839630709510;
         }
         _ => {
-            current_block_19 = 8056481084984700922;
+            current_block_19 = 14414900839630709510;
         }
     }
     match current_block_19 {
@@ -9166,6 +9167,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<Berry2>() == 36, "size of Berry2");
     assert!(align_of::<Berry2>() == 4, "alignment of Berry2");
     assert!(offset_of!(Berry2, name) == 0, "Berry2.name");

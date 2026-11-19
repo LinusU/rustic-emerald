@@ -3250,17 +3250,17 @@ unsafe extern "C" fn GameIntro_Leader() -> bool32 {
             })
                 .mainState;
             *fresh182 = (*fresh182).wrapping_add(1);
-            current_block_6 = 6437266650968361245;
+            current_block_6 = 6677034571470424748;
         }
         1 => {
-            current_block_6 = 6437266650968361245;
+            current_block_6 = 6677034571470424748;
         }
         _ => {
             current_block_6 = 15619007995458559411;
         }
     }
     match current_block_6 {
-        6437266650968361245 => {
+        6677034571470424748 => {
             if DoGameIntro() == 0 {
                 (*if !sPokemonJump.is_null() {
                     sPokemonJump
@@ -3405,17 +3405,17 @@ unsafe extern "C" fn WaitRound_Member() -> bool32 {
             })
                 .mainState;
             *fresh152 = (*fresh152).wrapping_add(1);
-            current_block_5 = 6592297551997696153;
+            current_block_5 = 10106732803213860586;
         }
         1 => {
-            current_block_5 = 6592297551997696153;
+            current_block_5 = 10106732803213860586;
         }
         _ => {
             current_block_5 = 15427931788582360902;
         }
     }
     match current_block_5 {
-        6592297551997696153 => {
+        10106732803213860586 => {
             if AreLinkQueuesEmpty() != 0 {
                 return 0 as bool32;
             }
@@ -3634,10 +3634,10 @@ unsafe extern "C" fn AskPlayAgain_Leader() -> bool32 {
             })
                 .mainState;
             *fresh176 = (*fresh176).wrapping_add(1);
-            current_block_13 = 13355271410674174579;
+            current_block_13 = 8342848578612843390;
         }
         1 => {
-            current_block_13 = 13355271410674174579;
+            current_block_13 = 8342848578612843390;
         }
         2 => {
             if (*if !sPokemonJump.is_null() {
@@ -3682,7 +3682,7 @@ unsafe extern "C" fn AskPlayAgain_Leader() -> bool32 {
         }
     }
     match current_block_13 {
-        13355271410674174579 => {
+        8342848578612843390 => {
             if DoPlayAgainPrompt() == 0 {
                 TryUpdateRecords(
                     (*if !sPokemonJump.is_null() {
@@ -3742,17 +3742,17 @@ unsafe extern "C" fn AskPlayAgain_Member() -> bool32 {
             })
                 .mainState;
             *fresh97 = (*fresh97).wrapping_add(1);
-            current_block_6 = 2773141663394987844;
+            current_block_6 = 11985185008455421821;
         }
         1 => {
-            current_block_6 = 2773141663394987844;
+            current_block_6 = 11985185008455421821;
         }
         _ => {
             current_block_6 = 15619007995458559411;
         }
     }
     match current_block_6 {
-        2773141663394987844 => {
+        11985185008455421821 => {
             if DoPlayAgainPrompt() == 0 {
                 TryUpdateRecords(
                     (*if !sPokemonJump.is_null() {
@@ -4252,13 +4252,13 @@ unsafe extern "C" fn HandleSwingRound() -> bool32 {
                 })
                     .helperState;
                 *fresh135 = (*fresh135).wrapping_add(1);
-                current_block_14 = 4749570349014323407;
+                current_block_14 = 10281626203795027477;
             } else {
                 current_block_14 = 7976072742316086414;
             }
         }
         1 => {
-            current_block_14 = 4749570349014323407;
+            current_block_14 = 10281626203795027477;
         }
         2 => {
             if IsPlayersMonState(MONSTATE_JUMP as ::core::ffi::c_int as u16_0)
@@ -4294,7 +4294,7 @@ unsafe extern "C" fn HandleSwingRound() -> bool32 {
         }
     }
     match current_block_14 {
-        4749570349014323407 => {
+        10281626203795027477 => {
             if gMain.newKeys as ::core::ffi::c_int & 0x1 as ::core::ffi::c_int != 0 {
                 SetMonStateJump();
                 SetLinkTimeInterval(3 as ::core::ffi::c_int);
@@ -4950,17 +4950,17 @@ unsafe extern "C" fn Task_CommunicateMonInfo(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize);
             *fresh186 += 1;
-            current_block_11 = 538366259886104682;
+            current_block_11 = 15411011966724399464;
         }
         1 => {
-            current_block_11 = 538366259886104682;
+            current_block_11 = 15411011966724399464;
         }
         _ => {
             current_block_11 = 17407779659766490442;
         }
     }
     match current_block_11 {
-        538366259886104682 => {
+        15411011966724399464 => {
             SendPacket_MonInfo(
                 (&raw mut (*if !jump.is_null() {
                     jump
@@ -8466,17 +8466,17 @@ unsafe extern "C" fn SpriteCB_MonIntroBounce(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh166 += 1;
-            current_block_11 = 7070341591444203554;
+            current_block_11 = 14568513378034177661;
         }
         1 => {
-            current_block_11 = 7070341591444203554;
+            current_block_11 = 14568513378034177661;
         }
         _ => {
             current_block_11 = 2868539653012386629;
         }
     }
     match current_block_11 {
-        7070341591444203554 => {
+        14568513378034177661 => {
             let ref mut fresh167 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -12104,11 +12104,11 @@ unsafe extern "C" fn ResetVineGfx() -> bool32 {
             {
                 current_block_10 = 11812396948646013369;
             } else {
-                current_block_10 = 157519245937123031;
+                current_block_10 = 18299026149195632974;
             }
         }
         1 => {
-            current_block_10 = 157519245937123031;
+            current_block_10 = 18299026149195632974;
         }
         _ => {
             current_block_10 = 11812396948646013369;
@@ -12455,21 +12455,21 @@ unsafe extern "C" fn DoPrizeMessageAndFanfare() -> bool32 {
                 })
                     .msgWindowState;
                 *fresh85 = (*fresh85).wrapping_add(1);
-                current_block_13 = 11183383229826863987;
+                current_block_13 = 17210735726041470989;
             }
         }
         2 => {
-            current_block_13 = 11183383229826863987;
+            current_block_13 = 17210735726041470989;
         }
         3 => {
-            current_block_13 = 16808859647621445393;
+            current_block_13 = 12802142252516881215;
         }
         _ => {
             current_block_13 = 10599921512955367680;
         }
     }
     match current_block_13 {
-        11183383229826863987 => {
+        17210735726041470989 => {
             if IsFanfareTaskInactive() == 0 {
                 current_block_13 = 10599921512955367680;
             } else {
@@ -12481,7 +12481,7 @@ unsafe extern "C" fn DoPrizeMessageAndFanfare() -> bool32 {
                 })
                     .msgWindowState;
                 *fresh86 = (*fresh86).wrapping_add(1);
-                current_block_13 = 16808859647621445393;
+                current_block_13 = 12802142252516881215;
             }
         }
         _ => {}
@@ -12571,13 +12571,13 @@ unsafe extern "C" fn RemoveMessageWindow() -> bool32 {
                 })
                     .msgWindowState;
                 *fresh51 = (*fresh51).wrapping_add(1);
-                current_block_6 = 2144984730306873049;
+                current_block_6 = 2415876556487865733;
             } else {
                 current_block_6 = 10879442775620481940;
             }
         }
         1 => {
-            current_block_6 = 2144984730306873049;
+            current_block_6 = 2415876556487865733;
         }
         _ => {
             current_block_6 = 10879442775620481940;

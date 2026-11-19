@@ -4018,17 +4018,17 @@ pub unsafe extern "C" fn LinkMain1(
         3 => {
             InitTimer();
             gLink.state = LINK_STATE_CONN_ESTABLISHED as ::core::ffi::c_int as u8_0;
-            current_block_15 = 16724872455702241989;
+            current_block_15 = 6203160711169279589;
         }
         4 => {
-            current_block_15 = 16724872455702241989;
+            current_block_15 = 6203160711169279589;
         }
         _ => {
             current_block_15 = 15904375183555213903;
         }
     }
     match current_block_15 {
-        16724872455702241989 => {
+        6203160711169279589 => {
             EnqueueSendCmd(sendCmd);
             DequeueRecvCmds(recvCmds);
         }

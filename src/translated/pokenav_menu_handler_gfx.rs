@@ -499,6 +499,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -2941,10 +2942,10 @@ unsafe extern "C" fn LoopedTask_OpenMenu(mut state: s32) -> u32_0 {
             match GetPokenavMenuType() {
                 4 => {
                     LoadLeftHeaderGfxForIndex(7 as u32_0);
-                    current_block_53 = 12998264373895341166;
+                    current_block_53 = 15613935855340349307;
                 }
                 3 => {
-                    current_block_53 = 12998264373895341166;
+                    current_block_53 = 15613935855340349307;
                 }
                 _ => {
                     LoadLeftHeaderGfxForIndex(0 as u32_0);
@@ -2952,7 +2953,7 @@ unsafe extern "C" fn LoopedTask_OpenMenu(mut state: s32) -> u32_0 {
                 }
             }
             match current_block_53 {
-                12998264373895341166 => {
+                15613935855340349307 => {
                     LoadLeftHeaderGfxForIndex(1 as u32_0);
                 }
                 _ => {}
@@ -2967,10 +2968,10 @@ unsafe extern "C" fn LoopedTask_OpenMenu(mut state: s32) -> u32_0 {
             match GetPokenavMenuType() {
                 4 => {
                     ShowLeftHeaderGfx(7 as u32_0, 0 as bool32, 0 as bool32);
-                    current_block_60 = 15067477383721153010;
+                    current_block_60 = 11480954016323458707;
                 }
                 3 => {
-                    current_block_60 = 15067477383721153010;
+                    current_block_60 = 11480954016323458707;
                 }
                 _ => {
                     ShowLeftHeaderGfx(0 as u32_0, 0 as bool32, 0 as bool32);
@@ -2978,7 +2979,7 @@ unsafe extern "C" fn LoopedTask_OpenMenu(mut state: s32) -> u32_0 {
                 }
             }
             match current_block_60 {
-                15067477383721153010 => {
+                11480954016323458707 => {
                     ShowLeftHeaderGfx(1 as u32_0, 0 as bool32, 0 as bool32);
                 }
                 _ => {}
@@ -3246,10 +3247,10 @@ unsafe extern "C" fn LoopedTask_OpenPokenavFeature(mut state: s32) -> u32_0 {
                         POKENAV_GFX_SEARCH_MENU as ::core::ffi::c_int as u32_0,
                         0 as bool32,
                     );
-                    current_block_9 = 6782476868339348223;
+                    current_block_9 = 16317571662140362386;
                 }
                 3 => {
-                    current_block_9 = 6782476868339348223;
+                    current_block_9 = 16317571662140362386;
                 }
                 _ => {
                     HideMainOrSubMenuLeftHeader(
@@ -3260,7 +3261,7 @@ unsafe extern "C" fn LoopedTask_OpenPokenavFeature(mut state: s32) -> u32_0 {
                 }
             }
             match current_block_9 {
-                6782476868339348223 => {
+                16317571662140362386 => {
                     HideMainOrSubMenuLeftHeader(
                         POKENAV_GFX_CONDITION_MENU as ::core::ffi::c_int as u32_0,
                         0 as bool32,
@@ -5482,6 +5483,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

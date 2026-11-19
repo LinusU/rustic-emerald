@@ -527,6 +527,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -2207,6 +2208,7 @@ pub static mut gSaveblock1: SaveBlock1ASLR = SaveBlock1ASLR {
             previousMovementDirection: 0,
             directionSequenceIndex: 0,
             playerCopyableMovement: 0,
+            padding2: 0,
         }; 16],
         objectEventTemplates: [ObjectEventTemplate {
     _c_alignment: [],
@@ -3915,6 +3917,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<Berry2>() == 36, "size of Berry2");
     assert!(align_of::<Berry2>() == 4, "alignment of Berry2");
     assert!(offset_of!(Berry2, name) == 0, "Berry2.name");

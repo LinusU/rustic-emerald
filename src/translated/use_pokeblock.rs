@@ -3032,10 +3032,10 @@ unsafe extern "C" fn BufferEnhancedText(
     match enhancement as ::core::ffi::c_int {
         1..=32767 => {
             enhancement = 0 as s16;
-            current_block_5 = 15253792348459933217;
+            current_block_5 = 2808724609733376808;
         }
         -32768..=-1 => {
-            current_block_5 = 15253792348459933217;
+            current_block_5 = 2808724609733376808;
         }
         0 => {
             StringCopy(dest, &raw const gText_NothingChanged as *const u8_0);
@@ -3046,7 +3046,7 @@ unsafe extern "C" fn BufferEnhancedText(
         }
     }
     match current_block_5 {
-        15253792348459933217 => {
+        2808724609733376808 => {
             if enhancement != 0 {
                 let ref mut fresh38 = *if !dest.is_null() {
                     dest

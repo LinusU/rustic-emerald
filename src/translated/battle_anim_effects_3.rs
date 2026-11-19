@@ -5615,10 +5615,10 @@ unsafe extern "C" fn AnimBatonPassPokeball(mut sprite: *mut Sprite) {
                     .data[0 as ::core::ffi::c_int as usize];
                 *fresh80 += 1;
             }
-            current_block_22 = 15006262180638580194;
+            current_block_22 = 5234230524252551379;
         }
         2 => {
-            current_block_22 = 15006262180638580194;
+            current_block_22 = 5234230524252551379;
         }
         3 => {
             let ref mut fresh85 = (*if !sprite.is_null() {
@@ -5650,7 +5650,7 @@ unsafe extern "C" fn AnimBatonPassPokeball(mut sprite: *mut Sprite) {
         }
     }
     match current_block_22 {
-        15006262180638580194 => {
+        5234230524252551379 => {
             let ref mut fresh81 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -13833,7 +13833,7 @@ unsafe extern "C" fn AnimForesightMagnifyingGlass_Step(mut sprite: *mut Sprite) 
                 .data[6 as ::core::ffi::c_int as usize] as ::core::ffi::c_int
             {
                 0 | 4 => {
-                    current_block_10 = 9844454757758069044;
+                    current_block_10 = 10857038526859262060;
                 }
                 1 => {
                     x = (GetBattlerSpriteCoordAttr(
@@ -13935,11 +13935,11 @@ unsafe extern "C" fn AnimForesightMagnifyingGlass_Step(mut sprite: *mut Sprite) 
                             as *mut Sprite
                     })
                         .data[6 as ::core::ffi::c_int as usize] = 0 as s16;
-                    current_block_10 = 9844454757758069044;
+                    current_block_10 = 10857038526859262060;
                 }
             }
             match current_block_10 {
-                9844454757758069044 => {
+                10857038526859262060 => {
                     x = (GetBattlerSpriteCoordAttr(
                         (*if !sprite.is_null() {
                             sprite

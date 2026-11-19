@@ -1360,10 +1360,10 @@ unsafe extern "C" fn WallyHandleActions() {
             })
                 .wallyBattleState;
             *fresh30 = (*fresh30).wrapping_add(1);
-            current_block_36 = 11068184375387356961;
+            current_block_36 = 3766037957614243667;
         }
         1 => {
-            current_block_36 = 11068184375387356961;
+            current_block_36 = 3766037957614243667;
         }
         2 => {
             let ref mut fresh33 = (*if !gBattleStruct.is_null() {
@@ -1500,7 +1500,7 @@ unsafe extern "C" fn WallyHandleActions() {
         }
     }
     match current_block_36 {
-        11068184375387356961 => {
+        3766037957614243667 => {
             let ref mut fresh31 = (*if !gBattleStruct.is_null() {
                 gBattleStruct
             } else {

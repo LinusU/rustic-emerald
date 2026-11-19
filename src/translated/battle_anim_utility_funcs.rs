@@ -958,14 +958,14 @@ pub unsafe extern "C" fn AnimTask_BlendBattleAnimPalExclude(mut taskId: u8_0) {
     match gBattleAnimArgs[0 as ::core::ffi::c_int as usize] as ::core::ffi::c_int {
         2 => {
             selectedPalettes = 0 as u32_0;
-            current_block_12 = 7291378653958039510;
+            current_block_12 = 11740996042087507061;
         }
         3 => {
             selectedPalettes = 0 as u32_0;
-            current_block_12 = 12236482770265525966;
+            current_block_12 = 988185777200269682;
         }
         1 => {
-            current_block_12 = 12236482770265525966;
+            current_block_12 = 988185777200269682;
         }
         4 => {
             animBattlers[0 as ::core::ffi::c_int as usize] = gBattleAnimAttacker;
@@ -989,14 +989,14 @@ pub unsafe extern "C" fn AnimTask_BlendBattleAnimPalExclude(mut taskId: u8_0) {
             current_block_12 = 17407779659766490442;
         }
         0 | _ => {
-            current_block_12 = 7291378653958039510;
+            current_block_12 = 11740996042087507061;
         }
     }
     match current_block_12 {
-        7291378653958039510 => {
+        11740996042087507061 => {
             animBattlers[0 as ::core::ffi::c_int as usize] = gBattleAnimAttacker;
         }
-        12236482770265525966 => {
+        988185777200269682 => {
             animBattlers[0 as ::core::ffi::c_int as usize] = gBattleAnimTarget;
         }
         _ => {}

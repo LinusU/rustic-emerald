@@ -8805,17 +8805,17 @@ unsafe extern "C" fn AnimTask_ScaryFace_Step(mut taskId: u8_0) {
                 .offset(taskId as isize))
                 .data[12 as ::core::ffi::c_int as usize];
             *fresh265 += 1;
-            current_block_31 = 15407183984108327324;
+            current_block_31 = 4765728091184563550;
         }
         4 => {
-            current_block_31 = 15407183984108327324;
+            current_block_31 = 4765728091184563550;
         }
         _ => {
             current_block_31 = 14818589718467733107;
         }
     }
     match current_block_31 {
-        15407183984108327324 => {
+        4765728091184563550 => {
             if IsContest() == 0 {
                 SetAnimBgAttribute(
                     1 as u8_0,

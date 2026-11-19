@@ -1350,6 +1350,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -18246,14 +18247,14 @@ unsafe extern "C" fn Task_RunScriptAndFadeToActivity(mut taskId: u8_0) {
                 16 | 23 | 24 | 25 | 26 | 27 => {
                     SaveLinkTrainerNames();
                     DestroyTask(taskId);
-                    current_block_13 = 7728690884866195656;
+                    current_block_13 = 9273081657694153452;
                 }
                 _ => {
-                    current_block_13 = 7728690884866195656;
+                    current_block_13 = 9273081657694153452;
                 }
             }
             match current_block_13 {
-                7728690884866195656 => {
+                9273081657694153452 => {
                     ScriptContext_Enable();
                     *if !data.is_null() {
                         data
@@ -19795,7 +19796,7 @@ unsafe extern "C" fn Task_CardOrNewsWithFriend(mut taskId: u8_0) {
             match id {
                 1 => {
                     PlaySE(2 as u16_0);
-                    current_block_51 = 9108017710588837095;
+                    current_block_51 = 4564735463398136516;
                 }
                 0 => {
                     id = ListMenu_ProcessInput(
@@ -19988,11 +19989,11 @@ unsafe extern "C" fn Task_CardOrNewsWithFriend(mut taskId: u8_0) {
                     current_block_51 = 572715077006366937;
                 }
                 _ => {
-                    current_block_51 = 9108017710588837095;
+                    current_block_51 = 4564735463398136516;
                 }
             }
             match current_block_51 {
-                9108017710588837095 => {
+                4564735463398136516 => {
                     RedrawListMenu(
                         (*if !data.is_null() {
                             data
@@ -20427,7 +20428,7 @@ unsafe extern "C" fn Task_CardOrNewsOverWireless(mut taskId: u8_0) {
             match id {
                 1 => {
                     PlaySE(2 as u16_0);
-                    current_block_50 = 6162936955313085914;
+                    current_block_50 = 14732883057709266609;
                 }
                 0 => {
                     if (*if !data.is_null() {
@@ -20624,11 +20625,11 @@ unsafe extern "C" fn Task_CardOrNewsOverWireless(mut taskId: u8_0) {
                     current_block_50 = 5330834795799507926;
                 }
                 _ => {
-                    current_block_50 = 6162936955313085914;
+                    current_block_50 = 14732883057709266609;
                 }
             }
             match current_block_50 {
-                6162936955313085914 => {
+                14732883057709266609 => {
                     if (*if !data.is_null() {
                         data
                     } else {
@@ -21494,10 +21495,10 @@ unsafe extern "C" fn Task_RunUnionRoom(mut taskId: u8_0) {
                         match HandlePlayerListUpdate() as ::core::ffi::c_int {
                             1 => {
                                 PlaySE(2 as u16_0);
-                                current_block_82 = 2223713840730973099;
+                                current_block_82 = 1252556655538217469;
                             }
                             2 => {
-                                current_block_82 = 2223713840730973099;
+                                current_block_82 = 1252556655538217469;
                             }
                             4 => {
                                 (*if !uroom.is_null() {
@@ -21528,7 +21529,7 @@ unsafe extern "C" fn Task_RunUnionRoom(mut taskId: u8_0) {
                             }
                         }
                         match current_block_82 {
-                            2223713840730973099 => {
+                            1252556655538217469 => {
                                 ScheduleUnionRoomPlayerRefresh(uroom);
                             }
                             _ => {}
@@ -28340,6 +28341,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<PlayerAvatar>() == 36, "size of PlayerAvatar");
     assert!(align_of::<PlayerAvatar>() == 4, "alignment of PlayerAvatar");
     assert!(offset_of!(PlayerAvatar, flags) == 0, "PlayerAvatar.flags");

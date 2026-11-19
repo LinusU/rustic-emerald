@@ -326,6 +326,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -4715,10 +4716,10 @@ unsafe extern "C" fn UpdateMonAnim() {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut PokeblockFeed
             })
                 .animRunState = 50 as u8_0;
-            current_block_30 = 5308318364306764764;
+            current_block_30 = 1800970621964370235;
         }
         50 => {
-            current_block_30 = 5308318364306764764;
+            current_block_30 = 1800970621964370235;
         }
         60 => {
             if DoMonAnimStep() as ::core::ffi::c_int == 1 as ::core::ffi::c_int {
@@ -4796,7 +4797,7 @@ unsafe extern "C" fn UpdateMonAnim() {
         }
     }
     match current_block_30 {
-        5308318364306764764 => {
+        1800970621964370235 => {
             if sNatureToMonPokeblockAnim[(*if !pokeblockFeed.is_null() {
                 pokeblockFeed
             } else {
@@ -5556,6 +5557,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

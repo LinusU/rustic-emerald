@@ -6990,7 +6990,7 @@ unsafe extern "C" fn SetUpCopyrightScreen() -> u8_0 {
                 Some(SerialCB_CopyrightScreen as unsafe extern "C" fn() -> ()),
             );
             GameCubeMultiBoot_Init(&raw mut gMultibootProgramStruct);
-            current_block_84 = 8102761048252967027;
+            current_block_84 = 7396544619721570375;
         }
         140 => {
             GameCubeMultiBoot_Main(&raw mut gMultibootProgramStruct);
@@ -7176,11 +7176,11 @@ unsafe extern "C" fn SetUpCopyrightScreen() -> u8_0 {
             }
         }
         _ => {
-            current_block_84 = 8102761048252967027;
+            current_block_84 = 7396544619721570375;
         }
     }
     match current_block_84 {
-        8102761048252967027 => {
+        7396544619721570375 => {
             UpdatePaletteFade();
             gMain.state = gMain.state.wrapping_add(1);
             GameCubeMultiBoot_Main(&raw mut gMultibootProgramStruct);
@@ -8546,11 +8546,11 @@ unsafe extern "C" fn SpriteCB_Volbeat(mut sprite: *mut Sprite) {
                 })
                     .data[0 as ::core::ffi::c_int as usize];
                 *fresh173 += 1;
-                current_block_52 = 12854592454937454482;
+                current_block_52 = 5600996054927678560;
             }
         }
         1 => {
-            current_block_52 = 12854592454937454482;
+            current_block_52 = 5600996054927678560;
         }
         2 => {
             let ref mut fresh175 = (*if !sprite.is_null() {
@@ -8719,10 +8719,10 @@ unsafe extern "C" fn SpriteCB_Volbeat(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh181 += 1;
-            current_block_52 = 18096361764996442771;
+            current_block_52 = 9390035282427575908;
         }
         6 => {
-            current_block_52 = 18096361764996442771;
+            current_block_52 = 9390035282427575908;
         }
         7 => {
             let ref mut fresh188 = (*if !sprite.is_null() {
@@ -8808,7 +8808,7 @@ unsafe extern "C" fn SpriteCB_Volbeat(mut sprite: *mut Sprite) {
         }
     }
     match current_block_52 {
-        18096361764996442771 => {
+        9390035282427575908 => {
             (*if !sprite.is_null() {
                 sprite
             } else {
@@ -8908,7 +8908,7 @@ unsafe extern "C" fn SpriteCB_Volbeat(mut sprite: *mut Sprite) {
                 }
             }
         }
-        12854592454937454482 => {
+        5600996054927678560 => {
             let ref mut fresh174 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -9232,18 +9232,18 @@ unsafe extern "C" fn SpriteCB_Manectric(mut sprite: *mut Sprite) {
                 })
                     .data[0 as ::core::ffi::c_int as usize];
                 *fresh215 += 1;
-                current_block_20 = 15091596139706490623;
+                current_block_20 = 17241625601759356835;
             }
         }
         2 => {
-            current_block_20 = 15091596139706490623;
+            current_block_20 = 17241625601759356835;
         }
         _ => {
             current_block_20 = 2370887241019905314;
         }
     }
     match current_block_20 {
-        15091596139706490623 => {
+        17241625601759356835 => {
             if (*if !sprite.is_null() {
                 sprite
             } else {
@@ -10732,11 +10732,11 @@ unsafe extern "C" fn Task_Scene3_Kyogre(mut taskId: u8_0) {
                 }
                     .offset(0 as ::core::ffi::c_int as isize);
                 *fresh56 += 1;
-                current_block_104 = 3732801848482672524;
+                current_block_104 = 11007359752261386794;
             }
         }
         1 => {
-            current_block_104 = 3732801848482672524;
+            current_block_104 = 11007359752261386794;
         }
         2 => {
             let ref mut fresh59 = *if !data.is_null() {
@@ -11376,7 +11376,7 @@ unsafe extern "C" fn Task_Scene3_Kyogre(mut taskId: u8_0) {
         }
     }
     match current_block_104 {
-        3732801848482672524 => {
+        11007359752261386794 => {
             let ref mut fresh57 = *if !data.is_null() {
                 data
             } else {
@@ -12209,20 +12209,20 @@ unsafe extern "C" fn SpriteCB_Lightning(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh144 += 1;
-            current_block_31 = 15220931962766639339;
+            current_block_31 = 3954829711460148713;
         }
         1 => {
-            current_block_31 = 15220931962766639339;
+            current_block_31 = 3954829711460148713;
         }
         2 => {
-            current_block_31 = 13750596933033759020;
+            current_block_31 = 5562734161963013992;
         }
         _ => {
             current_block_31 = 652864300344834934;
         }
     }
     match current_block_31 {
-        15220931962766639339 => {
+        3954829711460148713 => {
             let mut oamWatchDest: *const ::core::ffi::c_char = (&raw mut gPlttBufferFaded
                 as *mut u16_0)
                 .offset(
@@ -12348,13 +12348,13 @@ unsafe extern "C" fn SpriteCB_Lightning(mut sprite: *mut Sprite) {
                 })
                     .data[0 as ::core::ffi::c_int as usize];
                 *fresh146 += 1;
-                current_block_31 = 13750596933033759020;
+                current_block_31 = 5562734161963013992;
             }
         }
         _ => {}
     }
     match current_block_31 {
-        13750596933033759020 => {
+        5562734161963013992 => {
             let ref mut fresh147 = (*if !sprite.is_null() {
                 sprite
             } else {

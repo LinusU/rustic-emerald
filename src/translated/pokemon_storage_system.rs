@@ -1561,6 +1561,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -22661,10 +22662,10 @@ unsafe extern "C" fn Task_ReleaseMon(mut taskId: u8_0) {
             })
                 .state;
             *fresh475 = (*fresh475).wrapping_add(1);
-            current_block_64 = 3533783876327094404;
+            current_block_64 = 5618614176377915576;
         }
         1 => {
-            current_block_64 = 3533783876327094404;
+            current_block_64 = 5618614176377915576;
         }
         2 => {
             RunCanReleaseMon();
@@ -22884,7 +22885,7 @@ unsafe extern "C" fn Task_ReleaseMon(mut taskId: u8_0) {
         }
     }
     match current_block_64 {
-        3533783876327094404 => {
+        5618614176377915576 => {
             match Menu_ProcessInputNoWrapClearOnChoose() as ::core::ffi::c_int {
                 -1 | 1 => {
                     ClearBottomWindow();
@@ -23672,17 +23673,17 @@ unsafe extern "C" fn Task_HandleBoxOptions(mut taskId: u8_0) {
             })
                 .state;
             *fresh528 = (*fresh528).wrapping_add(1);
-            current_block_17 = 3123182856569440928;
+            current_block_17 = 18299443451610125384;
         }
         2 => {
-            current_block_17 = 3123182856569440928;
+            current_block_17 = 18299443451610125384;
         }
         _ => {
             current_block_17 = 8457315219000651999;
         }
     }
     match current_block_17 {
-        3123182856569440928 => {
+        18299443451610125384 => {
             match HandleMenuInput() as ::core::ffi::c_int {
                 -1 | 0 => {
                     AnimateBoxScrollArrows(1 as bool8);
@@ -29763,10 +29764,10 @@ unsafe extern "C" fn ScrollToBox() -> bool8 {
             })
                 .scrollState;
             *fresh226 = (*fresh226).wrapping_add(1);
-            current_block_15 = 12975650854885965688;
+            current_block_15 = 14331607377668603529;
         }
         1 => {
-            current_block_15 = 12975650854885965688;
+            current_block_15 = 14331607377668603529;
         }
         2 => {
             iconsScrolling = UpdateBoxMonIconScroll();
@@ -29814,7 +29815,7 @@ unsafe extern "C" fn ScrollToBox() -> bool8 {
         }
     }
     match current_block_15 {
-        12975650854885965688 => {
+        14331607377668603529 => {
             if WaitForWallpaperGfxLoad() == 0 {
                 return 1 as bool8;
             }
@@ -35012,11 +35013,11 @@ unsafe extern "C" fn TryRefreshDisplayMon() {
                     );
                     current_block_3 = 7351195479953500246;
                 } else {
-                    current_block_3 = 12097444314876821063;
+                    current_block_3 = 12115882551149965056;
                 }
             }
             3 | 2 => {
-                current_block_3 = 12097444314876821063;
+                current_block_3 = 12115882551149965056;
             }
             0 => {
                 SetDisplayMonData(
@@ -35031,7 +35032,7 @@ unsafe extern "C" fn TryRefreshDisplayMon() {
             }
         }
         match current_block_3 {
-            12097444314876821063 => {
+            12115882551149965056 => {
                 SetDisplayMonData(
                     ::core::ptr::null_mut::<::core::ffi::c_void>(),
                     MODE_MOVE as ::core::ffi::c_int as u8_0,
@@ -41243,17 +41244,17 @@ unsafe extern "C" fn SpriteCB_ItemIcon_ToHand(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh346 += 1;
-            current_block_11 = 8998618058308381581;
+            current_block_11 = 8870345967892192016;
         }
         1 => {
-            current_block_11 = 8998618058308381581;
+            current_block_11 = 8870345967892192016;
         }
         _ => {
             current_block_11 = 13183875560443969876;
         }
     }
     match current_block_11 {
-        8998618058308381581 => {
+        8870345967892192016 => {
             let ref mut fresh347 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -41460,17 +41461,17 @@ unsafe extern "C" fn SpriteCB_ItemIcon_ToMon(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh341 += 1;
-            current_block_13 = 1046555693550812026;
+            current_block_13 = 7197952076237739349;
         }
         1 => {
-            current_block_13 = 1046555693550812026;
+            current_block_13 = 7197952076237739349;
         }
         _ => {
             current_block_13 = 11650488183268122163;
         }
     }
     match current_block_13 {
-        1046555693550812026 => {
+        7197952076237739349 => {
             let ref mut fresh342 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -41619,17 +41620,17 @@ unsafe extern "C" fn SpriteCB_ItemIcon_SwapToHand(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh336 += 1;
-            current_block_15 = 5968419301256883458;
+            current_block_15 = 9927440002488634045;
         }
         1 => {
-            current_block_15 = 5968419301256883458;
+            current_block_15 = 9927440002488634045;
         }
         _ => {
             current_block_15 = 7651349459974463963;
         }
     }
     match current_block_15 {
-        5968419301256883458 => {
+        9927440002488634045 => {
             let ref mut fresh337 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -41801,17 +41802,17 @@ unsafe extern "C" fn SpriteCB_ItemIcon_SwapToMon(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh331 += 1;
-            current_block_15 = 6874706141545813026;
+            current_block_15 = 749754579830492966;
         }
         1 => {
-            current_block_15 = 6874706141545813026;
+            current_block_15 = 749754579830492966;
         }
         _ => {
             current_block_15 = 7651349459974463963;
         }
     }
     match current_block_15 {
-        6874706141545813026 => {
+        749754579830492966 => {
             let ref mut fresh332 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -44848,6 +44849,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

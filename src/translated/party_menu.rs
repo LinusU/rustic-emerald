@@ -1437,6 +1437,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -12974,17 +12975,17 @@ unsafe extern "C" fn Task_HandleCancelChooseMonYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_5 = 83423615960642;
+            current_block_5 = 14768783988444367469;
         }
         1 => {
-            current_block_5 = 83423615960642;
+            current_block_5 = 14768783988444367469;
         }
         _ => {
             current_block_5 = 15619007995458559411;
         }
     }
     match current_block_5 {
-        83423615960642 => {
+        14768783988444367469 => {
             Task_ReturnToChooseMonAfterText(taskId);
         }
         _ => {}
@@ -14217,17 +14218,17 @@ unsafe extern "C" fn Task_HandleCancelParticipationYesNoInput(mut taskId: u8_0) 
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_3 = 285583697997994966;
+            current_block_3 = 15500230147371099789;
         }
         1 => {
-            current_block_3 = 285583697997994966;
+            current_block_3 = 15500230147371099789;
         }
         _ => {
             current_block_3 = 820271813250567934;
         }
     }
     match current_block_3 {
-        285583697997994966 => {
+        15500230147371099789 => {
             let fresh8 = &raw mut (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))
                 .func;
@@ -18808,17 +18809,17 @@ unsafe extern "C" fn Task_HandleSwitchItemsYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_16 = 4449580482490533490;
+            current_block_16 = 13662006842534786891;
         }
         1 => {
-            current_block_16 = 4449580482490533490;
+            current_block_16 = 13662006842534786891;
         }
         _ => {
             current_block_16 = 10048703153582371463;
         }
     }
     match current_block_16 {
-        4449580482490533490 => {
+        13662006842534786891 => {
             let fresh155 = &raw mut (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))
                 .func;
@@ -19103,17 +19104,17 @@ unsafe extern "C" fn Task_HandleTossHeldItemYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_5 = 8117074437951775778;
+            current_block_5 = 6556573535878459782;
         }
         1 => {
-            current_block_5 = 8117074437951775778;
+            current_block_5 = 6556573535878459782;
         }
         _ => {
             current_block_5 = 2473556513754201174;
         }
     }
     match current_block_5 {
-        8117074437951775778 => {
+        6556573535878459782 => {
             let fresh22 = &raw mut (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))
                 .func;
@@ -19311,17 +19312,17 @@ unsafe extern "C" fn Task_HandleSendMailToPCYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_9 = 3515177887149596323;
+            current_block_9 = 5420822830568289264;
         }
         1 => {
-            current_block_9 = 3515177887149596323;
+            current_block_9 = 5420822830568289264;
         }
         _ => {
             current_block_9 = 1394248824506584008;
         }
     }
     match current_block_9 {
-        3515177887149596323 => {
+        5420822830568289264 => {
             DisplayPartyMenuMessage(
                 &raw const gText_MailMessageWillBeLost as *const u8_0,
                 1 as bool8,
@@ -19387,17 +19388,17 @@ unsafe extern "C" fn Task_HandleLoseMailMessageYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_11 = 8700018874863748341;
+            current_block_11 = 1512725651327773578;
         }
         1 => {
-            current_block_11 = 8700018874863748341;
+            current_block_11 = 1512725651327773578;
         }
         _ => {
             current_block_11 = 17965632435239708295;
         }
     }
     match current_block_11 {
-        8700018874863748341 => {
+        1512725651327773578 => {
             let fresh144 = &raw mut (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))
                 .func;
@@ -19885,17 +19886,17 @@ unsafe extern "C" fn Task_HandleSpinTradeYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_2 = 12096047259602715029;
+            current_block_2 = 18249073179097440607;
         }
         1 => {
-            current_block_2 = 12096047259602715029;
+            current_block_2 = 18249073179097440607;
         }
         _ => {
             current_block_2 = 715039052867723359;
         }
     }
     match current_block_2 {
-        12096047259602715029 => {
+        18249073179097440607 => {
             Task_ReturnToChooseMonAfterText(taskId);
         }
         _ => {}
@@ -20120,17 +20121,17 @@ unsafe extern "C" fn Task_HandleFieldMoveExitAreaYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_5 = 15874001316751429522;
+            current_block_5 = 16727094903133797624;
         }
         1 => {
-            current_block_5 = 15874001316751429522;
+            current_block_5 = 16727094903133797624;
         }
         _ => {
             current_block_5 = 15619007995458559411;
         }
     }
     match current_block_5 {
-        15874001316751429522 => {
+        16727094903133797624 => {
             gFieldCallback2 = None;
             gPostMenuFieldCallback = None;
             Task_ReturnToChooseMonAfterText(taskId);
@@ -21998,17 +21999,17 @@ unsafe extern "C" fn Task_HandleReplaceMoveYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_3 = 9472090269440512157;
+            current_block_3 = 9879675043785440983;
         }
         1 => {
-            current_block_3 = 9472090269440512157;
+            current_block_3 = 9879675043785440983;
         }
         _ => {
             current_block_3 = 820271813250567934;
         }
     }
     match current_block_3 {
-        9472090269440512157 => {
+        9879675043785440983 => {
             StopLearningMovePrompt(taskId);
         }
         _ => {}
@@ -22159,17 +22160,17 @@ unsafe extern "C" fn Task_HandleStopLearningMoveYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_15 = 11668245980316262938;
+            current_block_15 = 6184708675745425921;
         }
         1 => {
-            current_block_15 = 11668245980316262938;
+            current_block_15 = 6184708675745425921;
         }
         _ => {
             current_block_15 = 3512920355445576850;
         }
     }
     match current_block_15 {
-        11668245980316262938 => {
+        6184708675745425921 => {
             GetMonNickname(mon, &raw mut gStringVar1 as *mut u8_0);
             StringCopy(
                 &raw mut gStringVar2 as *mut u8_0,
@@ -23350,17 +23351,17 @@ unsafe extern "C" fn Task_HandleSwitchItemsFromBagYesNoInput(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_17 = 10842681040178980745;
+            current_block_17 = 8595562864732685838;
         }
         1 => {
-            current_block_17 = 10842681040178980745;
+            current_block_17 = 8595562864732685838;
         }
         _ => {
             current_block_17 = 17407779659766490442;
         }
     }
     match current_block_17 {
-        10842681040178980745 => {
+        8595562864732685838 => {
             let fresh183 = &raw mut (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))
                 .func;
@@ -25806,6 +25807,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

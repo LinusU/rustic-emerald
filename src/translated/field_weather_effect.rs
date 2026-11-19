@@ -330,6 +330,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -16943,10 +16944,10 @@ unsafe extern "C" fn UpdateDroughtBlend(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh177 += 1;
-            current_block_28 = 5544968051777294168;
+            current_block_28 = 2819295077884827815;
         }
         1 => {
-            current_block_28 = 5544968051777294168;
+            current_block_28 = 2819295077884827815;
         }
         2 => {
             let ref mut fresh180 = (*if !task.is_null() {
@@ -17042,7 +17043,7 @@ unsafe extern "C" fn UpdateDroughtBlend(mut taskId: u8_0) {
         }
     }
     match current_block_28 {
-        5544968051777294168 => {
+        2819295077884827815 => {
             let ref mut fresh178 = (*if !task.is_null() {
                 task
             } else {
@@ -19125,10 +19126,10 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
             })
                 .initStep;
             *fresh68 = (*fresh68).wrapping_add(1);
-            current_block_56 = 16777970279927615;
+            current_block_56 = 16113642603879437235;
         }
         5 => {
-            current_block_56 = 16777970279927615;
+            current_block_56 = 16113642603879437235;
         }
         6 => {
             (*if !gWeatherPtr.is_null() {
@@ -19168,10 +19169,10 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
             })
                 .initStep;
             *fresh72 = (*fresh72).wrapping_add(1);
-            current_block_56 = 4570515368713062298;
+            current_block_56 = 13695951978565826101;
         }
         8 => {
-            current_block_56 = 4570515368713062298;
+            current_block_56 = 13695951978565826101;
         }
         9 => {
             let ref mut fresh74 = (*if !gWeatherPtr.is_null() {
@@ -19352,7 +19353,7 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
         }
     }
     match current_block_56 {
-        4570515368713062298 => {
+        13695951978565826101 => {
             ApplyWeatherColorMapIfIdle(19 as s8);
             if (*if !gWeatherPtr.is_null() {
                 gWeatherPtr
@@ -19384,7 +19385,7 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
                 .initStep;
             *fresh73 = (*fresh73).wrapping_add(1);
         }
-        16777970279927615 => {
+        16113642603879437235 => {
             let ref mut fresh69 = (*if !gWeatherPtr.is_null() {
                 gWeatherPtr
             } else {
@@ -19429,10 +19430,10 @@ pub unsafe extern "C" fn Thunderstorm_Finish() -> bool8 {
             })
                 .finishStep;
             *fresh83 = (*fresh83).wrapping_add(1);
-            current_block_15 = 1333847118817801273;
+            current_block_15 = 11182175734973098646;
         }
         1 => {
-            current_block_15 = 1333847118817801273;
+            current_block_15 = 11182175734973098646;
         }
         2 => {
             if UpdateVisibleRainSprites() == 0 {
@@ -19457,7 +19458,7 @@ pub unsafe extern "C" fn Thunderstorm_Finish() -> bool8 {
         _ => return 0 as bool8,
     }
     match current_block_15 {
-        1333847118817801273 => {
+        11182175734973098646 => {
             Thunderstorm_Main();
             if (*if !gWeatherPtr.is_null() {
                 gWeatherPtr
@@ -23293,6 +23294,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

@@ -171,6 +171,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -6048,10 +6049,10 @@ unsafe extern "C" fn BerryTreeGrow(mut tree: *mut BerryTree) -> bool32 {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut BerryTree
             })
                 .berryYield = CalcBerryYield(tree);
-            current_block_12 = 18169099900438651441;
+            current_block_12 = 16286656096993458604;
         }
         1 | 2 | 3 => {
-            current_block_12 = 18169099900438651441;
+            current_block_12 = 16286656096993458604;
         }
         5 => {
             let ref mut fresh7 = *if !tree.is_null() {
@@ -6112,7 +6113,7 @@ unsafe extern "C" fn BerryTreeGrow(mut tree: *mut BerryTree) -> bool32 {
         }
     }
     match current_block_12 {
-        18169099900438651441 => {
+        16286656096993458604 => {
             let ref mut fresh6 = *if !tree.is_null() {
                 tree
             } else {
@@ -6753,6 +6754,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<Berry>() == 36, "size of Berry");
     assert!(align_of::<Berry>() == 4, "alignment of Berry");
     assert!(offset_of!(Berry, name) == 0, "Berry.name");

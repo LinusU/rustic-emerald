@@ -398,7 +398,7 @@ pub unsafe extern "C" fn MultiBootMain(
                     }
                 }
                 1 => {
-                    current_block = 9323778813750240306;
+                    current_block = 9572582327956929522;
                     break;
                 }
                 2 => {
@@ -731,7 +731,7 @@ pub unsafe extern "C" fn MultiBootMain(
                                 as *mut MultiBootParam
                         })
                             .probe_count = 0 as u8_0;
-                        current_block = 8849049583446881650;
+                        current_block = 3850032352414043717;
                         break;
                     }
                 }
@@ -764,7 +764,7 @@ pub unsafe extern "C" fn MultiBootMain(
             })
                 .probe_count as ::core::ffi::c_int == 0xc4 as ::core::ffi::c_int
             {
-                current_block = 8849049583446881650;
+                current_block = 3850032352414043717;
                 break;
             }
             let fresh22 = (*if !mp.is_null() {
@@ -850,9 +850,9 @@ pub unsafe extern "C" fn MultiBootMain(
                     .client_bit as ::core::ffi::c_int
             {
                 MultiBootStartProbe(mp);
-                current_block = 9323778813750240306;
+                current_block = 9572582327956929522;
             } else {
-                current_block = 8849049583446881650;
+                current_block = 3850032352414043717;
             }
         }
         3934796541983872331 => {
@@ -864,12 +864,12 @@ pub unsafe extern "C" fn MultiBootMain(
             })
                 .check_wait;
             *fresh12 = (*fresh12).wrapping_sub(1);
-            current_block = 8849049583446881650;
+            current_block = 3850032352414043717;
         }
         _ => {}
     }
     match current_block {
-        9323778813750240306 => {
+        9572582327956929522 => {
             (*if !mp.is_null() {
                 mp
             } else {
@@ -1190,7 +1190,7 @@ unsafe extern "C" fn MultiBootHandShake(
         .probe_count as ::core::ffi::c_int
     {
         224 => {
-            current_block_27 = 13051332465541960110;
+            current_block_27 = 18272008333722400074;
         }
         231 | 232 => {
             i = 3 as ::core::ffi::c_int;
@@ -1305,7 +1305,7 @@ unsafe extern "C" fn MultiBootHandShake(
                     as *mut MultiBootParam
             })
                 .system_work[0 as ::core::ffi::c_int as usize];
-            current_block_27 = 14564767143639113329;
+            current_block_27 = 6859481369746392474;
         }
         _ => {
             i = 3 as ::core::ffi::c_int;
@@ -1353,13 +1353,13 @@ unsafe extern "C" fn MultiBootHandShake(
                         })
                             .system_work[1 as ::core::ffi::c_int as usize]
                 {
-                    current_block_27 = 13051332465541960110;
+                    current_block_27 = 18272008333722400074;
                     break;
                 }
                 i -= 1;
             }
             match current_block_27 {
-                13051332465541960110 => {}
+                18272008333722400074 => {}
                 _ => {
                     let ref mut fresh31 = (*if !mp.is_null() {
                         mp
@@ -1455,13 +1455,13 @@ unsafe extern "C" fn MultiBootHandShake(
                     })
                         .system_work[0 as ::core::ffi::c_int as usize]
                         >>= 5 as ::core::ffi::c_int;
-                    current_block_27 = 14564767143639113329;
+                    current_block_27 = 6859481369746392474;
                 }
             }
         }
     }
     match current_block_27 {
-        14564767143639113329 => {
+        6859481369746392474 => {
             return MultiBootSend(
                 mp,
                 (*if !mp.is_null() {

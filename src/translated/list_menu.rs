@@ -831,17 +831,17 @@ pub unsafe extern "C" fn DoMysteryGiftListMenu(
                         tileNum,
                         palOffset as u8_0,
                     );
-                    current_block_2 = 9791989865180105265;
+                    current_block_2 = 11482661554161649754;
                 }
                 1 => {
-                    current_block_2 = 9791989865180105265;
+                    current_block_2 = 11482661554161649754;
                 }
                 _ => {
                     current_block_2 = 820271813250567934;
                 }
             }
             match current_block_2 {
-                9791989865180105265 => {
+                11482661554161649754 => {
                     DrawTextBorderOuter(
                         sMysteryGiftLinkMenu.windowId,
                         tileNum,

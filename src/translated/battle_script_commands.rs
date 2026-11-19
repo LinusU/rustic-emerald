@@ -653,6 +653,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -9722,10 +9723,10 @@ unsafe extern "C" fn Cmd_getexp() {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut BattleStruct
             })
                 .sentInPokes = sentIn as u8_0;
-            current_block_196 = 8347056284321271273;
+            current_block_196 = 12256487959952471272;
         }
         2 => {
-            current_block_196 = 8347056284321271273;
+            current_block_196 = 12256487959952471272;
         }
         3 => {
             if gBattleControllerExecFlags == 0 as u32_0 {
@@ -10346,7 +10347,7 @@ unsafe extern "C" fn Cmd_getexp() {
         }
     }
     match current_block_196 {
-        8347056284321271273 => {
+        12256487959952471272 => {
             if gBattleControllerExecFlags == 0 as u32_0 {
                 item = GetMonData2(
                     (&raw mut gPlayerParty as *mut Pokemon)
@@ -19428,17 +19429,17 @@ unsafe extern "C" fn Cmd_switchhandleorder() {
                     | *(&raw const gBitTable as *const u32_0)
                         .offset(gActiveBattler as isize)) as u8_0;
             }
-            current_block_45 = 16504919365053194370;
+            current_block_45 = 14092724456181134857;
         }
         3 => {
-            current_block_45 = 16504919365053194370;
+            current_block_45 = 14092724456181134857;
         }
         _ => {
             current_block_45 = 6417057564578538666;
         }
     }
     match current_block_45 {
-        16504919365053194370 => {
+        14092724456181134857 => {
             gBattleCommunication[0 as ::core::ffi::c_int as usize] = gBattleBufferB[gActiveBattler
                 as usize][1 as ::core::ffi::c_int as usize];
             let ref mut fresh1001 = (&raw mut (*if !gBattleStruct.is_null() {
@@ -37693,6 +37694,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<AffineAnimCmd>() == 6, "size of AffineAnimCmd");
     assert!(align_of::<AffineAnimCmd>() == 2, "alignment of AffineAnimCmd");
     assert!(offset_of!(AffineAnimCmd, frame) == 0, "AffineAnimCmd.frame");

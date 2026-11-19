@@ -153,6 +153,7 @@ pub struct ObjectEvent {
     pub previousMovementDirection: u8_0,
     pub directionSequenceIndex: u8_0,
     pub playerCopyableMovement: u8_0,
+    pub padding2: u8_0,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C, packed)]
@@ -1496,19 +1497,19 @@ pub unsafe extern "C" fn MoveRotatingTileObjects(mut puzzleNumber: u8_0) -> u16_
                         >();
                         match puzzleTileNum as ::core::ffi::c_int {
                             0 => {
-                                current_block_21 = 3980182033597451378;
+                                current_block_21 = 6392508821572509226;
                                 match current_block_21 {
-                                    7409722384023455301 => {
+                                    14575655433004672584 => {
                                         movementScript = &raw const sMovement_ShiftUp
                                             as *const u8_0;
                                         y_0 = -(1 as ::core::ffi::c_int) as s8;
                                     }
-                                    8267583407342855931 => {
+                                    1869937631982015669 => {
                                         movementScript = &raw const sMovement_ShiftDown
                                             as *const u8_0;
                                         y_0 = 1 as s8;
                                     }
-                                    6502302926235594549 => {
+                                    2115845165491117413 => {
                                         movementScript = &raw const sMovement_ShiftLeft
                                             as *const u8_0;
                                         x_0 = -(1 as ::core::ffi::c_int) as s8;
@@ -1600,19 +1601,19 @@ pub unsafe extern "C" fn MoveRotatingTileObjects(mut puzzleNumber: u8_0) -> u16_
                                 }
                             }
                             1 => {
-                                current_block_21 = 8267583407342855931;
+                                current_block_21 = 1869937631982015669;
                                 match current_block_21 {
-                                    7409722384023455301 => {
+                                    14575655433004672584 => {
                                         movementScript = &raw const sMovement_ShiftUp
                                             as *const u8_0;
                                         y_0 = -(1 as ::core::ffi::c_int) as s8;
                                     }
-                                    8267583407342855931 => {
+                                    1869937631982015669 => {
                                         movementScript = &raw const sMovement_ShiftDown
                                             as *const u8_0;
                                         y_0 = 1 as s8;
                                     }
-                                    6502302926235594549 => {
+                                    2115845165491117413 => {
                                         movementScript = &raw const sMovement_ShiftLeft
                                             as *const u8_0;
                                         x_0 = -(1 as ::core::ffi::c_int) as s8;
@@ -1704,19 +1705,19 @@ pub unsafe extern "C" fn MoveRotatingTileObjects(mut puzzleNumber: u8_0) -> u16_
                                 }
                             }
                             2 => {
-                                current_block_21 = 6502302926235594549;
+                                current_block_21 = 2115845165491117413;
                                 match current_block_21 {
-                                    7409722384023455301 => {
+                                    14575655433004672584 => {
                                         movementScript = &raw const sMovement_ShiftUp
                                             as *const u8_0;
                                         y_0 = -(1 as ::core::ffi::c_int) as s8;
                                     }
-                                    8267583407342855931 => {
+                                    1869937631982015669 => {
                                         movementScript = &raw const sMovement_ShiftDown
                                             as *const u8_0;
                                         y_0 = 1 as s8;
                                     }
-                                    6502302926235594549 => {
+                                    2115845165491117413 => {
                                         movementScript = &raw const sMovement_ShiftLeft
                                             as *const u8_0;
                                         x_0 = -(1 as ::core::ffi::c_int) as s8;
@@ -1808,19 +1809,19 @@ pub unsafe extern "C" fn MoveRotatingTileObjects(mut puzzleNumber: u8_0) -> u16_
                                 }
                             }
                             3 => {
-                                current_block_21 = 7409722384023455301;
+                                current_block_21 = 14575655433004672584;
                                 match current_block_21 {
-                                    7409722384023455301 => {
+                                    14575655433004672584 => {
                                         movementScript = &raw const sMovement_ShiftUp
                                             as *const u8_0;
                                         y_0 = -(1 as ::core::ffi::c_int) as s8;
                                     }
-                                    8267583407342855931 => {
+                                    1869937631982015669 => {
                                         movementScript = &raw const sMovement_ShiftDown
                                             as *const u8_0;
                                         y_0 = 1 as s8;
                                     }
-                                    6502302926235594549 => {
+                                    2115845165491117413 => {
                                         movementScript = &raw const sMovement_ShiftLeft
                                             as *const u8_0;
                                         x_0 = -(1 as ::core::ffi::c_int) as s8;
@@ -2065,9 +2066,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
             if rotation == 0 as ::core::ffi::c_int {
                 match direction as ::core::ffi::c_int {
                     4 => {
-                        current_block_36 = 9747221669445066913;
+                        current_block_36 = 7071446626040101894;
                         match current_block_36 {
-                            3786644524166296490 => {
+                            14535288169113805779 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2088,7 +2089,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            16707465656945171756 => {
+                            12801740766284271581 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2109,7 +2110,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            9747221669445066913 => {
+                            7071446626040101894 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2189,9 +2190,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                         );
                     }
                     1 => {
-                        current_block_36 = 16707465656945171756;
+                        current_block_36 = 12801740766284271581;
                         match current_block_36 {
-                            3786644524166296490 => {
+                            14535288169113805779 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2212,7 +2213,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            16707465656945171756 => {
+                            12801740766284271581 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2233,7 +2234,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            9747221669445066913 => {
+                            7071446626040101894 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2313,9 +2314,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                         );
                     }
                     3 => {
-                        current_block_36 = 16419421837399235657;
+                        current_block_36 = 613316839486262765;
                         match current_block_36 {
-                            3786644524166296490 => {
+                            14535288169113805779 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2336,7 +2337,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            16707465656945171756 => {
+                            12801740766284271581 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2357,7 +2358,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            9747221669445066913 => {
+                            7071446626040101894 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2437,9 +2438,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                         );
                     }
                     2 => {
-                        current_block_36 = 3786644524166296490;
+                        current_block_36 = 14535288169113805779;
                         match current_block_36 {
-                            3786644524166296490 => {
+                            14535288169113805779 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2460,7 +2461,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            16707465656945171756 => {
+                            12801740766284271581 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2481,7 +2482,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            9747221669445066913 => {
+                            7071446626040101894 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2565,9 +2566,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
             } else if rotation == 1 as ::core::ffi::c_int {
                 match direction as ::core::ffi::c_int {
                     4 => {
-                        current_block_36 = 11454755363491939990;
+                        current_block_36 = 4262344653356995236;
                         match current_block_36 {
-                            7147294200370292097 => {
+                            12115943252349402044 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2588,7 +2589,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            14669664700600221311 => {
+                            17563192286654377248 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2609,7 +2610,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            17863127286145790913 => {
+                            15532881177088542332 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2689,9 +2690,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                         );
                     }
                     1 => {
-                        current_block_36 = 14669664700600221311;
+                        current_block_36 = 17563192286654377248;
                         match current_block_36 {
-                            7147294200370292097 => {
+                            12115943252349402044 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2712,7 +2713,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            14669664700600221311 => {
+                            17563192286654377248 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2733,7 +2734,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            17863127286145790913 => {
+                            15532881177088542332 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2813,9 +2814,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                         );
                     }
                     3 => {
-                        current_block_36 = 17863127286145790913;
+                        current_block_36 = 15532881177088542332;
                         match current_block_36 {
-                            7147294200370292097 => {
+                            12115943252349402044 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2836,7 +2837,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            14669664700600221311 => {
+                            17563192286654377248 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2857,7 +2858,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            17863127286145790913 => {
+                            15532881177088542332 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -2937,9 +2938,9 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                         );
                     }
                     2 => {
-                        current_block_36 = 7147294200370292097;
+                        current_block_36 = 12115943252349402044;
                         match current_block_36 {
-                            7147294200370292097 => {
+                            12115943252349402044 => {
                                 movementScript = &raw const sMovement_FaceRight
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2960,7 +2961,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0xa as u8_0;
                             }
-                            14669664700600221311 => {
+                            17563192286654377248 => {
                                 movementScript = &raw const sMovement_FaceLeft
                                     as *const u8_0;
                                 (*if !objectEvents.is_null() {
@@ -2981,7 +2982,7 @@ pub unsafe extern "C" fn TurnRotatingTileObjects() {
                                     ))
                                     .movementType = 0x9 as u8_0;
                             }
-                            17863127286145790913 => {
+                            15532881177088542332 => {
                                 movementScript = &raw const sMovement_FaceUp as *const u8_0;
                                 (*if !objectEvents.is_null() {
                                     objectEvents
@@ -3326,6 +3327,7 @@ const _: () = {
     assert!(offset_of!(ObjectEvent, previousMovementDirection) == 32, "ObjectEvent.previousMovementDirection");
     assert!(offset_of!(ObjectEvent, directionSequenceIndex) == 33, "ObjectEvent.directionSequenceIndex");
     assert!(offset_of!(ObjectEvent, playerCopyableMovement) == 34, "ObjectEvent.playerCopyableMovement");
+    assert!(offset_of!(ObjectEvent, padding2) == 35, "ObjectEvent.padding2");
     assert!(size_of::<Berry2>() == 36, "size of Berry2");
     assert!(align_of::<Berry2>() == 4, "alignment of Berry2");
     assert!(offset_of!(Berry2, name) == 0, "Berry2.name");

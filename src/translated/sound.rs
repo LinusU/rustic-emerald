@@ -743,17 +743,17 @@ pub unsafe extern "C" fn PlayCryInternal(
         12 => {
             length = 20 as u32_0;
             release = 225 as u32_0;
-            current_block_46 = 1295899651736899330;
+            current_block_46 = 16751734061260548914;
         }
         11 => {
-            current_block_46 = 1295899651736899330;
+            current_block_46 = 16751734061260548914;
         }
         0 | _ => {
             current_block_46 = 7427571413727699167;
         }
     }
     match current_block_46 {
-        1295899651736899330 => {
+        16751734061260548914 => {
             pitch = 15000 as u32_0;
         }
         _ => {}

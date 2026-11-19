@@ -2186,17 +2186,17 @@ unsafe extern "C" fn Task_ShowResetRtcPrompt(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize);
             *fresh29 += 1;
-            current_block_16 = 1348247981952923207;
+            current_block_16 = 11287252345535161829;
         }
         1 => {
-            current_block_16 = 1348247981952923207;
+            current_block_16 = 11287252345535161829;
         }
         _ => {
             current_block_16 = 4166486009154926805;
         }
     }
     match current_block_16 {
-        1348247981952923207 => {
+        11287252345535161829 => {
             if gMain.newKeys as ::core::ffi::c_int & 0x2 as ::core::ffi::c_int != 0 {
                 DestroyTask(taskId);
                 DoSoftReset();
@@ -2417,20 +2417,20 @@ unsafe extern "C" fn Task_ResetRtcScreen(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize) = MAINSTATE_WAIT_EXIT
                 as ::core::ffi::c_int as s16;
-            current_block_49 = 3753184489824259506;
+            current_block_49 = 8930922801303921508;
         }
         5 => {
-            current_block_49 = 3753184489824259506;
+            current_block_49 = 8930922801303921508;
         }
         6 => {
-            current_block_49 = 8930922801303921508;
+            current_block_49 = 4287310537365239037;
         }
         _ => {
             current_block_49 = 2480299350034459858;
         }
     }
     match current_block_49 {
-        3753184489824259506 => {
+        8930922801303921508 => {
             if gMain.newKeys as ::core::ffi::c_int & 0x1 as ::core::ffi::c_int != 0 {
                 BeginNormalPaletteFade(
                     0xffff as u32_0 | 0xffff0000 as u32_0,
@@ -2449,7 +2449,7 @@ unsafe extern "C" fn Task_ResetRtcScreen(mut taskId: u8_0) {
                 }
                     .offset(0 as ::core::ffi::c_int as isize) = MAINSTATE_EXIT
                     as ::core::ffi::c_int as s16;
-                current_block_49 = 8930922801303921508;
+                current_block_49 = 4287310537365239037;
             } else {
                 current_block_49 = 2480299350034459858;
             }
@@ -2457,7 +2457,7 @@ unsafe extern "C" fn Task_ResetRtcScreen(mut taskId: u8_0) {
         _ => {}
     }
     match current_block_49 {
-        8930922801303921508 => {
+        4287310537365239037 => {
             if gPaletteFade.active() == 0 {
                 DestroyTask(taskId);
                 FreeAllWindowBuffers();

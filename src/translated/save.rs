@@ -5645,10 +5645,10 @@ pub unsafe extern "C" fn HandleSavingData(mut saveType: u8_0) -> u8_0 {
                 EraseFlashSector.expect("non-null function pointer")(i as u16_0);
                 i = i.wrapping_add(1);
             }
-            current_block_25 = 16948198430420418255;
+            current_block_25 = 9645118421225375719;
         }
         3 => {
-            current_block_25 = 16948198430420418255;
+            current_block_25 = 9645118421225375719;
         }
         1 | 2 => {
             CopyPartyAndObjectsToSave();
@@ -5693,7 +5693,7 @@ pub unsafe extern "C" fn HandleSavingData(mut saveType: u8_0) -> u8_0 {
         }
     }
     match current_block_25 {
-        16948198430420418255 => {
+        9645118421225375719 => {
             if GetGameStat(10 as u8_0) < 999 as u32_0 {
                 IncrementGameStat(10 as u8_0);
             }

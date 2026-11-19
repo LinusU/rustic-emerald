@@ -6,6 +6,7 @@ use std::{fs, io::Write, path::Path};
 enum Action<'a> {
     Button(u16, bool),
     CheckTrainerId,
+    CheckBirchStarter(u16),
     Screenshot(&'a str),
 }
 
@@ -27,7 +28,16 @@ fn parse(line: &str) -> Option<(u32, Action<'_>)> {
             };
             Action::Button(1 << bit, pressed)
         }
-        "probe" if words.next()? == "trainer-id-nonzero" => Action::CheckTrainerId,
+        "probe" => match words.next()? {
+            "trainer-id-nonzero" => Action::CheckTrainerId,
+            "birch-starter" => Action::CheckBirchStarter(match words.next()? {
+                "treecko" => 0,
+                "torchic" => 1,
+                "mudkip" => 2,
+                _ => return None,
+            }),
+            _ => return None,
+        },
         "screenshot" => {
             let name = words.next()?;
             if !name
@@ -65,6 +75,7 @@ pub fn play(
     let mut events = events.into_iter().peekable();
     let mut held = 0;
     let mut captures = Vec::new();
+    let mut starter_checks = Vec::new();
     for frame in 0..=last {
         let mut check_trainer_id = false;
         while let Some((_, action)) = events.next_if(|event| event.0 == frame) {
@@ -72,6 +83,7 @@ pub fn play(
                 Action::Button(mask, true) => held |= mask,
                 Action::Button(mask, false) => held &= !mask,
                 Action::CheckTrainerId => check_trainer_id = true,
+                Action::CheckBirchStarter(expected) => starter_checks.push(expected),
                 Action::Screenshot(name) => captures.push(name),
             }
         }
@@ -81,6 +93,16 @@ pub fn play(
         crate::audio::clear_events();
         if check_trainer_id && game.trainer_id() == 0 {
             return Err(format!("trainer ID is zero at frame {frame}"));
+        }
+        for expected in starter_checks.drain(..) {
+            let (state, starter) = game
+                .birch_lab_progress()
+                .ok_or_else(|| format!("save block is unavailable at frame {frame}"))?;
+            if state != 3 || starter != expected {
+                return Err(format!(
+                    "expected Birch lab state 3 and starter {expected} at frame {frame}, found state {state} and starter {starter}"
+                ));
+            }
         }
         for name in captures.drain(..) {
             checkpoint(frame, name, game.render())?;

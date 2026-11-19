@@ -3792,10 +3792,10 @@ unsafe extern "C" fn RfuHandleReceiveCommand(mut unused: u8_0) {
                 {
                     return;
                 }
-                current_block_53 = 13870055913789278132;
+                current_block_53 = 9591585010162657517;
             }
             30464 => {
-                current_block_53 = 13870055913789278132;
+                current_block_53 = 9591585010162657517;
             }
             34816 => {
                 if gRfu.recvBlock[i as usize].receiving as ::core::ffi::c_int
@@ -3945,7 +3945,7 @@ unsafe extern "C" fn RfuHandleReceiveCommand(mut unused: u8_0) {
             }
         }
         match current_block_53 {
-            13870055913789278132 => {
+            9591585010162657517 => {
                 if (*if !gRfuLinkStatus.is_null() {
                     gRfuLinkStatus
                 } else {
@@ -5142,10 +5142,10 @@ unsafe extern "C" fn Task_PlayerExchangeUpdate(mut taskId: u8_0) {
                 .offset(taskId as isize))
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh6 += 1;
-            current_block_56 = 10237247705758667343;
+            current_block_56 = 2712642148573170354;
         }
         4 => {
-            current_block_56 = 10237247705758667343;
+            current_block_56 = 2712642148573170354;
         }
         5 => {
             if IsLinkTaskFinished() as ::core::ffi::c_int != 0
@@ -5251,7 +5251,7 @@ unsafe extern "C" fn Task_PlayerExchangeUpdate(mut taskId: u8_0) {
         }
     }
     match current_block_56 {
-        10237247705758667343 => {
+        2712642148573170354 => {
             sio = &raw mut gBlockSendBuffer as *mut u8_0 as *mut SioInfo;
             (*if !sio.is_null() {
                 sio
@@ -5786,11 +5786,11 @@ unsafe extern "C" fn LinkManagerCB_Child(mut msg: u8_0, mut unused1: u8_0) {
             if gRfu.childRecvStatus as ::core::ffi::c_int == 6 as ::core::ffi::c_int {
                 current_block_27 = 652864300344834934;
             } else {
-                current_block_27 = 16073624881536712561;
+                current_block_27 = 8897246755417526358;
             }
         }
         51 => {
-            current_block_27 = 16073624881536712561;
+            current_block_27 = 8897246755417526358;
         }
         49 => {
             gRfu.linkLossRecoveryState = 1 as u8_0;
@@ -5830,7 +5830,7 @@ unsafe extern "C" fn LinkManagerCB_Child(mut msg: u8_0, mut unused1: u8_0) {
         }
     }
     match current_block_27 {
-        16073624881536712561 => {
+        8897246755417526358 => {
             if gRfu.linkLossRecoveryState as ::core::ffi::c_int
                 != 2 as ::core::ffi::c_int
             {
@@ -6073,10 +6073,10 @@ unsafe extern "C" fn LinkManagerCB_UnionRoom(mut msg: u8_0, mut paramCount: u8_0
         }
         48 => {
             gRfu.linkLossRecoveryState = 2 as u8_0;
-            current_block_72 = 7921394187259785198;
+            current_block_72 = 11273917649556477057;
         }
         51 => {
-            current_block_72 = 7921394187259785198;
+            current_block_72 = 11273917649556477057;
         }
         64 => {
             gRfu.disconnectSlots = 0 as u8_0;
@@ -6102,7 +6102,7 @@ unsafe extern "C" fn LinkManagerCB_UnionRoom(mut msg: u8_0, mut paramCount: u8_0
         }
     }
     match current_block_72 {
-        7921394187259785198 => {
+        11273917649556477057 => {
             if gRfu.linkLossRecoveryState as ::core::ffi::c_int
                 != 2 as ::core::ffi::c_int
             {
