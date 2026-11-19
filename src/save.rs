@@ -41,8 +41,9 @@ fn u32_at(data: &[u8], offset: usize) -> u32 {
 }
 
 fn checksum(data: &[u8]) -> u16 {
-    let sum = data.chunks_exact(4).fold(0u32, |sum, word| {
-        sum.wrapping_add(u32::from_le_bytes(word.try_into().unwrap()))
+    let (words, _) = data.as_chunks::<4>();
+    let sum = words.iter().fold(0u32, |sum, &word| {
+        sum.wrapping_add(u32::from_le_bytes(word))
     });
     ((sum >> 16) as u16).wrapping_add(sum as u16)
 }
@@ -56,7 +57,8 @@ impl<'a> Bank<'a> {
     fn read(data: &'a [u8]) -> Option<Self> {
         let mut sections: [&[u8]; BANK_SECTORS] = [&[]; BANK_SECTORS];
         let counter = u32_at(data, 0xffc);
-        for sector in data.chunks_exact(SECTOR_SIZE) {
+        let (sectors, _) = data.as_chunks::<SECTOR_SIZE>();
+        for sector in sectors {
             let id = usize::from(u16_at(sector, 0xff4));
             let section = &sector[..*SECTION_LENGTHS.get(id)?];
             if !sections[id].is_empty()

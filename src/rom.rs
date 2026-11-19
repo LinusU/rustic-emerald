@@ -8,7 +8,7 @@ pub fn read(path: &Path) -> Result<Vec<u8>, String> {
     fs::read(path).map_err(|err| format!("could not read {}: {err}", path.display()))
 }
 
-// Native code hooks and ROM data offsets are specific to this cartridge revision.
+// The MP2K sound bank and song table offsets belong to this cartridge revision.
 pub fn validate(bytes: &[u8]) -> Result<(), String> {
     if bytes.len() != 0x1000000 {
         return Err(format!(

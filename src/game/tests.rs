@@ -5,10 +5,12 @@ unsafe extern "C" {
     fn NativeTestSave() -> i32;
     fn NativeTestLoad() -> i32;
     fn ClearSaveData();
+    static gBattleOutcome: u8;
+    fn VarGet(id: u16) -> u16;
 }
 
 #[test]
-fn native_game_reaches_mudkip_battle_and_reloads_cartridge_flash() {
+fn mudkip_wins_birch_rescue_and_cartridge_save_survives_reboot() {
     let mut game = Game::new(None).unwrap();
     let replay = include_str!("../../vendor/pokeemerald/tools/wasm_replays/mudkip_starter.txt");
     crate::replay::play(&mut game, replay, |frame, _, pixels| {
@@ -22,6 +24,24 @@ fn native_game_reaches_mudkip_battle_and_reloads_cartridge_flash() {
         Ok(())
     })
     .unwrap();
+
+    // Keep choosing FIGHT and TACKLE, then advance Birch's dialogue. Only
+    // the script in his lab sets this variable to 3 after giving the starter.
+    const VAR_BIRCH_LAB_STATE: u16 = 0x4084;
+    for frame in 27229..35000 {
+        let press_a = frame >= 27240 && (frame - 27240) % 24 < 4;
+        game.set_keys(u16::from(press_a));
+        game.frame();
+        if unsafe { VarGet(VAR_BIRCH_LAB_STATE) } == 3 {
+            break;
+        }
+    }
+    assert_eq!(unsafe { gBattleOutcome }, 1, "Mudkip won the first battle");
+    assert_eq!(
+        unsafe { VarGet(VAR_BIRCH_LAB_STATE) },
+        3,
+        "Birch gave the starter in his lab"
+    );
 
     // The native fixture calls Emerald's own save routine and populates two
     // values in SaveBlock1. Read them back after a fresh boot from disk.
