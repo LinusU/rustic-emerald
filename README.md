@@ -50,9 +50,12 @@ Of Emerald's 313 C game files, 21 now run as C2Rust-generated Rust. These includ
 
 `tools/rust-units.txt` lists the translated files. Both the generator and the native build read that list, so each routine has one implementation in the binary. The generator writes to `src/translated/`, checks structure sizes, alignments and field offsets against Clang, and marks mutable game globals for reset.
 
-Normal builds use the committed translations. With C2Rust 0.22.1 installed, these commands regenerate and verify the Rust modules.
+Normal builds use the committed translations. To regenerate them, install CMake, a C++ compiler, and LLVM 21 with its Clang development files. On macOS, run `brew install cmake llvm@21`. On Linux, set `LLVM_CONFIG_PATH` to the path of your LLVM 21 `llvm-config` executable if it is outside your search path.
+
+The bootstrap fetches C2Rust 0.22.1, verifies its Git revision, and applies the included fix for recursively defined C types. It builds the translator with locked Cargo dependencies and keeps the patched source and binary under `target/c2rust/`. Run these commands from the project directory.
 
 ```sh
+python3 tools/c2rust/bootstrap.py
 python3 tools/translate.py
 python3 tools/translate.py --check
 cargo test --release
