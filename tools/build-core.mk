@@ -1,22 +1,44 @@
 # Read after the upstream Makefile so the game and platform source lists match
 # the pinned native port. Each Rust module replaces one complete C unit.
 # The cartridge clock is implemented directly by src/rtc.rs.
-PORT_UNITS := $(shell cat ../../tools/rust-units.txt) siirtc
+PORT_UNITS := $(shell cat ../../tools/rust-units.txt)
+HOST_UNITS := siirtc
 # Upstream's compiler stamp already invalidates every native object. Include
 # the deployment target and flags so differently configured builds cannot mix.
 NATIVE_CC_ID := $(NATIVE_CC_ID) $(NATIVE_CFLAGS) $(MACOSX_DEPLOYMENT_TARGET)
 PATCH_UNITS := m4a sound main
 RUSTIC_DIR := $(NATIVE_BUILD_DIR)/rustic
-C_GAME_OBJECTS := $(filter-out $(addprefix $(NATIVE_OBJ_DIR)/,$(addsuffix .o,$(PORT_UNITS) $(PATCH_UNITS))),$(NATIVE_C_OBJS))
-CORE_OBJECTS := $(C_GAME_OBJECTS) $(RUSTIC_DIR)/native_engine.o $(NATIVE_DATA_OBJS) $(addprefix $(RUSTIC_DIR)/,$(addsuffix .o,$(PATCH_UNITS) bios))
+# Select the implementation by translation unit. The reference uses original C
+# gameplay throughout. Both binaries use the same device, save and audio hooks.
+GAME_UNITS := $(patsubst src/%.c,%,$(C_SRCS))
+UNKNOWN_PORT_UNITS := $(filter-out $(GAME_UNITS),$(PORT_UNITS))
+ifneq ($(UNKNOWN_PORT_UNITS),)
+$(error Unexpected Rust translation units: $(UNKNOWN_PORT_UNITS))
+endif
+UNPORTED_UNITS := $(filter-out $(PORT_UNITS) $(HOST_UNITS),$(GAME_UNITS))
+C_REFERENCE_UNITS := $(filter-out $(HOST_UNITS),$(GAME_UNITS))
+objects_for = $(addprefix $(NATIVE_OBJ_DIR)/,$(addsuffix .o,$(filter-out $(PATCH_UNITS),$1))) $(addprefix $(RUSTIC_DIR)/,$(addsuffix .o,$(filter $(PATCH_UNITS),$1)))
+# Native platform glue and generated maps/scripts are shared by both archives.
+PLATFORM_OBJECTS := $(NATIVE_OBJ_DIR)/native_game_save.o $(NATIVE_OBJ_DIR)/native_platform.o $(RUSTIC_DIR)/native_engine.o $(RUSTIC_DIR)/bios.o $(NATIVE_DATA_OBJS)
+CORE_OBJECTS := $(call objects_for,$(UNPORTED_UNITS)) $(PLATFORM_OBJECTS)
+REFERENCE_OBJECTS := $(call objects_for,$(C_REFERENCE_UNITS)) $(PLATFORM_OBJECTS)
 
-.PHONY: native-rustic
+.PHONY: native-rustic native-reference native-rustic-audit
 native-rustic: $(NATIVE_BUILD_DIR)/librustic_core.a $(NATIVE_BUILD_DIR)/librustic_test_support.a
+native-reference: $(NATIVE_BUILD_DIR)/librustic_reference.a $(NATIVE_BUILD_DIR)/librustic_test_support.a
 
-$(NATIVE_BUILD_DIR)/librustic_core.a: $(CORE_OBJECTS) ../../tools/build-core.mk ../../tools/rust-units.txt
-	$(RM) $@.tmp
-	$(AR) crs $@.tmp $(CORE_OBJECTS)
-	mv $@.tmp $@
+# Make this a normal prerequisite of native-rustic after migration is complete.
+native-rustic-audit:
+	$(if $(UNPORTED_UNITS),$(error Game units still compiled from C: $(UNPORTED_UNITS)),@echo All game translation units use Rust)
+
+define core_archive
+$(NATIVE_BUILD_DIR)/lib$1.a: $2 ../../tools/build-core.mk ../../tools/rust-units.txt
+	$$(RM) $$@.tmp
+	$$(AR) crs $$@.tmp $2
+	mv $$@.tmp $$@
+endef
+$(eval $(call core_archive,rustic_core,$(CORE_OBJECTS)))
+$(eval $(call core_archive,rustic_reference,$(REFERENCE_OBJECTS)))
 
 # Referenced only by the Rust integration test. Its new-game save/load path
 # exercises the actual Flash sector serializer, checksums and layout.

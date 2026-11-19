@@ -75,6 +75,7 @@ pub fn play(
                 Action::Screenshot(name) => captures.push(name),
             }
         }
+        crate::rtc::set_replay_frame(frame);
         game.set_keys(held);
         game.frame();
         crate::audio::clear_events();

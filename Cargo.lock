@@ -248,7 +248,150 @@ dependencies = [
 name = "emerald-game"
 version = "0.1.0"
 dependencies = [
+ "emerald-game-01",
+ "emerald-game-02",
+ "emerald-game-03",
+ "emerald-game-04",
+ "emerald-game-05",
+ "emerald-game-06",
+ "emerald-game-07",
+ "emerald-game-08",
+ "emerald-game-09",
+ "emerald-game-10",
+ "emerald-game-11",
+ "emerald-game-12",
+ "emerald-game-13",
+ "emerald-game-14",
+ "emerald-game-15",
+ "emerald-game-16",
+]
+
+[[package]]
+name = "emerald-game-01"
+version = "0.1.0"
+dependencies = [
  "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-02"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-03"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-04"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-05"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-06"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-07"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-08"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-09"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-10"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-11"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-12"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-13"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-14"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-15"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
+]
+
+[[package]]
+name = "emerald-game-16"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+ "libc",
 ]
 
 [[package]]

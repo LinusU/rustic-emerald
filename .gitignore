@@ -2,3 +2,4 @@
 /target/
 *.sav
 .*.lock
+__pycache__/

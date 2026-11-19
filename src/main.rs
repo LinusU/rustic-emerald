@@ -9,6 +9,7 @@ mod rtc;
 mod save;
 
 use clap::Parser;
+#[cfg(not(feature = "reference-c"))]
 use emerald_game as _;
 use std::{path::PathBuf, process::ExitCode};
 
@@ -43,7 +44,7 @@ struct Options {
 
 fn run(options: Options) -> Result<(), String> {
     if let Some(path) = &options.replay {
-        return replay::run(path, options.capture_dir.as_deref());
+        return rtc::with_replay_clock(|| replay::run(path, options.capture_dir.as_deref()));
     }
     if options.check_rom {
         rom::validate(&rom::read(&options.rom)?)?;

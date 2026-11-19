@@ -9,4 +9,19 @@ publish = false
 path = "mod.rs"
 
 [dependencies]
-c2rust-bitfields = "=0.22.1"
+emerald-game-01 = { path = "groups/01" }
+emerald-game-02 = { path = "groups/02" }
+emerald-game-03 = { path = "groups/03" }
+emerald-game-04 = { path = "groups/04" }
+emerald-game-05 = { path = "groups/05" }
+emerald-game-06 = { path = "groups/06" }
+emerald-game-07 = { path = "groups/07" }
+emerald-game-08 = { path = "groups/08" }
+emerald-game-09 = { path = "groups/09" }
+emerald-game-10 = { path = "groups/10" }
+emerald-game-11 = { path = "groups/11" }
+emerald-game-12 = { path = "groups/12" }
+emerald-game-13 = { path = "groups/13" }
+emerald-game-14 = { path = "groups/14" }
+emerald-game-15 = { path = "groups/15" }
+emerald-game-16 = { path = "groups/16" }

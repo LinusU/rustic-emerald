@@ -74,6 +74,7 @@ fn main() {
             .expect("MACOSX_DEPLOYMENT_TARGET=value");
         make.env("MACOSX_DEPLOYMENT_TARGET", version);
     }
+    let reference = env::var_os("CARGO_FEATURE_REFERENCE_C").is_some();
     let status = make
         .current_dir(core)
         .args([
@@ -85,14 +86,23 @@ fn main() {
             "NATIVE_CFLAGS=-O2 -DNDEBUG",
         ])
         .arg(format!("-j{}", jobs.clamp(1, 8)))
-        .arg("native-rustic")
+        .arg(if reference {
+            "native-reference"
+        } else {
+            "native-rustic"
+        })
         .status()
         .expect("run GNU make to build the native Emerald engine");
     assert!(status.success(), "native Emerald build failed: {status}");
     let output = output.canonicalize().expect("resolve native library path");
     println!("cargo:rustc-link-search=native={}", output.display());
     println!("cargo:rustc-link-lib=static=rustic_test_support");
-    println!("cargo:rustc-link-lib=static:+whole-archive=rustic_core");
+    let library = if reference {
+        "rustic_reference"
+    } else {
+        "rustic_core"
+    };
+    println!("cargo:rustc-link-lib=static:+whole-archive={library}");
     println!("cargo:rustc-link-lib=m");
     if macos {
         println!("cargo:rustc-link-arg=-Wl,-no_fixup_chains");

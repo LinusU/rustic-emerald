@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate native game modules from the pinned C sources with C2Rust 0.22.1."""
 import argparse
+from concurrent.futures import ProcessPoolExecutor
 import fcntl
 import json
 import os
@@ -8,6 +9,9 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
+
+from prepare_port import preprocess, restore_assets
+from translation_crates import manifests
 
 ROOT = Path(__file__).resolve().parent.parent
 VENDOR = ROOT / "vendor/pokeemerald"
@@ -24,7 +28,11 @@ SECTION = """#[cfg_attr(target_vendor = "apple", unsafe(link_section = "__DATA,n
 
 def prepare(unit, tmp):
     source = f"src/{unit}.c"
-    raw = subprocess.check_output([*CLANG, *FLAGS, "-E", source], cwd=VENDOR)
+    raw = preprocess(unit, tmp, VENDOR, CLANG, FLAGS)
+    # These two headers declare exactly the same global callback. C2Rust's
+    # AST pruning otherwise removes the typedef needed by the second spelling.
+    if b"extern void (*gPostMenuFieldCallback)(void);" in raw:
+        raw = raw.replace(b"extern MainCallback gPostMenuFieldCallback;", b"")
     path = tmp / f"{unit}.i"
     path.write_bytes(subprocess.check_output(
         ["tools/preproc/preproc", "-i", "-g", "build/assets", source, "charmap.txt"],
@@ -71,6 +79,7 @@ def const_globals(source):
 
 
 def normalize(text, source):
+    from normalize_rust import normalize_records, packed_temporaries
     text = text.replace("#[no_mangle]", "#[unsafe(no_mangle)]")
     text = text.replace('extern "C" {', 'unsafe extern "C" {')
     text = text.replace("use ::c2rust_bitfields;", "use c2rust_bitfields::BitfieldStruct;")
@@ -86,24 +95,7 @@ def normalize(text, source):
     # A packed C pointer member can be copied, but cannot be borrowed by Rust.
     text = text.replace("gTasks[i as usize].func == func", "{ gTasks[i as usize].func } == func")
     text = re.sub(r"(gSprites\[[^;\]]+\]\s*\.callback)(\s*==)", r"{ \1 }\2", text)
-    # Keep the C order of evaluation: compute the place, then evaluate the
-    # new value. C2Rust introduces these adjacent temporaries for assignments.
-    writes = r"let ref mut (fresh\d+) = ([^;]+);(\s*)\*\1 = ([^;]+);"
-    def store(match):
-        if match[1] in match[4] or re.search(r"\b" + match[1] + r"\b", text[match.end():]):
-            return match[0]
-        return f"let {match[1]} = &raw mut {match[2]};{match[3]}{match[1]}.write_unaligned({match[4]});"
-    text = re.sub(writes, store, text)
-    refs = re.findall(r"let ref mut (fresh\d+) = \(\*if [^;]+?\}\)\s*\.\w+;", text)
-    for name in refs:
-        # Only the null-tested pointer value is being copied. Preserve aliases
-        # to records: methods on those records may update live game state.
-        if not re.search(r"\(\*" + name + r"\)\s*\.is_null\(\)", text):
-            continue
-        if re.search(r"\*" + name + r"\s*[-|&+*/]?=(?!=)", text):
-            continue
-        text = text.replace(f"let ref mut {name} =", f"let {name} =")
-        text = re.sub(r"\*" + name + r"\b", name, text)
+    text = "\n}\n".join(packed_temporaries(block) for block in text.split("\n}\n"))
 
     readonly = const_globals(source)
     def mark_state(match):
@@ -111,54 +103,45 @@ def normalize(text, source):
         return ("" if match[2] in readonly else SECTION) + match[0]
     text = re.sub(r"^(pub )?static mut (\w+):", mark_state, text, flags=re.M)
 
-    layouts = record_layouts(source)
-    checks = []
-    records = re.findall(r"^pub (?:struct|union) (\w+) \{(.*?)^\}", text, re.M | re.S)
-    for name, body in records:
-        if name not in layouts:
-            continue
-        size, alignment, offsets = layouts[name]
-        if alignment <= 4:
-            # C2Rust can discard pragma pack when it encounters an earlier
-            # forward declaration of the same record.
-            text = re.sub(r"#\[repr\(C\)\](\npub (?:struct|union) " + name + r" \{)",
-                          rf"#[repr(C, packed({alignment}))]\1", text)
-        if "#[bitfield(" in body and alignment > 1:
-            # The derive stores C bitfields as byte arrays. Restore their C
-            # alignment, including in records nested inside packed save data.
-            text = re.sub(r"\b" + name + r" \{\n", lambda m: m[0] + (
-                f"    pub _c_alignment: [u{alignment * 8}; 0],\n"
-                if text[max(0, m.start() - 7):m.start()].endswith("struct ")
-                else "    _c_alignment: [],\n"), text)
-        if name == "Main":
-            # The native renderer requests a 16-byte-aligned OAM array.
-            text = text.replace("    pub oamBuffer: [OamData; 128],",
-                                "    pub _oam_alignment: [u128; 0],\n    pub oamBuffer: [OamData; 128],")
-        checks.extend([f'assert!(size_of::<{name}>() == {size}, "size of {name}");',
-                       f'assert!(align_of::<{name}>() == {alignment}, "alignment of {name}");'])
-        fields = re.findall(r"^    pub (\w+):", body, re.M)
-        for field in fields:
-            if field in offsets:
-                checks.append(f'assert!(offset_of!({name}, {field}) == {offsets[field]}, "{name}.{field}");')
-    if checks:
-        text += "\n#[cfg(target_pointer_width = \"64\")]\nconst _: () = {\n"
-        text += "    use core::mem::{align_of, offset_of, size_of};\n"
-        text += "".join("    " + check + "\n" for check in checks) + "};\n"
-    return "// Generated by tools/translate.py from " + source.name + ".\n\n" + text
+    text = restore_assets(normalize_records(text, record_layouts(source)), source)
+    return ("// Generated by tools/translate.py from " + source.name + ".\n\n" + text).rstrip() + "\n"
+
+
+def translate_unit(unit, directory):
+    tmp = Path(directory) / unit
+    tmp.mkdir()
+    source = prepare(unit, tmp)
+    db = tmp / "compile_commands.json"
+    db.write_text(json.dumps([{"directory": str(tmp), "file": str(source),
+        "arguments": [*CLANG, "-fwrapv", "-Wno-everything", "-c", str(source)]}]))
+    subprocess.run(["c2rust-transpile", "--fail-on-error", "--disable-rustfmt", "--emit-modules",
+                    "--translate-const-macros", "none", "--translate-fn-macros", "none", db],
+                   check=True)
+    result = normalize(source.with_suffix(".rs").read_text(), source)
+    (tmp / "normalized.rs").write_text(result)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="verify generated files byte for byte")
+    parser.add_argument("--jobs", type=int, default=3, help="parallel translation processes")
+    parser.add_argument("units", nargs="*", help="regenerate only these registered game files")
     args = parser.parse_args()
+    if args.jobs < 1:
+        parser.error("--jobs must be positive")
+    units = args.units or UNITS
+    if unknown := set(units).difference(UNITS):
+        parser.error("unknown unit(s): " + ", ".join(sorted(unknown)))
     version = subprocess.check_output(["c2rust-transpile", "--version"], text=True).strip()
     if version.split()[-1] != "0.22.1":
         raise SystemExit(f"Expected C2Rust 0.22.1, found {version}")
-    expected = {"mod.rs", *(unit + ".rs" for unit in UNITS)}
-    unexpected = sorted(path.name for path in OUT.glob("*.rs") if path.name not in expected)
+
+    generated = manifests(UNITS)
+    expected = set(generated) | {unit + ".rs" for unit in UNITS}
+    unexpected = sorted(str(path.relative_to(OUT)) for path in OUT.rglob("*.rs")
+                        if str(path.relative_to(OUT)) not in expected)
     if unexpected:
-        raise SystemExit("Unexpected Rust modules in src/translated: " + ", ".join(unexpected))
-    # build.rs uses the same file lock for the shared native assets and tools.
+        raise SystemExit("Unexpected Rust modules: " + ", ".join(unexpected))
     lock_path = VENDOR / "build/native/rustic-build.lock"
     lock_path.parent.mkdir(parents=True, exist_ok=True)
     with lock_path.open("a+b") as lock:
@@ -166,33 +149,31 @@ def main():
         subprocess.run(["make", "-s", "-f", "make_tools.mk", "tools"], cwd=VENDOR, check=True)
         subprocess.run(["make", "-s", "-f", "Makefile", "-f", "../../tools/build-core.mk",
                         "NODEP=1", "generated", "wasm-assets"], cwd=VENDOR, check=True)
+    stale = []
+    def emit(name, result):
+        path = OUT / name
+        if path.is_file() and path.read_text() == result:
+            return
+        if args.check:
+            stale.append(name)
+        else:
+            path.parent.mkdir(exist_ok=True, parents=True)
+            path.write_text(result)
+
+    # Stage the full batch before replacing committed output. One failed
+    # conversion must leave the last working target intact.
     with tempfile.TemporaryDirectory() as directory:
-        tmp = Path(directory).resolve()
-        generated = {}
-        for unit in UNITS:
-            source = prepare(unit, tmp)
-            db = tmp / "compile_commands.json"
-            db.write_text(json.dumps([{"directory": str(tmp), "file": str(source),
-                "arguments": [*CLANG, "-fwrapv", "-Wno-everything", "-c", str(source)]}]))
-            subprocess.run(["c2rust-transpile", "--fail-on-error", "--disable-rustfmt", "--emit-modules",
-                            "--translate-const-macros", "none", "--translate-fn-macros", "none", db],
-                           check=True)
-            generated[unit + ".rs"] = normalize(source.with_suffix(".rs").read_text(), source)
-        generated["mod.rs"] = ("// Generated from the C2Rust units listed in tools/rust-units.txt.\n"
-                               "#![allow(warnings, static_mut_refs, clippy::all)]\n\n"
-                               + "".join(f"#[rustfmt::skip]\nmod {unit};\n" for unit in UNITS))
-        stale = []
+        with ProcessPoolExecutor(max_workers=args.jobs) as pool:
+            jobs = [pool.submit(translate_unit, unit, directory) for unit in units]
+            for job in jobs:
+                job.result()
+        for unit in units:
+            emit(unit + ".rs", (Path(directory) / unit / "normalized.rs").read_text())
         for name, result in generated.items():
-            path = OUT / name
-            if args.check:
-                if not path.is_file() or path.read_text() != result:
-                    stale.append(name)
-            else:
-                OUT.mkdir(exist_ok=True)
-                path.write_text(result)
-        if stale:
-            raise SystemExit("Regenerate " + ", ".join(stale))
-        print(f"{'Verified' if args.check else 'Generated'} {len(UNITS)} C2Rust units.")
+            emit(name, result)
+    if stale:
+        raise SystemExit("Regenerate " + ", ".join(stale))
+    print(f"{'Verified' if args.check else 'Generated'} {len(units)} C2Rust units.")
 
 
 if __name__ == "__main__":

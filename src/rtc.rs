@@ -1,6 +1,24 @@
 //! Cartridge clock boundary. Emerald stores its user-selected clock offset
 //! in the save. The chip supplies BCD wall time independently of frame speed.
-use chrono::{Datelike, Local, Timelike};
+use chrono::{DateTime, Datelike, Local, Timelike, Utc};
+use std::cell::Cell;
+
+thread_local! { static REPLAY_FRAME: Cell<Option<u32>> = const { Cell::new(None) }; }
+
+/// During a headless replay, the cartridge clock starts at 2000-01-01 and
+/// advances with the GBA frame clock. Desktop games keep using local time.
+pub fn with_replay_clock<T>(run: impl FnOnce() -> T) -> T {
+    let previous = REPLAY_FRAME.replace(Some(0));
+    let result = run();
+    REPLAY_FRAME.set(previous);
+    result
+}
+
+pub fn set_replay_frame(frame: u32) {
+    if REPLAY_FRAME.get().is_some() {
+        REPLAY_FRAME.set(Some(frame));
+    }
+}
 
 #[repr(C)]
 struct Clock {
@@ -43,7 +61,15 @@ unsafe extern "C" fn SiiRtcGetStatus(clock: *mut Clock) -> u8 {
 
 #[unsafe(no_mangle)]
 unsafe extern "C" fn SiiRtcGetDateTime(clock: *mut Clock) -> u8 {
-    let now = Local::now();
+    let now = match REPLAY_FRAME.get() {
+        Some(frame) => {
+            let seconds = i64::from(frame) * 280_896 / 16_777_216;
+            DateTime::<Utc>::from_timestamp(946_684_800 + seconds, 0)
+                .expect("u32 frames fit in the replay clock")
+                .naive_utc()
+        }
+        None => Local::now().naive_local(),
+    };
     // Write only the seven calendar bytes, as on the cartridge.
     unsafe {
         (*clock).year = bcd(now.year().rem_euclid(100) as u32);

@@ -6,8 +6,14 @@ rust-version = "1.89"
 description = "A playable Game Boy Advance Pokémon Emerald port, one Rust routine at a time"
 publish = false
 
+[features]
+default = ["rust-game"]
+rust-game = ["dep:emerald-game"]
+# Developer oracle built by tools/compare-replay.py.
+reference-c = []
+
 [dependencies]
-emerald-game = { path = "src/translated" }
+emerald-game = { path = "src/translated", optional = true }
 sha1 = "0.10.6"
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
 clap = { version = "=4.5.51", features = ["derive"] }
@@ -19,5 +25,35 @@ tempfile = "3.27"
 cc = "1"
 
 # The original C game uses -fwrapv for signed arithmetic.
-[profile.dev.package.emerald-game]
+[profile.dev.package.emerald-game-01]
+overflow-checks = false
+[profile.dev.package.emerald-game-02]
+overflow-checks = false
+[profile.dev.package.emerald-game-03]
+overflow-checks = false
+[profile.dev.package.emerald-game-04]
+overflow-checks = false
+[profile.dev.package.emerald-game-05]
+overflow-checks = false
+[profile.dev.package.emerald-game-06]
+overflow-checks = false
+[profile.dev.package.emerald-game-07]
+overflow-checks = false
+[profile.dev.package.emerald-game-08]
+overflow-checks = false
+[profile.dev.package.emerald-game-09]
+overflow-checks = false
+[profile.dev.package.emerald-game-10]
+overflow-checks = false
+[profile.dev.package.emerald-game-11]
+overflow-checks = false
+[profile.dev.package.emerald-game-12]
+overflow-checks = false
+[profile.dev.package.emerald-game-13]
+overflow-checks = false
+[profile.dev.package.emerald-game-14]
+overflow-checks = false
+[profile.dev.package.emerald-game-15]
+overflow-checks = false
+[profile.dev.package.emerald-game-16]
 overflow-checks = false
