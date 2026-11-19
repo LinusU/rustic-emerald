@@ -1,0 +1,11 @@
+blit
+event_data
+field_control_avatar
+math_util
+metatile_behavior
+random
+script_movement
+siirtc
+task
+trig
+wild_encounter
