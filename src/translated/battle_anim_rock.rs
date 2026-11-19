@@ -24,7 +24,7 @@ unsafe extern "C" {
     fn FindTaskIdByFunc(func: TaskFunc) -> u8_0;
     static mut gAnimDisableStructPtr: *mut DisableStruct;
     static mut gAnimMoveDmg: s32;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);

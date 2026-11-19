@@ -6,7 +6,7 @@ unsafe extern "C" {
     static gDummySpriteAnimTable: [*const AnimCmd; 0];
     static gDummySpriteAffineAnimTable: [*const AffineAnimCmd; 0];
     fn StartSpriteAffineAnim(sprite: *mut Sprite, animNum: u8_0);
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);

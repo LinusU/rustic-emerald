@@ -22,7 +22,7 @@ unsafe extern "C" {
     fn IndexOfSpritePaletteTag(tag: u16_0) -> u8_0;
     static mut gTasks: [Task; 0];
     static mut gAnimVisualTaskCount: u8_0;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);
@@ -734,7 +734,7 @@ unsafe extern "C" fn AnimEllipticalGust(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimEllipticalGust_Step(mut sprite: *mut Sprite) {
     (*if !sprite.is_null() {

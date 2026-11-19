@@ -2214,7 +2214,9 @@ unsafe extern "C" fn WasmDmaFill16(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u16_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u16_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh0 = size;
         size = size.wrapping_sub(1);
@@ -2266,7 +2268,9 @@ unsafe extern "C" fn WasmDmaFill32(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u32_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u32_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh2 = size;
         size = size.wrapping_sub(1);
@@ -2317,7 +2321,7 @@ unsafe extern "C" fn WasmDmaCopy(
     {
         WasmOamBufferModified();
     }
-    ::libc::memcpy(dest, src, size as usize as ::libc::size_t);
+    ::libc::memcpy(dest, src, size as ::core::ffi::c_ulong as ::libc::size_t);
 }
 #[unsafe(no_mangle)]
 #[cfg_attr(target_vendor = "apple", unsafe(link_section = "__DATA,native_game_data"))]
@@ -4459,10 +4463,10 @@ unsafe extern "C" fn CB2_InitTrainerCard() {
             FreeAllSpritePalettes();
             ResetPaletteFade();
             gMain.state = gMain.state.wrapping_add(1);
-            current_block_26 = 2579336599927527119;
+            current_block_26 = 8020934351460958390;
         }
         4 => {
-            current_block_26 = 2579336599927527119;
+            current_block_26 = 8020934351460958390;
         }
         5 => {
             LoadMonIconGfx();
@@ -4502,7 +4506,7 @@ unsafe extern "C" fn CB2_InitTrainerCard() {
         }
     }
     match current_block_26 {
-        2579336599927527119 => {
+        8020934351460958390 => {
             InitBgsAndWindows();
             gMain.state = gMain.state.wrapping_add(1);
         }
@@ -4803,10 +4807,10 @@ unsafe extern "C" fn SetPlayerCardData(
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut TrainerCard
             })
                 .battleTowerStraightWins = 0 as u16_0;
-            current_block_38 = 576859029085319121;
+            current_block_38 = 12945839337719742012;
         }
         0 => {
-            current_block_38 = 576859029085319121;
+            current_block_38 = 12945839337719742012;
         }
         1 => {
             (*if !trainerCard.is_null() {
@@ -4852,7 +4856,7 @@ unsafe extern "C" fn SetPlayerCardData(
         }
     }
     match current_block_38 {
-        576859029085319121 => {
+        12945839337719742012 => {
             (*if !trainerCard.is_null() {
                 trainerCard
             } else {
@@ -7504,10 +7508,10 @@ unsafe extern "C" fn SetCardBgsAndPals() -> u8_0 {
                 32 as u8_0,
                 32 as u8_0,
             );
-            current_block_19 = 6163945494699683985;
+            current_block_19 = 8056481084984700922;
         }
         _ => {
-            current_block_19 = 6163945494699683985;
+            current_block_19 = 8056481084984700922;
         }
     }
     match current_block_19 {

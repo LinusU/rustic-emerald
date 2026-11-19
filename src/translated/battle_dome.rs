@@ -17211,7 +17211,7 @@ unsafe extern "C" fn Task_HandleInfoCardInput(mut taskId: u8_0) {
                     (*(&raw mut gTasks as *mut Task).offset(taskId as isize))
                         .data[0 as ::core::ffi::c_int as usize] = 8 as s16;
                 }
-                1 | 5 => {
+                1..=4 | 5..=8 => {
                     (*(&raw mut gTasks as *mut Task).offset(taskId as isize))
                         .data[5 as ::core::ffi::c_int as usize] = i as s16;
                     if (*(&raw mut gTasks as *mut Task).offset(taskId as isize))

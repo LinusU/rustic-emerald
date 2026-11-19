@@ -4801,10 +4801,10 @@ unsafe extern "C" fn Task_EvolutionScene(mut taskId: u8_0) {
                             .data[6 as ::core::ffi::c_int as usize];
                         *fresh25 += 1;
                     }
-                    current_block_243 = 1409304843480750738;
+                    current_block_243 = 5576945575194884758;
                 }
                 3 => {
-                    current_block_243 = 1409304843480750738;
+                    current_block_243 = 5576945575194884758;
                 }
                 4 => {
                     if gMain.newKeys as ::core::ffi::c_int & 0x40 as ::core::ffi::c_int
@@ -5086,7 +5086,7 @@ unsafe extern "C" fn Task_EvolutionScene(mut taskId: u8_0) {
                 }
             }
             match current_block_243 {
-                1409304843480750738 => {
+                5576945575194884758 => {
                     if IsTextPrinterActive(0 as u8_0) == 0 && IsSEPlaying() == 0 {
                         HandleBattleWindow(
                             24 as u8_0,
@@ -5657,10 +5657,10 @@ unsafe extern "C" fn Task_TradeEvolutionScene(mut taskId: u8_0) {
                             .data[6 as ::core::ffi::c_int as usize];
                         *fresh60 += 1;
                     }
-                    current_block_201 = 12116617988122820262;
+                    current_block_201 = 16656421515403492665;
                 }
                 3 => {
-                    current_block_201 = 12116617988122820262;
+                    current_block_201 = 16656421515403492665;
                 }
                 4 => {
                     match Menu_ProcessInputNoWrapClearOnChoose() as ::core::ffi::c_int {
@@ -5921,7 +5921,7 @@ unsafe extern "C" fn Task_TradeEvolutionScene(mut taskId: u8_0) {
                 }
             }
             match current_block_201 {
-                12116617988122820262 => {
+                16656421515403492665 => {
                     if IsTextPrinterActive(0 as u8_0) == 0 && IsSEPlaying() == 0 {
                         LoadUserWindowBorderGfx(
                             0 as u8_0,

@@ -16929,17 +16929,17 @@ unsafe extern "C" fn DoTVShowTheNameRaterShow() {
         12 => {
             state = 18 as u8_0;
             sTVShowState = 18 as u8_0;
-            current_block_45 = 9482745475055487908;
+            current_block_45 = 2304230616898051950;
         }
         18 => {
-            current_block_45 = 9482745475055487908;
+            current_block_45 = 2304230616898051950;
         }
         _ => {
             current_block_45 = 721385680381463314;
         }
     }
     match current_block_45 {
-        9482745475055487908 => {
+        2304230616898051950 => {
             TVShowConvertInternationalString(
                 &raw mut gStringVar1 as *mut u8_0,
                 &raw mut (*if !show.is_null() {
@@ -23805,7 +23805,7 @@ unsafe extern "C" fn DoTVShowSecretBaseSecrets() {
                 sTVShowState = 6 as u8_0;
             }
         }
-        4 => {
+        4..=6 => {
             TVShowConvertInternationalString(
                 &raw mut gStringVar1 as *mut u8_0,
                 &raw mut (*if !show.is_null() {
@@ -23885,7 +23885,7 @@ unsafe extern "C" fn DoTVShowSecretBaseSecrets() {
         9 => {
             sTVShowState = 3 as u8_0;
         }
-        10 => {
+        10..=18 => {
             sTVShowState = (*if !show.is_null() {
                 show
             } else {
@@ -23930,7 +23930,7 @@ unsafe extern "C" fn DoTVShowSecretBaseSecrets() {
                 sTVShowState = 21 as u8_0;
             }
         }
-        21 => {
+        21..=43 => {
             sTVShowState = (*if !show.is_null() {
                 show
             } else {
@@ -24237,17 +24237,17 @@ unsafe extern "C" fn DoTVShowLilycoveContestLady() {
                     .contestLady
                     .language as ::core::ffi::c_int,
             );
-            current_block_11 = 6790547701935264025;
+            current_block_11 = 1936036805119687098;
         }
         3 => {
-            current_block_11 = 6790547701935264025;
+            current_block_11 = 1936036805119687098;
         }
         _ => {
             current_block_11 = 5399440093318478209;
         }
     }
     match current_block_11 {
-        6790547701935264025 => {
+        1936036805119687098 => {
             TVShowConvertInternationalString(
                 &raw mut gStringVar2 as *mut u8_0,
                 &raw mut (*if !show.is_null() {

@@ -54,7 +54,7 @@ unsafe extern "C" {
     fn DestroyTask(taskId: u8_0);
     fn TaskDummy(taskId: u8_0);
     fn FuncIsActiveTask(func: TaskFunc) -> bool8;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);
@@ -2262,7 +2262,7 @@ unsafe extern "C" fn SpriteCB_Ball_Arc(mut sprite: *mut Sprite) {
             ) as SpriteCallback);
             ballId = ItemIdToBallId(gLastUsedItem);
             match ballId as ::core::ffi::c_int {
-                0 => {
+                0..=11 => {
                     AnimateBallOpenParticles(
                         (*if !sprite.is_null() {
                             sprite
@@ -3162,11 +3162,11 @@ unsafe extern "C" fn SpriteCB_Ball_Wobble_Step(mut sprite: *mut Sprite) {
                         BALL_ROTATE_RIGHT as ::core::ffi::c_int as u8_0,
                     );
                 }
-                current_block_84 = 13182438938646531711;
+                current_block_84 = 1983573293088203018;
             }
         }
         4 => {
-            current_block_84 = 13182438938646531711;
+            current_block_84 = 1983573293088203018;
         }
         5 => {
             let ref mut fresh132 = (*if !sprite.is_null() {
@@ -3318,7 +3318,7 @@ unsafe extern "C" fn SpriteCB_Ball_Wobble_Step(mut sprite: *mut Sprite) {
         }
     }
     match current_block_84 {
-        13182438938646531711 => {
+        1983573293088203018 => {
             let fresh122 = (*if !gBattleSpritesDataPtr.is_null() {
                 gBattleSpritesDataPtr
             } else {
@@ -3948,7 +3948,7 @@ unsafe extern "C" fn SpriteCB_Ball_Release_Step(mut sprite: *mut Sprite) {
     ) as SpriteCallback);
     ballId = ItemIdToBallId(gLastUsedItem);
     match ballId as ::core::ffi::c_int {
-        0 => {
+        0..=11 => {
             AnimateBallOpenParticles(
                 (*if !sprite.is_null() {
                     sprite

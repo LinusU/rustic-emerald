@@ -21,7 +21,7 @@ unsafe extern "C" {
     fn FreeOamMatrix(matrixNum: u8_0);
     static mut gTasks: [Task; 0];
     static mut gAnimVisualTaskCount: u8_0;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);

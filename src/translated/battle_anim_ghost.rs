@@ -27,7 +27,7 @@ unsafe extern "C" {
     static mut gBattle_WIN0V: u16_0;
     static mut gBattleSpritesDataPtr: *mut BattleSpriteData;
     static mut gTasks: [Task; 0];
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     static mut gAnimCustomPanning: u8_0;
@@ -1043,7 +1043,7 @@ unsafe extern "C" fn AnimConfuseRayBallSpiral(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimConfuseRayBallSpiral_Step(mut sprite: *mut Sprite) {
     let mut temp1: u16_0 = 0;

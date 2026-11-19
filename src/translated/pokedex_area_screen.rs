@@ -5250,7 +5250,7 @@ unsafe extern "C" fn Task_HandlePokedexAreaScreenInput(mut taskId: u8_0) {
         .data[0 as ::core::ffi::c_int as usize] as ::core::ffi::c_int
     {
         0 => {
-            current_block_25 = 16873314444462798181;
+            current_block_25 = 10054832596883997805;
         }
         1 => {
             if gMain.newKeys as ::core::ffi::c_int & 0x2 as ::core::ffi::c_int != 0 {
@@ -5321,11 +5321,11 @@ unsafe extern "C" fn Task_HandlePokedexAreaScreenInput(mut taskId: u8_0) {
         _ => {
             (*(&raw mut gTasks as *mut Task).offset(taskId as isize))
                 .data[0 as ::core::ffi::c_int as usize] = 0 as s16;
-            current_block_25 = 16873314444462798181;
+            current_block_25 = 10054832596883997805;
         }
     }
     match current_block_25 {
-        16873314444462798181 => {
+        10054832596883997805 => {
             if gPaletteFade.active() != 0 {
                 return;
             }

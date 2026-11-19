@@ -1306,7 +1306,8 @@ unsafe extern "C" fn RenderTextBg(mut bg: u8_0) {
                 drawnColumns = DrawnTileColumns(
                     mapRow,
                     (width as ::core::ffi::c_int >> 3 as ::core::ffi::c_int) as u32_0,
-                    (chars.offset_from(vram) as isize / 32 as isize) as u32_0,
+                    (chars.offset_from(vram) as ::core::ffi::c_long
+                        / 32 as ::core::ffi::c_long) as u32_0,
                     color256,
                 );
                 drawnRow = mapRow;

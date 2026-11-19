@@ -32,7 +32,7 @@ unsafe extern "C" {
     fn CreateTask(func: TaskFunc, priority: u8_0) -> u8_0;
     fn DestroyTask(taskId: u8_0);
     static mut gAnimVisualTaskCount: u8_0;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimVisualTask(taskId: u8_0);
@@ -958,14 +958,14 @@ pub unsafe extern "C" fn AnimTask_BlendBattleAnimPalExclude(mut taskId: u8_0) {
     match gBattleAnimArgs[0 as ::core::ffi::c_int as usize] as ::core::ffi::c_int {
         2 => {
             selectedPalettes = 0 as u32_0;
-            current_block_12 = 16319640041109108851;
+            current_block_12 = 7291378653958039510;
         }
         3 => {
             selectedPalettes = 0 as u32_0;
-            current_block_12 = 6800697017106301681;
+            current_block_12 = 12236482770265525966;
         }
         1 => {
-            current_block_12 = 6800697017106301681;
+            current_block_12 = 12236482770265525966;
         }
         4 => {
             animBattlers[0 as ::core::ffi::c_int as usize] = gBattleAnimAttacker;
@@ -989,14 +989,14 @@ pub unsafe extern "C" fn AnimTask_BlendBattleAnimPalExclude(mut taskId: u8_0) {
             current_block_12 = 17407779659766490442;
         }
         0 | _ => {
-            current_block_12 = 16319640041109108851;
+            current_block_12 = 7291378653958039510;
         }
     }
     match current_block_12 {
-        16319640041109108851 => {
+        7291378653958039510 => {
             animBattlers[0 as ::core::ffi::c_int as usize] = gBattleAnimAttacker;
         }
-        6800697017106301681 => {
+        12236482770265525966 => {
             animBattlers[0 as ::core::ffi::c_int as usize] = gBattleAnimTarget;
         }
         _ => {}

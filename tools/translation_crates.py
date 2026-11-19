@@ -2,7 +2,6 @@
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "src/translated"
 ALL_UNITS = sorted(source.stem for source in (ROOT / "vendor/pokeemerald/src").glob("*.c"))
 # Base the partition on the pinned C tree, so ports never move between crates
 # when another C file is translated. A crate contains at most twenty units.
@@ -44,11 +43,3 @@ def manifests(units):
     files["Cargo.toml"] = PACKAGE.format(name="emerald-game") + "".join(deps)
     files["mod.rs"] = HEADER + "".join(imports)
     return files
-
-
-def write(units):
-    for filename, text in manifests(units).items():
-        path = OUT / filename
-        path.parent.mkdir(parents=True, exist_ok=True)
-        if not path.exists() or path.read_text() != text:
-            path.write_text(text)

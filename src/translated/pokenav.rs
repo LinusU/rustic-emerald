@@ -1137,11 +1137,11 @@ unsafe extern "C" fn Task_Pokenav(mut taskId: u8_0) {
                     &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
                 }
                     .offset(0 as ::core::ffi::c_int as isize) = 3 as s16;
-                current_block_33 = 5351868988301006594;
+                current_block_33 = 376170632861612492;
             }
         }
         3 => {
-            current_block_33 = 5351868988301006594;
+            current_block_33 = 376170632861612492;
         }
         4 => {
             if IsActiveMenuLoopTaskActive_() == 0 {
@@ -1189,7 +1189,7 @@ unsafe extern "C" fn Task_Pokenav(mut taskId: u8_0) {
         }
     }
     match current_block_33 {
-        5351868988301006594 => {
+        376170632861612492 => {
             menuId = GetCurrentMenuCB();
             if menuId == -(1 as ::core::ffi::c_int) as u32_0 {
                 ShutdownPokenav();

@@ -24,7 +24,7 @@ unsafe extern "C" {
     fn DestroyTask(taskId: u8_0);
     static mut gAnimScriptCallback: Option<unsafe extern "C" fn() -> ()>;
     static mut gAnimScriptActive: bool8;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn LaunchBattleAnimation(

@@ -3613,10 +3613,10 @@ pub unsafe extern "C" fn DoFieldEndTurnEffects() -> u8_0 {
                         as *mut BattleStruct
                 })
                     .turnSideTracker = 0 as u8_0;
-                current_block_172 = 14468620358392655195;
+                current_block_172 = 859216172653754650;
             }
             1 => {
-                current_block_172 = 14468620358392655195;
+                current_block_172 = 859216172653754650;
             }
             2 => {
                 while ((*if !gBattleStruct.is_null() {
@@ -4082,7 +4082,7 @@ pub unsafe extern "C" fn DoFieldEndTurnEffects() -> u8_0 {
             }
         }
         match current_block_172 {
-            14468620358392655195 => {
+            859216172653754650 => {
                 while ((*if !gBattleStruct.is_null() {
                     gBattleStruct
                 } else {
@@ -5236,20 +5236,20 @@ pub unsafe extern "C" fn HandleWishPerishSongOnTurnEnd() -> bool8 {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut BattleStruct
             })
                 .wishPerishSongBattlerId = 0 as u8_0;
-            current_block_64 = 17292077724923628608;
+            current_block_64 = 13460254632974059574;
         }
         1 => {
-            current_block_64 = 17292077724923628608;
+            current_block_64 = 13460254632974059574;
         }
         2 => {
-            current_block_64 = 14527761144229466783;
+            current_block_64 = 17570353364357272454;
         }
         _ => {
             current_block_64 = 7420279277351916581;
         }
     }
     match current_block_64 {
-        17292077724923628608 => {
+        13460254632974059574 => {
             while ((*if !gBattleStruct.is_null() {
                 gBattleStruct
             } else {
@@ -5342,12 +5342,12 @@ pub unsafe extern "C" fn HandleWishPerishSongOnTurnEnd() -> bool8 {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut BattleStruct
             })
                 .wishPerishSongBattlerId = 0 as u8_0;
-            current_block_64 = 14527761144229466783;
+            current_block_64 = 17570353364357272454;
         }
         _ => {}
     }
     match current_block_64 {
-        14527761144229466783 => {
+        17570353364357272454 => {
             if gBattleTypeFlags
                 & ((1 as ::core::ffi::c_int) << 18 as ::core::ffi::c_int) as u32_0 != 0
                 && (*if !gBattleStruct.is_null() {
@@ -5436,10 +5436,10 @@ pub unsafe extern "C" fn HandleFaintedMonActions() -> bool8 {
                     }
                     i += 1;
                 }
-                current_block_38 = 10396246912100678542;
+                current_block_38 = 7387737047414513011;
             }
             1 => {
-                current_block_38 = 10396246912100678542;
+                current_block_38 = 7387737047414513011;
             }
             2 => {
                 OpponentSwitchInResetSentPokesToOpponentValue(gBattlerFainted);
@@ -5487,10 +5487,10 @@ pub unsafe extern "C" fn HandleFaintedMonActions() -> bool8 {
                 })
                     .faintedActionsState;
                 *fresh51 = (*fresh51).wrapping_add(1);
-                current_block_38 = 1633376806855415278;
+                current_block_38 = 16777201482984111870;
             }
             4 => {
-                current_block_38 = 1633376806855415278;
+                current_block_38 = 16777201482984111870;
             }
             5 => {
                 let ref mut fresh53 = (*if !gBattleStruct.is_null() {
@@ -5563,7 +5563,7 @@ pub unsafe extern "C" fn HandleFaintedMonActions() -> bool8 {
             }
         }
         match current_block_38 {
-            1633376806855415278 => {
+            16777201482984111870 => {
                 loop {
                     gBattlerTarget = (*if !gBattleStruct.is_null() {
                         gBattleStruct
@@ -5627,7 +5627,7 @@ pub unsafe extern "C" fn HandleFaintedMonActions() -> bool8 {
                 })
                     .faintedActionsState = 6 as u8_0;
             }
-            10396246912100678542 => {
+            7387737047414513011 => {
                 loop {
                     gBattlerTarget = (*if !gBattleStruct.is_null() {
                         gBattleStruct

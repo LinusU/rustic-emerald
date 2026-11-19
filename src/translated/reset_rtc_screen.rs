@@ -882,7 +882,9 @@ unsafe extern "C" fn WasmDmaFill16(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u16_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u16_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh0 = size;
         size = size.wrapping_sub(1);
@@ -2184,17 +2186,17 @@ unsafe extern "C" fn Task_ShowResetRtcPrompt(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize);
             *fresh29 += 1;
-            current_block_16 = 1526331342959519285;
+            current_block_16 = 1348247981952923207;
         }
         1 => {
-            current_block_16 = 1526331342959519285;
+            current_block_16 = 1348247981952923207;
         }
         _ => {
             current_block_16 = 4166486009154926805;
         }
     }
     match current_block_16 {
-        1526331342959519285 => {
+        1348247981952923207 => {
             if gMain.newKeys as ::core::ffi::c_int & 0x2 as ::core::ffi::c_int != 0 {
                 DestroyTask(taskId);
                 DoSoftReset();
@@ -2415,20 +2417,20 @@ unsafe extern "C" fn Task_ResetRtcScreen(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize) = MAINSTATE_WAIT_EXIT
                 as ::core::ffi::c_int as s16;
-            current_block_49 = 9538017943361122385;
+            current_block_49 = 3753184489824259506;
         }
         5 => {
-            current_block_49 = 9538017943361122385;
+            current_block_49 = 3753184489824259506;
         }
         6 => {
-            current_block_49 = 1773320473164380449;
+            current_block_49 = 8930922801303921508;
         }
         _ => {
             current_block_49 = 2480299350034459858;
         }
     }
     match current_block_49 {
-        9538017943361122385 => {
+        3753184489824259506 => {
             if gMain.newKeys as ::core::ffi::c_int & 0x1 as ::core::ffi::c_int != 0 {
                 BeginNormalPaletteFade(
                     0xffff as u32_0 | 0xffff0000 as u32_0,
@@ -2447,7 +2449,7 @@ unsafe extern "C" fn Task_ResetRtcScreen(mut taskId: u8_0) {
                 }
                     .offset(0 as ::core::ffi::c_int as isize) = MAINSTATE_EXIT
                     as ::core::ffi::c_int as s16;
-                current_block_49 = 1773320473164380449;
+                current_block_49 = 8930922801303921508;
             } else {
                 current_block_49 = 2480299350034459858;
             }
@@ -2455,7 +2457,7 @@ unsafe extern "C" fn Task_ResetRtcScreen(mut taskId: u8_0) {
         _ => {}
     }
     match current_block_49 {
-        1773320473164380449 => {
+        8930922801303921508 => {
             if gPaletteFade.active() == 0 {
                 DestroyTask(taskId);
                 FreeAllWindowBuffers();

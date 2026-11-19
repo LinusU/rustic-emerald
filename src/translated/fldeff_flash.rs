@@ -209,7 +209,6 @@ pub struct MapHeader {
     pub allowCycling_allowEscaping_allowRunning_showMapName: [u8; 1],
     pub battleType: u8_0,
 }
-pub type MainCallback = Option<unsafe extern "C" fn() -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C, packed(4))]
 pub struct Task {
@@ -221,6 +220,7 @@ pub struct Task {
     pub data: [s16; 32],
 }
 pub type TaskFunc = Option<unsafe extern "C" fn(u8_0) -> ()>;
+pub type MainCallback = Option<unsafe extern "C" fn() -> ()>;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct Main {
@@ -299,7 +299,9 @@ unsafe extern "C" fn WasmDmaFill16(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u16_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u16_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh0 = size;
         size = size.wrapping_sub(1);
@@ -351,7 +353,9 @@ unsafe extern "C" fn WasmDmaFill32(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u32_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u32_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh2 = size;
         size = size.wrapping_sub(1);
@@ -722,7 +726,7 @@ pub unsafe extern "C" fn SetUpFieldMove_Flash() -> bool8 {
         ) as Option<unsafe extern "C" fn() -> bool8>;
         gPostMenuFieldCallback = Some(
             SetUpPuzzleEffectRegisteel as unsafe extern "C" fn() -> (),
-        ) as MainCallback;
+        ) as Option<unsafe extern "C" fn() -> ()>;
         return 1 as bool8;
     } else if gMapHeader.cave as ::core::ffi::c_int == 1 as ::core::ffi::c_int
         && FlagGet(
@@ -736,7 +740,7 @@ pub unsafe extern "C" fn SetUpFieldMove_Flash() -> bool8 {
         ) as Option<unsafe extern "C" fn() -> bool8>;
         gPostMenuFieldCallback = Some(
             FieldCallback_Flash as unsafe extern "C" fn() -> (),
-        ) as MainCallback;
+        ) as Option<unsafe extern "C" fn() -> ()>;
         return 1 as bool8;
     }
     return 0 as bool8;

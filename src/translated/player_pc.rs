@@ -3502,17 +3502,17 @@ unsafe extern "C" fn Mailbox_HandleConfirmMoveToBag(mut taskId: u8_0) {
         }
         -1 => {
             PlaySE(5 as u16_0);
-            current_block_2 = 4021588137456158946;
+            current_block_2 = 12371211995656565223;
         }
         1 => {
-            current_block_2 = 4021588137456158946;
+            current_block_2 = 12371211995656565223;
         }
         -2 | _ => {
             current_block_2 = 7095457783677275021;
         }
     }
     match current_block_2 {
-        4021588137456158946 => {
+        12371211995656565223 => {
             Mailbox_CancelMoveToBag(taskId);
         }
         _ => {}

@@ -24,7 +24,7 @@ unsafe extern "C" {
     static mut gBattlerPositions: [u8_0; 4];
     static mut gBattlerAttacker: u8_0;
     static mut gTasks: [Task; 0];
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gAnimMoveTurn: u8_0;
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;

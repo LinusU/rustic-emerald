@@ -4791,7 +4791,7 @@ unsafe extern "C" fn UpdateMonAnim() {
                 .animRunState = 0 as u8_0;
             current_block_30 = 13550086250199790493;
         }
-        1 | 71 | _ => {
+        1..=9 | 71..=90 | _ => {
             current_block_30 = 13550086250199790493;
         }
     }

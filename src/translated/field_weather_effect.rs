@@ -16943,10 +16943,10 @@ unsafe extern "C" fn UpdateDroughtBlend(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh177 += 1;
-            current_block_28 = 16706343495222751919;
+            current_block_28 = 5544968051777294168;
         }
         1 => {
-            current_block_28 = 16706343495222751919;
+            current_block_28 = 5544968051777294168;
         }
         2 => {
             let ref mut fresh180 = (*if !task.is_null() {
@@ -17042,7 +17042,7 @@ unsafe extern "C" fn UpdateDroughtBlend(mut taskId: u8_0) {
         }
     }
     match current_block_28 {
-        16706343495222751919 => {
+        5544968051777294168 => {
             let ref mut fresh178 = (*if !task.is_null() {
                 task
             } else {
@@ -19125,10 +19125,10 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
             })
                 .initStep;
             *fresh68 = (*fresh68).wrapping_add(1);
-            current_block_56 = 11522689972228407456;
+            current_block_56 = 16777970279927615;
         }
         5 => {
-            current_block_56 = 11522689972228407456;
+            current_block_56 = 16777970279927615;
         }
         6 => {
             (*if !gWeatherPtr.is_null() {
@@ -19168,10 +19168,10 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
             })
                 .initStep;
             *fresh72 = (*fresh72).wrapping_add(1);
-            current_block_56 = 11368133008193430238;
+            current_block_56 = 4570515368713062298;
         }
         8 => {
-            current_block_56 = 11368133008193430238;
+            current_block_56 = 4570515368713062298;
         }
         9 => {
             let ref mut fresh74 = (*if !gWeatherPtr.is_null() {
@@ -19352,7 +19352,7 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
         }
     }
     match current_block_56 {
-        11368133008193430238 => {
+        4570515368713062298 => {
             ApplyWeatherColorMapIfIdle(19 as s8);
             if (*if !gWeatherPtr.is_null() {
                 gWeatherPtr
@@ -19384,7 +19384,7 @@ pub unsafe extern "C" fn Thunderstorm_Main() {
                 .initStep;
             *fresh73 = (*fresh73).wrapping_add(1);
         }
-        11522689972228407456 => {
+        16777970279927615 => {
             let ref mut fresh69 = (*if !gWeatherPtr.is_null() {
                 gWeatherPtr
             } else {
@@ -19429,10 +19429,10 @@ pub unsafe extern "C" fn Thunderstorm_Finish() -> bool8 {
             })
                 .finishStep;
             *fresh83 = (*fresh83).wrapping_add(1);
-            current_block_15 = 11302034950359526222;
+            current_block_15 = 1333847118817801273;
         }
         1 => {
-            current_block_15 = 11302034950359526222;
+            current_block_15 = 1333847118817801273;
         }
         2 => {
             if UpdateVisibleRainSprites() == 0 {
@@ -19457,7 +19457,7 @@ pub unsafe extern "C" fn Thunderstorm_Finish() -> bool8 {
         _ => return 0 as bool8,
     }
     match current_block_15 {
-        11302034950359526222 => {
+        1333847118817801273 => {
             Thunderstorm_Main();
             if (*if !gWeatherPtr.is_null() {
                 gWeatherPtr

@@ -56,7 +56,7 @@ unsafe extern "C" {
     static mut gAnimMoveDmg: s32;
     static mut gAnimFriendship: u8_0;
     static mut gWeatherMoveAnim: u16_0;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);
@@ -5615,10 +5615,10 @@ unsafe extern "C" fn AnimBatonPassPokeball(mut sprite: *mut Sprite) {
                     .data[0 as ::core::ffi::c_int as usize];
                 *fresh80 += 1;
             }
-            current_block_22 = 13544381283179924440;
+            current_block_22 = 15006262180638580194;
         }
         2 => {
-            current_block_22 = 13544381283179924440;
+            current_block_22 = 15006262180638580194;
         }
         3 => {
             let ref mut fresh85 = (*if !sprite.is_null() {
@@ -5650,7 +5650,7 @@ unsafe extern "C" fn AnimBatonPassPokeball(mut sprite: *mut Sprite) {
         }
     }
     match current_block_22 {
-        13544381283179924440 => {
+        15006262180638580194 => {
             let ref mut fresh81 = (*if !sprite.is_null() {
                 sprite
             } else {
@@ -9079,7 +9079,7 @@ unsafe extern "C" fn AnimReversalOrb(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimReversalOrb_Step(mut sprite: *mut Sprite) {
     (*if !sprite.is_null() {
@@ -13833,7 +13833,7 @@ unsafe extern "C" fn AnimForesightMagnifyingGlass_Step(mut sprite: *mut Sprite) 
                 .data[6 as ::core::ffi::c_int as usize] as ::core::ffi::c_int
             {
                 0 | 4 => {
-                    current_block_10 = 12834649017073377911;
+                    current_block_10 = 9844454757758069044;
                 }
                 1 => {
                     x = (GetBattlerSpriteCoordAttr(
@@ -13935,11 +13935,11 @@ unsafe extern "C" fn AnimForesightMagnifyingGlass_Step(mut sprite: *mut Sprite) 
                             as *mut Sprite
                     })
                         .data[6 as ::core::ffi::c_int as usize] = 0 as s16;
-                    current_block_10 = 12834649017073377911;
+                    current_block_10 = 9844454757758069044;
                 }
             }
             match current_block_10 {
-                12834649017073377911 => {
+                9844454757758069044 => {
                     x = (GetBattlerSpriteCoordAttr(
                         (*if !sprite.is_null() {
                             sprite

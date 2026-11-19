@@ -2811,10 +2811,10 @@ pub unsafe extern "C" fn BattleTv_SetDataBasedOnString(mut stringId: u16_0) {
         }
         28 => {
             AddPointsOnFainting(0 as bool8);
-            current_block_217 = 2433003649423799153;
+            current_block_217 = 7146806494120673115;
         }
         2 => {
-            current_block_217 = 2433003649423799153;
+            current_block_217 = 7146806494120673115;
         }
         29 => {
             AddPointsOnFainting(1 as bool8);
@@ -3219,7 +3219,7 @@ pub unsafe extern "C" fn BattleTv_SetDataBasedOnString(mut stringId: u16_0) {
         }
     }
     match current_block_217 {
-        2433003649423799153 => {
+        7146806494120673115 => {
             if (*if !tvPtr.is_null() {
                 tvPtr
             } else {
@@ -3918,10 +3918,10 @@ unsafe extern "C" fn AddMovePoints(
             })
                 .side[arg2 as usize];
             (*fresh95).set_faintCause(FNT_NONE as ::core::ffi::c_int as u32_0 as u32_0);
-            current_block_34 = 18051234060387373425;
+            current_block_34 = 6323618852566759355;
         }
         2 => {
-            current_block_34 = 18051234060387373425;
+            current_block_34 = 6323618852566759355;
         }
         17 => {
             let ref mut fresh97 = (*if !movePoints.is_null() {
@@ -4304,7 +4304,7 @@ unsafe extern "C" fn AddMovePoints(
         }
     }
     match current_block_34 {
-        18051234060387373425 => {
+        6323618852566759355 => {
             let ref mut fresh96 = (*if !movePoints.is_null() {
                 movePoints
             } else {

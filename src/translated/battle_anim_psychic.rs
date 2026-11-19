@@ -32,7 +32,7 @@ unsafe extern "C" {
     static mut gBattle_BG2_X: u16_0;
     static mut gBattlerSpriteIds: [u8_0; 4];
     static mut gTasks: [Task; 0];
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);
@@ -1084,7 +1084,7 @@ unsafe extern "C" fn AnimDefensiveWall(mut sprite: *mut Sprite) {
             &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
         })
             .callback
-            .expect("non-null function pointer")(sprite as *mut Sprite);
+            .expect("non-null function pointer")(sprite);
     } else {
         let fresh3 = &raw mut (*if !sprite.is_null() {
             sprite
@@ -1139,7 +1139,7 @@ unsafe extern "C" fn AnimDefensiveWall_Step1(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimDefensiveWall_Step2(mut sprite: *mut Sprite) {
     SetGpuReg(

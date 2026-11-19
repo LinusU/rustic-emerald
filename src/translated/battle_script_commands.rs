@@ -9722,10 +9722,10 @@ unsafe extern "C" fn Cmd_getexp() {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut BattleStruct
             })
                 .sentInPokes = sentIn as u8_0;
-            current_block_196 = 15620419927841836274;
+            current_block_196 = 8347056284321271273;
         }
         2 => {
-            current_block_196 = 15620419927841836274;
+            current_block_196 = 8347056284321271273;
         }
         3 => {
             if gBattleControllerExecFlags == 0 as u32_0 {
@@ -10346,7 +10346,7 @@ unsafe extern "C" fn Cmd_getexp() {
         }
     }
     match current_block_196 {
-        15620419927841836274 => {
+        8347056284321271273 => {
             if gBattleControllerExecFlags == 0 as u32_0 {
                 item = GetMonData2(
                     (&raw mut gPlayerParty as *mut Pokemon)
@@ -19428,17 +19428,17 @@ unsafe extern "C" fn Cmd_switchhandleorder() {
                     | *(&raw const gBitTable as *const u32_0)
                         .offset(gActiveBattler as isize)) as u8_0;
             }
-            current_block_45 = 12683388869589819561;
+            current_block_45 = 16504919365053194370;
         }
         3 => {
-            current_block_45 = 12683388869589819561;
+            current_block_45 = 16504919365053194370;
         }
         _ => {
             current_block_45 = 6417057564578538666;
         }
     }
     match current_block_45 {
-        12683388869589819561 => {
+        16504919365053194370 => {
             gBattleCommunication[0 as ::core::ffi::c_int as usize] = gBattleBufferB[gActiveBattler
                 as usize][1 as ::core::ffi::c_int as usize];
             let ref mut fresh1001 = (&raw mut (*if !gBattleStruct.is_null() {
@@ -26336,7 +26336,7 @@ unsafe extern "C" fn Cmd_transformdataexecution() {
         battleMonTarget = (&raw mut gBattleMons as *mut BattlePokemon)
             .offset(gBattlerTarget as isize) as *mut BattlePokemon as *mut u8_0;
         i = 0 as ::core::ffi::c_int as s32;
-        while (i as usize) < 36 as usize {
+        while (i as ::core::ffi::c_ulong) < 36 as ::core::ffi::c_ulong {
             *if !battleMonAttacker.is_null() {
                 battleMonAttacker
             } else {

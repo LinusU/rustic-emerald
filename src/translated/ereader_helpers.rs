@@ -1546,7 +1546,7 @@ unsafe extern "C" fn ValidateTrainerChecksum(
 ) -> bool32 {
     let mut checksum: ::core::ffi::c_int = CalcByteArraySum(
         hillTrainer as *mut u8_0,
-        624 as usize as u32_0,
+        624 as ::core::ffi::c_ulong as u32_0,
     ) as ::core::ffi::c_int;
     if checksum as u32_0
         != (*if !hillTrainer.is_null() {
@@ -2612,10 +2612,10 @@ pub unsafe extern "C" fn EReaderHandleTransfer(
             SetUpTransferManager(size, data, recvBuffer);
             sSendRecvMgr.state = EREADER_XFR_STATE_TRANSFER as ::core::ffi::c_int
                 as u8_0;
-            current_block_43 = 5975815949763160488;
+            current_block_43 = 11856555663060363599;
         }
         3 => {
-            current_block_43 = 5975815949763160488;
+            current_block_43 = 11856555663060363599;
         }
         4 => {
             OpenSerialMulti();
@@ -2649,7 +2649,7 @@ pub unsafe extern "C" fn EReaderHandleTransfer(
         }
     }
     match current_block_43 {
-        5975815949763160488 => {
+        11856555663060363599 => {
             if gShouldAdvanceLinkState as ::core::ffi::c_int == 2 as ::core::ffi::c_int {
                 sSendRecvMgr.cancellationReason = 2 as u8_0;
                 sSendRecvMgr.state = EREADER_XFR_STATE_DONE as ::core::ffi::c_int

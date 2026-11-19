@@ -241,12 +241,12 @@ pub static mut lman: LINK_MANAGER = linkManagerTag {
     pcswitch_period_bak: 0,
     work: 0,
     acceptable_serialNo_list: ::core::ptr::null::<u16_0>() as *mut u16_0,
-    nameAcceptTimer: VBL_TIMER {
+    nameAcceptTimer: VblankTimerTag {
         active: 0,
         count_max: 0,
         count: [0; 4],
     },
-    linkRecoveryTimer: VBL_TIMER {
+    linkRecoveryTimer: VblankTimerTag {
         active: 0,
         count_max: 0,
         count: [0; 4],

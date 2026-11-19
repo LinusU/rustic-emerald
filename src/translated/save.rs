@@ -5029,7 +5029,7 @@ unsafe extern "C" fn HandleReplaceSector(
     EraseFlashSector.expect("non-null function pointer")(sector);
     status = 1 as u8_0;
     i = 0 as u16_0;
-    while (i as usize) < 4088 as usize {
+    while (i as ::core::ffi::c_ulong) < 4088 as ::core::ffi::c_ulong {
         let ref mut fresh3 = gReadWriteSector as *mut u8_0;
         if ProgramFlashByte
             .expect(
@@ -5057,9 +5057,13 @@ unsafe extern "C" fn HandleReplaceSector(
     } else {
         status = 1 as u8_0;
         i = 0 as u16_0;
-        while (i as usize)
-            < ((3968 as ::core::ffi::c_int + 128 as ::core::ffi::c_int) as usize)
-                .wrapping_sub((4088 as usize).wrapping_add(1 as usize))
+        while (i as ::core::ffi::c_ulong)
+            < ((3968 as ::core::ffi::c_int + 128 as ::core::ffi::c_int)
+                as ::core::ffi::c_ulong)
+                .wrapping_sub(
+                    (4088 as ::core::ffi::c_ulong)
+                        .wrapping_add(1 as ::core::ffi::c_ulong),
+                )
         {
             let ref mut fresh4 = gReadWriteSector as *mut u8_0;
             if ProgramFlashByte
@@ -5067,16 +5071,18 @@ unsafe extern "C" fn HandleReplaceSector(
                     "non-null function pointer",
                 )(
                 sector,
-                (4088 as usize).wrapping_add(1 as usize).wrapping_add(i as usize)
-                    as u32_0,
+                (4088 as ::core::ffi::c_ulong)
+                    .wrapping_add(1 as ::core::ffi::c_ulong)
+                    .wrapping_add(i as ::core::ffi::c_ulong) as u32_0,
                 *if !(*fresh4).is_null() {
                     *fresh4
                 } else {
                     &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut u8_0
                 }
                     .offset(
-                        (4088 as usize).wrapping_add(1 as usize).wrapping_add(i as usize)
-                            as isize,
+                        (4088 as ::core::ffi::c_ulong)
+                            .wrapping_add(1 as ::core::ffi::c_ulong)
+                            .wrapping_add(i as ::core::ffi::c_ulong) as isize,
                     ),
             ) != 0
             {
@@ -5110,7 +5116,7 @@ unsafe extern "C" fn WriteSectorSignatureByte_NoOffset(
             "non-null function pointer",
         )(
         sector,
-        4088 as usize as u32_0,
+        4088 as ::core::ffi::c_ulong as u32_0,
         (0x8012025 as ::core::ffi::c_int & 0xff as ::core::ffi::c_int) as u8_0,
     ) != 0
     {
@@ -5139,13 +5145,13 @@ unsafe extern "C" fn CopySectorSignatureByte(
             "non-null function pointer",
         )(
         sector,
-        4088 as usize as u32_0,
+        4088 as ::core::ffi::c_ulong as u32_0,
         *if !(*fresh6).is_null() {
             *fresh6
         } else {
             &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut u8_0
         }
-            .offset(4088 as usize as isize),
+            .offset(4088 as ::core::ffi::c_ulong as isize),
     ) != 0
     {
         SetDamagedSectorBits(ENABLE as ::core::ffi::c_int as u8_0, sector as u8_0);
@@ -5172,7 +5178,7 @@ unsafe extern "C" fn WriteSectorSignatureByte(
             "non-null function pointer",
         )(
         sector,
-        4088 as usize as u32_0,
+        4088 as ::core::ffi::c_ulong as u32_0,
         (0x8012025 as ::core::ffi::c_int & 0xff as ::core::ffi::c_int) as u8_0,
     ) != 0
     {
@@ -5639,10 +5645,10 @@ pub unsafe extern "C" fn HandleSavingData(mut saveType: u8_0) -> u8_0 {
                 EraseFlashSector.expect("non-null function pointer")(i as u16_0);
                 i = i.wrapping_add(1);
             }
-            current_block_25 = 18308776645317299008;
+            current_block_25 = 16948198430420418255;
         }
         3 => {
-            current_block_25 = 18308776645317299008;
+            current_block_25 = 16948198430420418255;
         }
         1 | 2 => {
             CopyPartyAndObjectsToSave();
@@ -5687,7 +5693,7 @@ pub unsafe extern "C" fn HandleSavingData(mut saveType: u8_0) -> u8_0 {
         }
     }
     match current_block_25 {
-        18308776645317299008 => {
+        16948198430420418255 => {
             if GetGameStat(10 as u8_0) < 999 as u32_0 {
                 IncrementGameStat(10 as u8_0);
             }
@@ -5883,28 +5889,29 @@ pub unsafe extern "C" fn GetSaveBlocksPointersBaseOffset() -> u16_0 {
             } else {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut SaveSector
             })
-                .data[10 as usize as usize] as ::core::ffi::c_int
+                .data[10 as ::core::ffi::c_ulong as usize] as ::core::ffi::c_int
                 + (*if !sector.is_null() {
                     sector
                 } else {
                     &raw mut gNativeMemory as *mut ::core::ffi::c_uchar
                         as *mut SaveSector
                 })
-                    .data[11 as usize as usize] as ::core::ffi::c_int
+                    .data[11 as ::core::ffi::c_ulong as usize] as ::core::ffi::c_int
                 + (*if !sector.is_null() {
                     sector
                 } else {
                     &raw mut gNativeMemory as *mut ::core::ffi::c_uchar
                         as *mut SaveSector
                 })
-                    .data[12 as usize as usize] as ::core::ffi::c_int
+                    .data[12 as ::core::ffi::c_ulong as usize] as ::core::ffi::c_int
                 + (*if !sector.is_null() {
                     sector
                 } else {
                     &raw mut gNativeMemory as *mut ::core::ffi::c_uchar
                         as *mut SaveSector
                 })
-                    .data[13 as usize as usize] as ::core::ffi::c_int) as u16_0;
+                    .data[13 as ::core::ffi::c_ulong as usize] as ::core::ffi::c_int)
+                as u16_0;
         }
         i = i.wrapping_add(1);
     }
@@ -5940,7 +5947,7 @@ pub unsafe extern "C" fn TryReadSpecialSaveSector(
         return 0xff as u32_0;
     }
     i = 0 as ::core::ffi::c_int as s32;
-    size = (4092 as usize).wrapping_sub(1 as usize) as s32;
+    size = (4092 as ::core::ffi::c_ulong).wrapping_sub(1 as ::core::ffi::c_ulong) as s32;
     savData = (&raw mut gSaveDataBuffer.data as *mut u8_0)
         .offset(4 as ::core::ffi::c_int as isize) as *mut u8_0;
     while i <= size {
@@ -5983,7 +5990,7 @@ pub unsafe extern "C" fn TryWriteSpecialSaveSector(
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut u32_0
     } = 0xb39d as u32_0;
     i = 0 as ::core::ffi::c_int as s32;
-    size = (4092 as usize).wrapping_sub(1 as usize) as s32;
+    size = (4092 as ::core::ffi::c_ulong).wrapping_sub(1 as ::core::ffi::c_ulong) as s32;
     savData = (&raw mut gSaveDataBuffer.data as *mut u8_0)
         .offset(4 as ::core::ffi::c_int as isize) as *mut u8_0;
     while i <= size {

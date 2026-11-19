@@ -7710,10 +7710,10 @@ pub unsafe extern "C" fn RunTextPrinters() {
                             sTextPrinters[i as usize].printerTemplate.windowId,
                             COPYWIN_GFX as ::core::ffi::c_int as u8_0,
                         );
-                        current_block_4 = 3534581840461122996;
+                        current_block_4 = 7113409298466229034;
                     }
                     3 => {
-                        current_block_4 = 3534581840461122996;
+                        current_block_4 = 7113409298466229034;
                     }
                     1 => {
                         sTextPrinters[i as usize].active = 0 as u8_0;
@@ -7724,7 +7724,7 @@ pub unsafe extern "C" fn RunTextPrinters() {
                     }
                 }
                 match current_block_4 {
-                    3534581840461122996 => {
+                    7113409298466229034 => {
                         if ({ sTextPrinters[i as usize].callback }).is_some() {
                             sTextPrinters[i as usize]
                                 .callback
@@ -11335,10 +11335,10 @@ pub unsafe extern "C" fn GetStringWidth(
                     }
                     _ => return 0 as s32,
                 }
-                current_block_72 = 3636825383765150728;
+                current_block_72 = 612920452647504425;
             }
             247 => {
-                current_block_72 = 3636825383765150728;
+                current_block_72 = 612920452647504425;
             }
             252 => {
                 let mut current_block_49: u64;
@@ -11351,13 +11351,13 @@ pub unsafe extern "C" fn GetStringWidth(
                 {
                     4 => {
                         str = str.offset(1);
-                        current_block_49 = 5098035653891362640;
+                        current_block_49 = 15036677926260185862;
                     }
                     11 | 16 => {
-                        current_block_49 = 5098035653891362640;
+                        current_block_49 = 15036677926260185862;
                     }
                     1 | 2 | 3 | 5 | 8 | 12 | 13 | 14 => {
-                        current_block_49 = 10520166006724693337;
+                        current_block_49 = 14999514863784942580;
                     }
                     6 => {
                         str = str.offset(1);
@@ -11449,14 +11449,14 @@ pub unsafe extern "C" fn GetStringWidth(
                     }
                 }
                 match current_block_49 {
-                    5098035653891362640 => {
+                    15036677926260185862 => {
                         str = str.offset(1);
-                        current_block_49 = 10520166006724693337;
+                        current_block_49 = 14999514863784942580;
                     }
                     _ => {}
                 }
                 match current_block_49 {
-                    10520166006724693337 => {
+                    14999514863784942580 => {
                         str = str.offset(1);
                     }
                     _ => {}
@@ -11556,7 +11556,7 @@ pub unsafe extern "C" fn GetStringWidth(
             }
         }
         match current_block_72 {
-            3636825383765150728 => {
+            612920452647504425 => {
                 if bufferPointer.is_null() {
                     str = str.offset(1);
                     bufferPointer = DynamicPlaceholderTextUtil_GetPlaceholderPtr(
@@ -11671,9 +11671,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                     .offset(fresh191 as isize) as ::core::ffi::c_int;
                 match temp2 {
                     4 => {
-                        current_block_44 = 16697653145914581497;
+                        current_block_44 = 17773056103586148158;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -11690,7 +11690,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -11707,7 +11707,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -11724,7 +11724,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -11759,7 +11759,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -11771,9 +11771,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }
@@ -11785,9 +11785,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                         }
                     }
                     1 => {
-                        current_block_44 = 12335219428930342365;
+                        current_block_44 = 4251443208033259757;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -11804,7 +11804,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -11821,7 +11821,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -11838,7 +11838,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -11873,7 +11873,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -11885,9 +11885,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }
@@ -11899,9 +11899,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                         }
                     }
                     2 => {
-                        current_block_44 = 2597965442647510045;
+                        current_block_44 = 6786414131211947689;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -11918,7 +11918,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -11935,7 +11935,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -11952,7 +11952,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -11987,7 +11987,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -11999,9 +11999,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }
@@ -12013,9 +12013,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                         }
                     }
                     3 => {
-                        current_block_44 = 3286379034725254975;
+                        current_block_44 = 15748276126812975120;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -12032,7 +12032,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -12049,7 +12049,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12066,7 +12066,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12101,7 +12101,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -12113,9 +12113,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }
@@ -12127,9 +12127,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                         }
                     }
                     6 => {
-                        current_block_44 = 2579108172056300190;
+                        current_block_44 = 7919000987596822462;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -12146,7 +12146,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -12163,7 +12163,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12180,7 +12180,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12215,7 +12215,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -12227,9 +12227,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }
@@ -12241,9 +12241,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                         }
                     }
                     11 | 16 => {
-                        current_block_44 = 15815843460167422596;
+                        current_block_44 = 17934352994512266472;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -12260,7 +12260,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -12277,7 +12277,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12294,7 +12294,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12329,7 +12329,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -12341,9 +12341,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }
@@ -12355,9 +12355,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                         }
                     }
                     5 | 8 | 12 | 13 | 14 | 17 | 18 | 19 | 20 => {
-                        current_block_44 = 15431399909631080355;
+                        current_block_44 = 9514143912448096902;
                         match current_block_44 {
-                            3286379034725254975 => {
+                            15748276126812975120 => {
                                 let fresh197 = strPos;
                                 strPos = strPos + 1;
                                 shadowColor = *if !strLocal.is_null() {
@@ -12374,7 +12374,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2597965442647510045 => {
+                            6786414131211947689 => {
                                 let fresh196 = strPos;
                                 strPos = strPos + 1;
                                 bgColor = *if !strLocal.is_null() {
@@ -12391,7 +12391,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            12335219428930342365 => {
+                            4251443208033259757 => {
                                 let fresh195 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12408,7 +12408,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            16697653145914581497 => {
+                            17773056103586148158 => {
                                 let fresh192 = strPos;
                                 strPos = strPos + 1;
                                 fgColor = *if !strLocal.is_null() {
@@ -12443,7 +12443,7 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                 );
                                 current_block_44 = 7815301370352969686;
                             }
-                            2579108172056300190 => {
+                            7919000987596822462 => {
                                 let fresh198 = strPos;
                                 strPos = strPos + 1;
                                 fontId = *if !strLocal.is_null() {
@@ -12455,9 +12455,9 @@ pub unsafe extern "C" fn RenderTextHandleBold(
                                     .offset(fresh198 as isize);
                                 current_block_44 = 7815301370352969686;
                             }
-                            15815843460167422596 => {
+                            17934352994512266472 => {
                                 strPos += 1;
-                                current_block_44 = 15431399909631080355;
+                                current_block_44 = 9514143912448096902;
                             }
                             _ => {}
                         }

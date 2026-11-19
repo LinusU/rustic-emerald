@@ -3843,10 +3843,10 @@ unsafe extern "C" fn Chat_Join() {
             })
                 .funcState;
             *fresh95 = (*fresh95).wrapping_add(1);
-            current_block_7 = 7310981104944047071;
+            current_block_7 = 13422918053017960950;
         }
         1 => {
-            current_block_7 = 7310981104944047071;
+            current_block_7 = 13422918053017960950;
         }
         2 => {
             if IsLinkTaskFinished() != 0 {
@@ -3859,7 +3859,7 @@ unsafe extern "C" fn Chat_Join() {
         }
     }
     match current_block_7 {
-        7310981104944047071 => {
+        13422918053017960950 => {
             if IsLinkTaskFinished() as ::core::ffi::c_int != 0
                 && Rfu_IsPlayerExchangeActive() == 0
             {
@@ -4853,11 +4853,11 @@ unsafe extern "C" fn Chat_SendMessage() {
                 })
                     .funcState;
                 *fresh86 = (*fresh86).wrapping_add(1);
-                current_block_11 = 11251199412609676658;
+                current_block_11 = 16033517191761464365;
             }
         }
         1 => {
-            current_block_11 = 11251199412609676658;
+            current_block_11 = 16033517191761464365;
         }
         2 => {
             ResetMessageEntryBuffer();
@@ -4898,7 +4898,7 @@ unsafe extern "C" fn Chat_SendMessage() {
         }
     }
     match current_block_11 {
-        11251199412609676658 => {
+        16033517191761464365 => {
             if IsLinkTaskFinished() as ::core::ffi::c_int == 1 as ::core::ffi::c_int
                 && Rfu_IsPlayerExchangeActive() == 0
                 && SendBlock(
@@ -6155,17 +6155,17 @@ unsafe extern "C" fn ProcessReceivedChatMessage(
                     .hostName as *mut u8_0,
                 name,
             );
-            current_block_21 = 17334867227034148480;
+            current_block_21 = 17824276414774237962;
         }
         3 => {
-            current_block_21 = 17334867227034148480;
+            current_block_21 = 17824276414774237962;
         }
         _ => {
             current_block_21 = 8457315219000651999;
         }
     }
     match current_block_21 {
-        17334867227034148480 => {
+        17824276414774237962 => {
             if (*if !sChat.is_null() {
                 sChat
             } else {
@@ -6506,13 +6506,13 @@ unsafe extern "C" fn Task_ReceiveChatMessage(mut taskId: u8_0) {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
             }
                 .offset(0 as ::core::ffi::c_int as isize) = 1 as s16;
-            current_block_60 = 14495443245860109368;
+            current_block_60 = 7910166181503699293;
         }
         1 => {
-            current_block_60 = 14495443245860109368;
+            current_block_60 = 7910166181503699293;
         }
         3 => {
-            current_block_60 = 1945552802878553076;
+            current_block_60 = 16243483976351766853;
         }
         7 => {
             if IsDisplaySubtaskActive(2 as u8_0) == 0 {
@@ -6637,7 +6637,7 @@ unsafe extern "C" fn Task_ReceiveChatMessage(mut taskId: u8_0) {
         }
     }
     match current_block_60 {
-        14495443245860109368 => {
+        7910166181503699293 => {
             *if !data.is_null() {
                 data
             } else {
@@ -6706,12 +6706,12 @@ unsafe extern "C" fn Task_ReceiveChatMessage(mut taskId: u8_0) {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
             }
                 .offset(0 as ::core::ffi::c_int as isize) = 3 as s16;
-            current_block_60 = 1945552802878553076;
+            current_block_60 = 16243483976351766853;
         }
         _ => {}
     }
     match current_block_60 {
-        1945552802878553076 => {
+        16243483976351766853 => {
             while (*if !data.is_null() {
                 data
             } else {
@@ -7575,19 +7575,19 @@ unsafe extern "C" fn Display_ScrollChat(mut state: *mut u8_0) -> bool32 {
                 };
                 *fresh15 = (*fresh15).wrapping_add(1);
             }
-            current_block_26 = 7799128566990960346;
+            current_block_26 = 11951394494212832280;
         }
         2 => {
-            current_block_26 = 7799128566990960346;
+            current_block_26 = 11951394494212832280;
         }
         3 => {
-            current_block_26 = 15742489399419018885;
+            current_block_26 = 17723404973154825194;
         }
         4 => return 0 as bool32,
         _ => return 1 as bool32,
     }
     match current_block_26 {
-        7799128566990960346 => {
+        11951394494212832280 => {
             ScrollWindow(
                 WIN_CHAT_HISTORY as ::core::ffi::c_int as u8_0,
                 0 as u8_0,
@@ -7613,12 +7613,12 @@ unsafe extern "C" fn Display_ScrollChat(mut state: *mut u8_0) -> bool32 {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut u8_0
             };
             *fresh17 = (*fresh17).wrapping_add(1);
-            current_block_26 = 15742489399419018885;
+            current_block_26 = 17723404973154825194;
         }
         _ => {}
     }
     match current_block_26 {
-        15742489399419018885 => {
+        17723404973154825194 => {
             if IsDma3ManagerBusyWithBgCopy() != 0 {
                 return 1 as bool32;
             }

@@ -10976,17 +10976,17 @@ unsafe extern "C" fn CB2_HandleStartBattle() {
                     as ::core::ffi::c_int as usize]
                 .wrapping_add(1);
             gBattleCommunication[1 as ::core::ffi::c_int as usize] = 1 as u8_0;
-            current_block_121 = 915434609822124871;
+            current_block_121 = 11600600136415632188;
         }
         6 | 10 | 14 => {
-            current_block_121 = 915434609822124871;
+            current_block_121 = 11600600136415632188;
         }
         _ => {
             current_block_121 = 2705889988320590074;
         }
     }
     match current_block_121 {
-        915434609822124871 => {
+        11600600136415632188 => {
             gBattleCommunication[1 as ::core::ffi::c_int as usize] = gBattleCommunication[1
                     as ::core::ffi::c_int as usize]
                 .wrapping_sub(1);
@@ -11025,10 +11025,10 @@ unsafe extern "C" fn CB2_HandleStartMultiPartnerBattle() {
             if gWirelessCommType != 0 {
                 LoadWirelessStatusIndicatorSpriteGfx();
             }
-            current_block_153 = 2752321076740399229;
+            current_block_153 = 6650145172979469069;
         }
         1 => {
-            current_block_153 = 2752321076740399229;
+            current_block_153 = 6650145172979469069;
         }
         2 => {
             if GetBlockReceivedStatus() as ::core::ffi::c_int & 3 as ::core::ffi::c_int
@@ -11441,7 +11441,7 @@ unsafe extern "C" fn CB2_HandleStartMultiPartnerBattle() {
         }
     }
     match current_block_153 {
-        2752321076740399229 => {
+        6650145172979469069 => {
             if gBattleTypeFlags
                 & ((1 as ::core::ffi::c_int) << 1 as ::core::ffi::c_int) as u32_0 != 0
             {
@@ -12042,13 +12042,13 @@ unsafe extern "C" fn CB2_HandleStartMultiBattle() {
                 gBattleCommunication[0 as ::core::ffi::c_int as usize] = gBattleCommunication[0
                         as ::core::ffi::c_int as usize]
                     .wrapping_add(1);
-                current_block_155 = 13992030838565924554;
+                current_block_155 = 12684763486994553302;
             } else {
                 current_block_155 = 14133002253412689704;
             }
         }
         3 => {
-            current_block_155 = 13992030838565924554;
+            current_block_155 = 12684763486994553302;
         }
         4 => {
             if GetBlockReceivedStatus() as ::core::ffi::c_int & 0xf as ::core::ffi::c_int
@@ -12439,7 +12439,7 @@ unsafe extern "C" fn CB2_HandleStartMultiBattle() {
         }
     }
     match current_block_155 {
-        13992030838565924554 => {
+        12684763486994553302 => {
             if IsLinkTaskFinished() != 0 {
                 SendBlock(
                     BitmaskAllOtherLinkPlayers(),
@@ -12562,10 +12562,10 @@ unsafe extern "C" fn SpriteCB_UnusedBattleInit_Main(mut sprite: *mut Sprite) {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
             })
                 .data[4 as ::core::ffi::c_int as usize] = 1 as s16;
-            current_block_23 = 8814554627415201815;
+            current_block_23 = 8867844052455262793;
         }
         1 => {
-            current_block_23 = 8814554627415201815;
+            current_block_23 = 8867844052455262793;
         }
         2 => {
             let ref mut fresh182 = (*if !sprite.is_null() {
@@ -12592,7 +12592,7 @@ unsafe extern "C" fn SpriteCB_UnusedBattleInit_Main(mut sprite: *mut Sprite) {
         }
     }
     match current_block_23 {
-        8814554627415201815 => {
+        8867844052455262793 => {
             let ref mut fresh179 = (*if !sprite.is_null() {
                 sprite
             } else {

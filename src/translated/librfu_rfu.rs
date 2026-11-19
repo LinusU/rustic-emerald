@@ -7080,7 +7080,8 @@ unsafe extern "C" fn rfu_constructSendLLFrame() {
             })
                 .parentChild as ::core::ffi::c_int == 0 as ::core::ffi::c_int
             {
-                let mut maxSize: *mut u8_0 = llf_p.offset(-(116 as usize as isize));
+                let mut maxSize: *mut u8_0 = llf_p
+                    .offset(-(116 as ::core::ffi::c_ulong as isize));
                 let ref mut fresh201 = &raw mut gRfuFixed as *mut *mut u8_0;
                 pakcketSize = maxSize
                     .offset_from(
@@ -7090,7 +7091,7 @@ unsafe extern "C" fn rfu_constructSendLLFrame() {
                             &raw mut gNativeMemory as *mut ::core::ffi::c_uchar
                                 as *mut *mut u8_0
                         },
-                    ) as isize as u32_0;
+                    ) as ::core::ffi::c_long as u32_0;
             }
         }
         (*if !gRfuStatic.is_null() {
@@ -7259,7 +7260,7 @@ unsafe extern "C" fn rfu_STC_NI_constructLLSF(
                             as *mut NIComm
                     })
                         .phase as usize],
-                ) as isize as u16_0;
+                ) as ::core::ffi::c_long as u16_0;
         } else {
             size = (*if !NI_comm.is_null() {
                 NI_comm
@@ -8296,7 +8297,7 @@ unsafe extern "C" fn rfu_STC_UNI_receive(
                 })
                     .errorCode = (0x700 as ::core::ffi::c_int | 0x1 as ::core::ffi::c_int
                     | 0x8 as ::core::ffi::c_int) as u16_0;
-                current_block = 763561843447391689;
+                current_block = 15158603796962424607;
             } else {
                 current_block = 11650488183268122163;
             }
@@ -8319,7 +8320,7 @@ unsafe extern "C" fn rfu_STC_UNI_receive(
             current_block = 11650488183268122163;
         }
         match current_block {
-            763561843447391689 => {}
+            15158603796962424607 => {}
             _ => {
                 (*if !UNI_recv.is_null() {
                     UNI_recv
@@ -8632,7 +8633,7 @@ unsafe extern "C" fn rfu_STC_NI_receive_Sender(
             })
                 .remainSize
             {
-                1 => {}
+                1..=2147483647 => {}
                 0 | _ => {
                     (*if !NI_comm.is_null() {
                         NI_comm

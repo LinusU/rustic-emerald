@@ -1031,11 +1031,11 @@ unsafe extern "C" fn Sio32IDMain() -> s32 {
                 current_block_28 = 5634871135123216486;
             } else {
                 gRfuSIO32Id.state = 2 as u8_0;
-                current_block_28 = 1156451893914642551;
+                current_block_28 = 3261079116995563137;
             }
         }
         _ => {
-            current_block_28 = 1156451893914642551;
+            current_block_28 = 3261079116995563137;
         }
     }
     match current_block_28 {

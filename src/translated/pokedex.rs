@@ -3854,7 +3854,9 @@ unsafe extern "C" fn WasmDmaFill16(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u16_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u16_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh0 = size;
         size = size.wrapping_sub(1);
@@ -3906,7 +3908,9 @@ unsafe extern "C" fn WasmDmaFill32(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u32_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u32_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh2 = size;
         size = size.wrapping_sub(1);
@@ -84890,10 +84894,10 @@ unsafe extern "C" fn DrawSearchMenuItemBgHighlight(
                         - SEARCH_TOPBAR_COUNT as ::core::ffi::c_int) as usize]
                     .titleBgWidth,
             );
-            current_block_6 = 2427978168793326178;
+            current_block_6 = 6587566033312022276;
         }
         5 | 6 => {
-            current_block_6 = 2427978168793326178;
+            current_block_6 = 6587566033312022276;
         }
         10 => {
             SetSearchRectHighlight(
@@ -84943,7 +84947,7 @@ unsafe extern "C" fn DrawSearchMenuItemBgHighlight(
         }
     }
     match current_block_6 {
-        2427978168793326178 => {
+        6587566033312022276 => {
             SetSearchRectHighlight(
                 highlightFlags,
                 sSearchMenuItems[(searchBg as ::core::ffi::c_int

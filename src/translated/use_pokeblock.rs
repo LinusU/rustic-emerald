@@ -3030,11 +3030,11 @@ unsafe extern "C" fn BufferEnhancedText(
 ) {
     let mut current_block_5: u64;
     match enhancement as ::core::ffi::c_int {
-        1 => {
+        1..=32767 => {
             enhancement = 0 as s16;
             current_block_5 = 15253792348459933217;
         }
-        -32768 => {
+        -32768..=-1 => {
             current_block_5 = 15253792348459933217;
         }
         0 => {

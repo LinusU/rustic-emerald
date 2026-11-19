@@ -8,7 +8,7 @@ unsafe extern "C" {
     fn GetMonData2(mon: *mut Pokemon, field: s32) -> u32_0;
     static mut gBattlerPartyIndexes: [u16_0; 4];
     static mut gTasks: [Task; 0];
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     static mut gAnimBattlerSpecies: [u16_0; 4];
@@ -909,11 +909,11 @@ unsafe extern "C" fn SoundTask_PlayCryWithEcho_Step(mut taskId: u8_0) {
             if IsCryPlaying() != 0 {
                 current_block_8 = 2979737022853876585;
             } else {
-                current_block_8 = 8077860765343440262;
+                current_block_8 = 10257332211620502908;
             }
         }
         0 => {
-            current_block_8 = 8077860765343440262;
+            current_block_8 = 10257332211620502908;
         }
         _ => {
             if (*(&raw mut gTasks as *mut Task).offset(taskId as isize))
@@ -928,7 +928,7 @@ unsafe extern "C" fn SoundTask_PlayCryWithEcho_Step(mut taskId: u8_0) {
         }
     }
     match current_block_8 {
-        8077860765343440262 => {
+        10257332211620502908 => {
             StopCryAndClearCrySongs();
             let ref mut fresh13 = (*(&raw mut gTasks as *mut Task)
                 .offset(taskId as isize))

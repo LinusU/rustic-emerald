@@ -22,7 +22,7 @@ unsafe extern "C" {
     static mut gTasks: [Task; 0];
     static mut gAnimVisualTaskCount: u8_0;
     static mut gAnimDisableStructPtr: *mut DisableStruct;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);
@@ -977,7 +977,7 @@ unsafe extern "C" fn AnimIcePunchSwirlingParticle(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimIceBeamParticle(mut sprite: *mut Sprite) {
     InitSpritePosToAnimAttacker(sprite, 1 as bool8);
@@ -1478,7 +1478,7 @@ unsafe extern "C" fn AnimSwirlingSnowball_Step1(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimSwirlingSnowball_Step2(mut sprite: *mut Sprite) {
     let mut tempVar: s16 = 0;
@@ -2351,7 +2351,7 @@ unsafe extern "C" fn InitSwirlingFogAnim(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimSwirlingFogAnim(mut sprite: *mut Sprite) {
     if AnimTranslateLinear(sprite) == 0 {
@@ -2644,17 +2644,17 @@ unsafe extern "C" fn AnimTask_HazeScrollingFog_Step(mut taskId: u8_0) {
                 .offset(taskId as isize))
                 .data[12 as ::core::ffi::c_int as usize];
             *fresh83 += 1;
-            current_block_36 = 13660536697441866857;
+            current_block_36 = 552284807196668465;
         }
         4 => {
-            current_block_36 = 13660536697441866857;
+            current_block_36 = 552284807196668465;
         }
         _ => {
             current_block_36 = 11932355480408055363;
         }
     }
     match current_block_36 {
-        13660536697441866857 => {
+        552284807196668465 => {
             if IsContest() == 0 {
                 SetAnimBgAttribute(
                     1 as u8_0,
@@ -2894,17 +2894,17 @@ unsafe extern "C" fn AnimTask_MistBallFog_Step(mut taskId: u8_0) {
                 .offset(taskId as isize))
                 .data[12 as ::core::ffi::c_int as usize];
             *fresh91 += 1;
-            current_block_33 = 16268908457251688877;
+            current_block_33 = 13436285313998670199;
         }
         4 => {
-            current_block_33 = 16268908457251688877;
+            current_block_33 = 13436285313998670199;
         }
         _ => {
             current_block_33 = 13550086250199790493;
         }
     }
     match current_block_33 {
-        16268908457251688877 => {
+        13436285313998670199 => {
             if IsContest() == 0 {
                 SetAnimBgAttribute(
                     1 as u8_0,

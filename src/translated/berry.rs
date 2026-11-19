@@ -6048,10 +6048,10 @@ unsafe extern "C" fn BerryTreeGrow(mut tree: *mut BerryTree) -> bool32 {
                 &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut BerryTree
             })
                 .berryYield = CalcBerryYield(tree);
-            current_block_12 = 16392682125700759491;
+            current_block_12 = 18169099900438651441;
         }
         1 | 2 | 3 => {
-            current_block_12 = 16392682125700759491;
+            current_block_12 = 18169099900438651441;
         }
         5 => {
             let ref mut fresh7 = *if !tree.is_null() {
@@ -6112,7 +6112,7 @@ unsafe extern "C" fn BerryTreeGrow(mut tree: *mut BerryTree) -> bool32 {
         }
     }
     match current_block_12 {
-        16392682125700759491 => {
+        18169099900438651441 => {
             let ref mut fresh6 = *if !tree.is_null() {
                 tree
             } else {

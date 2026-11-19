@@ -891,7 +891,7 @@ unsafe extern "C" fn WasmDmaCopy(
     {
         WasmOamBufferModified();
     }
-    ::libc::memcpy(dest, src, size as usize as ::libc::size_t);
+    ::libc::memcpy(dest, src, size as ::core::ffi::c_ulong as ::libc::size_t);
 }
 #[unsafe(no_mangle)]
 pub static mut gGameVersion: u8_0 = 3 as u8_0;

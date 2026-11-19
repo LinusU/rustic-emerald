@@ -2100,13 +2100,13 @@ unsafe extern "C" fn AnimateUnionRoomPlayerSpawn(
                                 as *mut s8
                         };
                         *fresh1 += 1;
-                        current_block_11 = 16947218417966234668;
+                        current_block_11 = 9121154670559605463;
                     }
                 }
             }
         }
         3 => {
-            current_block_11 = 16947218417966234668;
+            current_block_11 = 9121154670559605463;
         }
         2 => {
             if TryReleaseUnionRoomPlayerObjectEvent(leaderId) != 0 {
@@ -2124,7 +2124,7 @@ unsafe extern "C" fn AnimateUnionRoomPlayerSpawn(
         }
     }
     match current_block_11 {
-        16947218417966234668 => {
+        9121154670559605463 => {
             if SetUnionRoomPlayerEnterExitMovement(
                 leaderId,
                 &raw const sMovement_UnionPlayerEnter as *const u8_0,
@@ -2237,13 +2237,13 @@ unsafe extern "C" fn AnimateUnionRoomPlayer(
                         as *mut UnionRoomObject
                 })
                     .animState = 0 as s8;
-                current_block_15 = 10956137750799249395;
+                current_block_15 = 14121867561516531824;
             } else {
                 current_block_15 = 4956146061682418353;
             }
         }
         2 => {
-            current_block_15 = 10956137750799249395;
+            current_block_15 = 14121867561516531824;
         }
         1 => {
             if (*if !object.is_null() {
@@ -2270,18 +2270,18 @@ unsafe extern "C" fn AnimateUnionRoomPlayer(
                         as *mut UnionRoomObject
                 })
                     .animState = 0 as s8;
-                current_block_15 = 7158326792869171591;
+                current_block_15 = 18403587549558498242;
             }
         }
         3 => {
-            current_block_15 = 7158326792869171591;
+            current_block_15 = 18403587549558498242;
         }
         _ => {
             current_block_15 = 4956146061682418353;
         }
     }
     match current_block_15 {
-        10956137750799249395 => {
+        14121867561516531824 => {
             if IsUnionRoomPlayerInvisible(leaderId, 0 as u32_0) == 0
                 && (*if !object.is_null() {
                     object
@@ -2328,7 +2328,7 @@ unsafe extern "C" fn AnimateUnionRoomPlayer(
                     .state = 1 as u8_0;
             }
         }
-        7158326792869171591 => {
+        18403587549558498242 => {
             if AnimateUnionRoomPlayerDespawn(
                 &raw mut (*if !object.is_null() {
                     object

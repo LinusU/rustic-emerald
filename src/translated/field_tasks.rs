@@ -2622,19 +2622,19 @@ unsafe extern "C" fn FortreeBridgePerStepCallback(mut taskId: u8_0) {
                         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut s16
                     }
                         .offset(1 as ::core::ffi::c_int as isize) = 2 as s16;
-                    current_block_39 = 7539330836905755877;
+                    current_block_39 = 16623217663169587593;
                 }
             }
         }
         2 => {
-            current_block_39 = 7539330836905755877;
+            current_block_39 = 16623217663169587593;
         }
         _ => {
             current_block_39 = 8180496224585318153;
         }
     }
     match current_block_39 {
-        7539330836905755877 => {
+        16623217663169587593 => {
             let ref mut fresh13 = *if !data.is_null() {
                 data
             } else {

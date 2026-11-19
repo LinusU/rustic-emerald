@@ -30,7 +30,7 @@ unsafe extern "C" {
     fn CreateTask(func: TaskFunc, priority: u8_0) -> u8_0;
     fn DestroyTask(taskId: u8_0);
     static mut gAnimVisualTaskCount: u8_0;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     fn DestroyAnimSprite(sprite: *mut Sprite);
@@ -1317,7 +1317,7 @@ unsafe extern "C" fn AnimWaterBubbleProjectile(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimWaterBubbleProjectile_Step1(mut sprite: *mut Sprite) {
     let mut otherSpriteId: u8_0 = (*if !sprite.is_null() {
@@ -1505,7 +1505,7 @@ unsafe extern "C" fn AnimAuroraBeamRings(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimAuroraBeamRings_Step(mut sprite: *mut Sprite) {
     if gBattleAnimArgs[7 as ::core::ffi::c_int as usize] as u16_0 as ::core::ffi::c_int
@@ -1688,7 +1688,7 @@ unsafe extern "C" fn AnimToTargetInSinWave(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn AnimToTargetInSinWave_Step(mut sprite: *mut Sprite) {
     if AnimTranslateLinear(sprite) != 0 {
@@ -3009,10 +3009,10 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh92 += 1;
-            current_block_50 = 8668565854892011085;
+            current_block_50 = 3321337894142066877;
         }
         1 => {
-            current_block_50 = 8668565854892011085;
+            current_block_50 = 3321337894142066877;
         }
         2 => {
             let ref mut fresh96 = (*if !task.is_null() {
@@ -3087,10 +3087,10 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh99 += 1;
-            current_block_50 = 2325544010378129154;
+            current_block_50 = 12766349834733685609;
         }
         5 => {
-            current_block_50 = 2325544010378129154;
+            current_block_50 = 12766349834733685609;
         }
         6 => {
             gSprites[(*if !task.is_null() {
@@ -3156,7 +3156,7 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
         }
     }
     match current_block_50 {
-        8668565854892011085 => {
+        3321337894142066877 => {
             let ref mut fresh93 = (*if !task.is_null() {
                 task
             } else {
@@ -3244,7 +3244,7 @@ unsafe extern "C" fn AnimTask_WaterSpoutLaunch_Step(mut taskId: u8_0) {
                 *fresh95 += 1;
             }
         }
-        2325544010378129154 => {
+        12766349834733685609 => {
             let ref mut fresh100 = (*if !task.is_null() {
                 task
             } else {
@@ -3508,17 +3508,17 @@ unsafe extern "C" fn AnimSmallWaterOrb(mut sprite: *mut Sprite) {
             })
                 .data[0 as ::core::ffi::c_int as usize];
             *fresh40 += 1;
-            current_block_10 = 9673911641134605176;
+            current_block_10 = 5339340440139523279;
         }
         1 => {
-            current_block_10 = 9673911641134605176;
+            current_block_10 = 5339340440139523279;
         }
         _ => {
             current_block_10 = 5720623009719927633;
         }
     }
     match current_block_10 {
-        9673911641134605176 => {
+        5339340440139523279 => {
             let ref mut fresh41 = (*if !sprite.is_null() {
                 sprite
             } else {

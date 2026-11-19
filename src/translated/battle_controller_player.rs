@@ -1993,7 +1993,7 @@ unsafe extern "C" fn WasmDmaCopy(
     {
         WasmOamBufferModified();
     }
-    ::libc::memcpy(dest, src, size as usize as ::libc::size_t);
+    ::libc::memcpy(dest, src, size as ::core::ffi::c_ulong as ::libc::size_t);
 }
 #[cfg_attr(target_vendor = "apple", unsafe(link_section = "__DATA,native_game_data"))]
 #[cfg_attr(not(target_vendor = "apple"), unsafe(link_section = "native_game_data"))]
@@ -9237,10 +9237,10 @@ unsafe extern "C" fn PlayerHandleLinkStandbyMsg() {
     {
         0 => {
             PrintLinkStandbyMsg();
-            current_block_4 = 14103470621526068625;
+            current_block_4 = 17200917488034785120;
         }
         1 => {
-            current_block_4 = 14103470621526068625;
+            current_block_4 = 17200917488034785120;
         }
         2 => {
             PrintLinkStandbyMsg();
@@ -9251,7 +9251,7 @@ unsafe extern "C" fn PlayerHandleLinkStandbyMsg() {
         }
     }
     match current_block_4 {
-        14103470621526068625 => {
+        17200917488034785120 => {
             EndBounceEffect(gActiveBattler, 0x1 as u8_0);
             EndBounceEffect(gActiveBattler, 0 as u8_0);
         }

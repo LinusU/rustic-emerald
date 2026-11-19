@@ -68,7 +68,7 @@ unsafe extern "C" {
     static mut gBattleMonForms: [u8_0; 4];
     static mut gTasks: [Task; 0];
     static mut gAnimFriendship: u8_0;
-    static mut gBattleAnimArgs: [s16; 8];
+    static mut gBattleAnimArgs: [s16; 16];
     static mut gBattleAnimAttacker: u8_0;
     static mut gBattleAnimTarget: u8_0;
     static mut gAnimBattlerSpecies: [u16_0; 4];
@@ -3670,7 +3670,7 @@ pub unsafe extern "C" fn Trade_MoveSelectedMonToTarget(mut sprite: *mut Sprite) 
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn InitSpriteDataForLinearTranslation(mut sprite: *mut Sprite) {
@@ -3860,7 +3860,7 @@ pub unsafe extern "C" fn StartAnimLinearTranslation(mut sprite: *mut Sprite) {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn AnimTranslateLinear(mut sprite: *mut Sprite) -> bool8 {
@@ -4058,7 +4058,7 @@ pub unsafe extern "C" fn InitAnimLinearTranslationWithSpeedAndPos(
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 unsafe extern "C" fn InitAnimFastLinearTranslation(mut sprite: *mut Sprite) {
     let mut xDiff: ::core::ffi::c_int = (*if !sprite.is_null() {
@@ -4182,7 +4182,7 @@ pub unsafe extern "C" fn InitAndRunAnimFastLinearTranslation(mut sprite: *mut Sp
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn AnimFastTranslateLinear(mut sprite: *mut Sprite) -> bool8 {
@@ -4381,7 +4381,7 @@ pub unsafe extern "C" fn InitAnimFastLinearTranslationWithSpeedAndPos(
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut Sprite
     })
         .callback
-        .expect("non-null function pointer")(sprite as *mut Sprite);
+        .expect("non-null function pointer")(sprite);
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn SetSpriteRotScale(

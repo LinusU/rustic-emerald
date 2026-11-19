@@ -320,7 +320,9 @@ unsafe extern "C" fn WasmDmaFill32(
     {
         WasmOamBufferModified();
     }
-    size = (size as usize).wrapping_div(::core::mem::size_of::<u32_0>()) as u32_0;
+    size = (size as ::core::ffi::c_ulong)
+        .wrapping_div(::core::mem::size_of::<u32_0>() as usize as ::core::ffi::c_ulong)
+        as u32_0 as u32_0;
     loop {
         let fresh0 = size;
         size = size.wrapping_sub(1);
@@ -371,7 +373,7 @@ unsafe extern "C" fn WasmDmaCopy(
     {
         WasmOamBufferModified();
     }
-    ::libc::memcpy(dest, src, size as usize as ::libc::size_t);
+    ::libc::memcpy(dest, src, size as ::core::ffi::c_ulong as ::libc::size_t);
 }
 #[cfg_attr(target_vendor = "apple", unsafe(link_section = "__DATA,native_game_data"))]
 #[cfg_attr(not(target_vendor = "apple"), unsafe(link_section = "native_game_data"))]
@@ -1363,7 +1365,7 @@ unsafe extern "C" fn BerryFix_Main() {
                                 (&raw const gMultiBootProgram_BerryGlitchFix_Start
                                     as *const u8_0)
                                     .offset(0xc0 as ::core::ffi::c_int as isize),
-                            ) as isize as u32_0 as ::core::ffi::c_int,
+                            ) as ::core::ffi::c_long as u32_0 as ::core::ffi::c_int,
                         4 as u8_0,
                         1 as s8,
                     );

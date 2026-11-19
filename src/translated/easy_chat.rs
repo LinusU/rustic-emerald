@@ -32195,11 +32195,11 @@ unsafe extern "C" fn CloseKeyboard() -> bool8 {
                 })
                     .funcState;
                 *fresh143 = (*fresh143).wrapping_add(1);
-                current_block_13 = 16528283029344182865;
+                current_block_13 = 1934536649255414314;
             }
         }
         2 => {
-            current_block_13 = 16528283029344182865;
+            current_block_13 = 1934536649255414314;
         }
         3 => {
             if IsDma3ManagerBusyWithBgCopy() == 0 {
@@ -32222,7 +32222,7 @@ unsafe extern "C" fn CloseKeyboard() -> bool8 {
         }
     }
     match current_block_13 {
-        16528283029344182865 => {
+        1934536649255414314 => {
             if UpdateLowerWindowAnim() == 0 {
                 let ref mut fresh144 = (*if !sScreenControl.is_null() {
                     sScreenControl
@@ -32330,17 +32330,17 @@ unsafe extern "C" fn GroupNamesScrollDown() -> bool8 {
             })
                 .funcState;
             *fresh87 = (*fresh87).wrapping_add(1);
-            current_block_6 = 2435917702699716525;
+            current_block_6 = 14662734468541356179;
         }
         1 => {
-            current_block_6 = 2435917702699716525;
+            current_block_6 = 14662734468541356179;
         }
         _ => {
             current_block_6 = 15619007995458559411;
         }
     }
     match current_block_6 {
-        2435917702699716525 => {
+        14662734468541356179 => {
             if UpdateLowerWindowScroll() == 0 {
                 UpdateRectangleCursorPos();
                 UpdateScrollIndicatorsVisibility();
@@ -32370,10 +32370,10 @@ unsafe extern "C" fn GroupNamesScrollUp() -> bool8 {
             })
                 .funcState;
             *fresh85 = (*fresh85).wrapping_add(1);
-            current_block_7 = 8807925636273928735;
+            current_block_7 = 16781423531721359318;
         }
         1 => {
-            current_block_7 = 8807925636273928735;
+            current_block_7 = 16781423531721359318;
         }
         2 => return 0 as bool8,
         _ => {
@@ -32381,7 +32381,7 @@ unsafe extern "C" fn GroupNamesScrollUp() -> bool8 {
         }
     }
     match current_block_7 {
-        8807925636273928735 => {
+        16781423531721359318 => {
             if UpdateLowerWindowScroll() == 0 {
                 UpdateScrollIndicatorsVisibility();
                 let ref mut fresh86 = (*if !sScreenControl.is_null() {
@@ -37012,7 +37012,7 @@ unsafe extern "C" fn CopyEasyChatWordPadded(
 ) -> *mut u8_0 {
     let mut i: u16_0 = 0;
     let mut str: *mut u8_0 = CopyEasyChatWord(dest, easyChatWord);
-    i = str.offset_from(dest) as isize as u16_0;
+    i = str.offset_from(dest) as ::core::ffi::c_long as u16_0;
     while (i as ::core::ffi::c_int) < totalChars as ::core::ffi::c_int {
         *if !str.is_null() {
             str

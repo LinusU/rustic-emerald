@@ -1310,7 +1310,7 @@ unsafe extern "C" fn Task_EReader(mut taskId: u8_0) {
                 (&raw const gMultiBootProgram_EReader_End as *const u8_0)
                     .offset_from(
                         &raw const gMultiBootProgram_EReader_Start as *const u8_0,
-                    ) as isize as ::core::ffi::c_int,
+                    ) as ::core::ffi::c_long as ::core::ffi::c_int,
                 &raw const gMultiBootProgram_EReader_Start as *const u8_0 as *mut u32_0,
             );
             (*if !data.is_null() {

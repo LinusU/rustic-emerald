@@ -2600,10 +2600,10 @@ pub unsafe extern "C" fn Task_HandlePorthole(mut taskId: u8_0) {
             }
                 .offset(0 as ::core::ffi::c_int as isize) = EXECUTE_MOVEMENT
                 as ::core::ffi::c_int as s16;
-            current_block_31 = 6306362540422363847;
+            current_block_31 = 2376418918778612865;
         }
         2 => {
-            current_block_31 = 6306362540422363847;
+            current_block_31 = 2376418918778612865;
         }
         3 => {
             FlagClear(
@@ -2620,7 +2620,7 @@ pub unsafe extern "C" fn Task_HandlePorthole(mut taskId: u8_0) {
         }
     }
     match current_block_31 {
-        6306362540422363847 => {
+        2376418918778612865 => {
             if *if !data.is_null() {
                 data
             } else {
