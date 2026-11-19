@@ -28,6 +28,7 @@ fn main() {
         "tools/rust-units.txt",
         "native/m4a.patch",
         "native/cry.patch",
+        "native/heap.patch",
         "native/reset.patch",
         "native/reset-keys.patch",
         "vendor/pokeemerald/Makefile",

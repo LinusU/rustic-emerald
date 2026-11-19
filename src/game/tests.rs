@@ -2,6 +2,7 @@ use super::*;
 use crate::save::SaveFile;
 
 unsafe extern "C" {
+    fn NativeTestOamTail() -> i32;
     fn NativeTestSave() -> i32;
     fn NativeTestLoad() -> i32;
     fn ClearSaveData();
@@ -17,6 +18,42 @@ unsafe extern "C" {
     );
     static gBattleOutcome: u8;
     fn VarGet(id: u16) -> u16;
+    static mut gHeap: u8;
+    fn PutFirstMemBlockHeader(heap: *mut u8, size: u32);
+    fn AllocInternal(heap: *mut u8, size: u32) -> *mut u8;
+    fn AllocZeroedInternal(heap: *mut u8, size: u32) -> *mut u8;
+    fn FreeInternal(heap: *mut u8, allocation: *mut u8);
+}
+
+fn check_heap_allocations() {
+    let alignment = align_of::<*mut u8>();
+    assert_eq!((&raw mut gHeap as usize) % alignment, 0);
+    let mut arena = [usize::MAX; 128];
+    let heap = arena.as_mut_ptr().cast::<u8>();
+    let capacity = std::mem::size_of_val(&arena) as u32;
+    unsafe {
+        PutFirstMemBlockHeader(heap, capacity);
+        let first = AllocInternal(heap, 1);
+        let odd = AllocInternal(heap, 9);
+        let table = AllocZeroedInternal(heap, 3 * size_of::<*mut u8>() as u32).cast::<*mut u8>();
+        for block in [first, odd, table.cast::<u8>()] {
+            assert!(!block.is_null());
+            assert_eq!(block as usize % alignment, 0);
+        }
+        assert!((*table.add(2)).is_null());
+        table.add(2).write(odd);
+        assert_eq!(*table.add(2), odd);
+        odd.write_bytes(0xaa, 9);
+        FreeInternal(heap, odd);
+        let reused = AllocZeroedInternal(heap, 13);
+        assert_eq!(reused, odd);
+        assert_eq!(std::slice::from_raw_parts(reused, 13), &[0; 13]);
+        FreeInternal(heap, first);
+        FreeInternal(heap, table.cast());
+        FreeInternal(heap, reused);
+        assert!(AllocInternal(heap, u32::MAX).is_null());
+        assert_eq!(AllocInternal(heap, capacity - 64), first);
+    }
 }
 
 // The native C layout and the on-cartridge party record are both 100 bytes.
@@ -44,6 +81,10 @@ fn check_party_records() {
 
 #[test]
 fn mudkip_wins_birch_rescue_and_cartridge_save_survives_reboot() {
+    crate::rtc::with_replay_clock(check_rescue_and_save);
+}
+
+fn check_rescue_and_save() {
     let mut game = Game::new(None).unwrap();
     let replay = include_str!("../../vendor/pokeemerald/tools/wasm_replays/mudkip_starter.txt");
     crate::replay::play(&mut game, replay, |frame, _, pixels| {
@@ -77,6 +118,8 @@ fn mudkip_wins_birch_rescue_and_cartridge_save_survives_reboot() {
     );
 
     check_party_records();
+    check_heap_allocations();
+    assert_eq!(unsafe { NativeTestOamTail() }, 0, "OAM transfer tail");
 
     // The native fixture calls Emerald's own save routine and populates two
     // values in SaveBlock1. Read them back after a fresh boot from disk.
@@ -87,6 +130,9 @@ fn mudkip_wins_birch_rescue_and_cartridge_save_survives_reboot() {
     drop((game, slot));
     let slot = SaveFile::open(directory.path(), "Mudkip").unwrap();
     assert_eq!(slot.bytes().unwrap().len(), FLASH_LEN);
+    if let Some(path) = std::env::var_os("RUSTIC_PARITY_SAVE") {
+        std::fs::write(path, slot.bytes().unwrap()).unwrap();
+    }
     let mut game = Game::new(slot.bytes()).unwrap();
     for _ in 0..300 {
         game.frame();

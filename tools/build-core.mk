@@ -6,7 +6,7 @@ HOST_UNITS := siirtc
 # Upstream's compiler stamp already invalidates every native object. Include
 # the deployment target and flags so differently configured builds cannot mix.
 NATIVE_CC_ID := $(NATIVE_CC_ID) $(NATIVE_CFLAGS) $(MACOSX_DEPLOYMENT_TARGET)
-PATCH_UNITS := m4a sound main
+PATCH_UNITS := m4a sound main malloc
 RUSTIC_DIR := $(NATIVE_BUILD_DIR)/rustic
 # Select the implementation by translation unit. The reference uses original C
 # gameplay throughout. Both binaries use the same device, save and audio hooks.
@@ -69,6 +69,7 @@ endef
 $(eval $(call patched_game_unit,m4a,m4a))
 $(eval $(call patched_game_unit,sound,cry))
 $(eval $(call patched_game_unit,main,reset-keys))
+$(eval $(call patched_game_unit,malloc,heap))
 $(RUSTIC_DIR)/m4a.o: $(WASM_SOUND_HEADER)
 -include $(addprefix $(RUSTIC_DIR)/,$(addsuffix .o.d,$(PATCH_UNITS)))
 

@@ -6,7 +6,7 @@ import struct
 import subprocess
 
 
-PATCHES = {"main": "reset-keys", "m4a": "m4a", "sound": "cry"}
+PATCHES = {"main": "reset-keys", "m4a": "m4a", "sound": "cry", "malloc": "heap"}
 ASSET_UNITS = {"graphics", "anim_mon_front_pics", "tilesets"}
 # These top-level declarations use a single asset as their entire initializer.
 # Compound palette tables, structure initializers, etc. still go through C2Rust.
