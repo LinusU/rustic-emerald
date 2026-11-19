@@ -1,0 +1,55 @@
+--- a/tools/native/native_engine.c
++++ b/tools/native/native_engine.c
+@@ -115,22 +115,16 @@
+ }
+ 
+ 
+-NativeEngine *native_engine_create(void)
+-{
+-    if (activeEngine) return NULL;
+-    NativeEngine *engine = calloc(1, sizeof(*engine));
+-    if (!engine) return NULL;
+-    engine->memory = gNativeMemory;
+-    memset(gNativeMemory, 0, sizeof(gNativeMemory));
++// Recreate the volatile cartridge and native globals while retaining flash.
++// This is called only after the game has returned from its current frame.
++void native_engine_reset(NativeEngine *engine)
++{
++    memset(engine->memory, 0, FLASH_BASE);
++    size_t afterFlash = FLASH_BASE + NATIVE_FLASH_SIZE;
++    memset(engine->memory + afterFlash, 0, MEMORY_SIZE - afterFlash);
+     size_t dataSize = gameDataEnd - gameDataStart;
+-    if (!initialGameData) {
+-        initialGameData = malloc(dataSize);
+-        if (!initialGameData) { free(engine); return NULL; }
+-        memcpy(initialGameData, gameDataStart, dataSize);
+-    }
+     memcpy(gameDataStart, initialGameData, dataSize);
+     memset(gameBssStart, 0, gameBssEnd - gameBssStart);
+-    activeEngine = engine;
+     NativeInit_contest_ai_scripts();
+     NativeInit_mystery_event_script_cmd_table();
+     NativeInit_multiboot_pokemon_colosseum();
+@@ -143,6 +137,22 @@
+     NativeInit_battle_scripts_2();
+     NativeInit_battle_ai_scripts();
+     NativeInit_battle_anim_scripts();
++}
++
++NativeEngine *native_engine_create(void)
++{
++    if (activeEngine) return NULL;
++    NativeEngine *engine = calloc(1, sizeof(*engine));
++    if (!engine) return NULL;
++    engine->memory = gNativeMemory;
++    size_t dataSize = gameDataEnd - gameDataStart;
++    if (!initialGameData) {
++        initialGameData = malloc(dataSize);
++        if (!initialGameData) { free(engine); return NULL; }
++        memcpy(initialGameData, gameDataStart, dataSize);
++    }
++    activeEngine = engine;
++    native_engine_reset(engine);
+     memset(engine->memory + FLASH_BASE, 0xff, NATIVE_FLASH_SIZE);
+     return engine;
+ }

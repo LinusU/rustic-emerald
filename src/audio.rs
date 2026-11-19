@@ -100,6 +100,11 @@ impl Mixer {
         })
     }
 
+    pub fn reset(&mut self) {
+        self.channels = Default::default();
+        self.phase = 0;
+    }
+
     pub fn render(&mut self) -> &[i16] {
         // 280896 GBA cycles/frame, 512 cycles/sample at 32768 Hz.
         self.phase += 280896;
