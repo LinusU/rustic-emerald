@@ -1,0 +1,6 @@
+[submodule "vendor/pokeemerald"]
+	path = vendor/pokeemerald
+	url = https://github.com/tripplyons/pokeemerald-wasm.git
+[submodule "vendor/gba-audio-tools"]
+	path = vendor/gba-audio-tools
+	url = https://github.com/mudassarzahid/gba-audio-tools.git

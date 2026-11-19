@@ -4,8 +4,15 @@ version = "0.1.0"
 edition = "2024"
 rust-version = "1.89"
 description = "A playable Game Boy Advance Pokémon Emerald port, one Rust routine at a time"
-license = "MIT"
 publish = false
 
 [dependencies]
 sha1 = "0.10.6"
+chrono = { version = "0.4", default-features = false, features = ["clock"] }
+clap = { version = "4.6", features = ["derive"] }
+dirs = "5"
+sdl2 = { version = "0.38", features = ["use-pkgconfig"] }
+tempfile = "3.27"
+
+[build-dependencies]
+cc = "1"
