@@ -14,11 +14,17 @@ mod battle_setup;
 #[path = "../../battle_tent.rs"]
 mod battle_tent;
 #[rustfmt::skip]
+#[path = "../../battle_tv.rs"]
+mod battle_tv;
+#[rustfmt::skip]
 #[path = "../../battle_util.rs"]
 mod battle_util;
 #[rustfmt::skip]
 #[path = "../../battle_util2.rs"]
 mod battle_util2;
+#[rustfmt::skip]
+#[path = "../../berry.rs"]
+mod berry;
 #[rustfmt::skip]
 #[path = "../../berry_fix_graphics.rs"]
 mod berry_fix_graphics;
@@ -31,6 +37,12 @@ mod berry_powder;
 #[rustfmt::skip]
 #[path = "../../berry_tag_screen.rs"]
 mod berry_tag_screen;
+#[rustfmt::skip]
+#[path = "../../bg.rs"]
+mod bg;
+#[rustfmt::skip]
+#[path = "../../bike.rs"]
+mod bike;
 #[rustfmt::skip]
 #[path = "../../birch_pc.rs"]
 mod birch_pc;

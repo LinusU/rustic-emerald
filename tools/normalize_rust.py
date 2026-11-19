@@ -3,20 +3,53 @@ import re
 from collections import Counter
 
 
+# A C2Rust assignment may contain array types (`[T; N]`) and nested blocks.
+# Only a semicolon outside all delimiters ends its Rust statement.
+TOKENS = re.compile(r'''"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])'|//[^\n]*|/\*.*?\*/|[][(){};]''', re.S)
+
+
+def statement_end(text, start):
+    depth = 0
+    for token in TOKENS.finditer(text, start):
+        char = token[0]
+        if char in ("[", "(", "{"):
+            depth += 1
+        elif char in ("]", ")", "}"):
+            depth -= 1
+            if depth < 0:
+                break
+        elif char == ";" and depth == 0:
+            return token.start()
+    return None
+
+
 def packed_temporaries(function):
     """Preserve C evaluation order without borrowing a misaligned field."""
     if "let ref mut fresh" not in function:
         return function
     counts = Counter(re.findall(r"\bfresh\d+\b", function))
-    writes = r"let ref mut (fresh\d+) = ([^;]+);(\s*)\*\1 = ([^;]+);"
-
-    def store(match):
-        name, place, indent, value = match.groups()
-        if counts[name] != 2:
-            return match[0]
-        return f"let {name} = &raw mut {place};{indent}{name}.write_unaligned({value});"
-
-    function = re.sub(writes, store, function)
+    parts = []
+    last = 0
+    for decl in re.finditer(r"let ref mut (fresh\d+) = ", function):
+        name = decl[1]
+        if counts[name] != 2 or decl.start() < last:
+            continue
+        end = statement_end(function, decl.end())
+        if end is None:
+            continue
+        assignment = re.compile(r"(\s*)\*" + name + r" = ").match(function, end + 1)
+        if assignment is None:
+            continue
+        rhs_end = statement_end(function, assignment.end())
+        if rhs_end is None:
+            continue
+        place = function[decl.end():end]
+        value = function[assignment.end():rhs_end]
+        parts.extend((function[last:decl.start()], f"let {name} = &raw mut {place};",
+                      f"{assignment[1]}{name}.write_unaligned({value});"))
+        last = rhs_end + 1
+    parts.append(function[last:])
+    function = "".join(parts)
     # GNU's ?: pointer fallback can be evaluated using a local value. Record
     # aliases must remain live, as a method call may mutate the original record.
     fields = set(re.findall(r"let ref mut (fresh\d+) = \(\*if [^;]+?\}\)\s*\.\w+;", function))
@@ -28,6 +61,27 @@ def packed_temporaries(function):
                           f"let {m[1]} =" if m[1] in reads else m[0], function)
         function = re.sub(r"\*(fresh\d+)\b", lambda m: m[1] if m[1] in reads else m[0], function)
     return function
+
+
+def align_dodrio_fields(text, source):
+    """Preserve the Dodrio minigame's per-field alignment attributes."""
+    records = re.finditer(r"^struct (DodrioGame\w*|\w+Packet)\s*\{([^}]*)\};", source, re.M)
+    for record in records:
+        fields = set(re.findall(r"__attribute__\(\(aligned\(4\)\)\)\s+(\w+)", record[2]))
+        if not fields:
+            continue
+        def add_witnesses(body):
+            def align(field):
+                return (f"    pub _{field[1]}_alignment: [u32; 0],\n" if field[1] in fields else "") + field[0]
+            return re.sub(r"^    pub (\w+):", align, body[0], flags=re.M)
+        text = re.sub(rf"^pub struct {record[1]} \{{[^}}]*\}}", add_witnesses, text, flags=re.M)
+        # Local RFU packet variables receive an explicit zero initializer.
+        def init_witnesses(body):
+            return re.sub(r"^([ ]+)(\w+):", lambda field:
+                          (f"{field[1]}_{field[2]}_alignment: [],\n" if field[2] in fields else "")
+                          + field[0], body[0], flags=re.M)
+        text = re.sub(rf"(?<!struct )(?<!-> )\b{record[1]} \{{[^{{}}]*\}}", init_witnesses, text)
+    return text
 
 
 def normalize_records(text, layouts):
@@ -60,16 +114,23 @@ def normalize_records(text, layouts):
     def align_record(match):
         prefix, name = match.groups()
         alignment = aligns.get(name)
-        if alignment is None or prefix == "-> ":
+        if alignment is None or (prefix != "struct " and not re.compile(r"\s*\w+:(?!:)").match(text, match.end())):
             return match[0]
         if prefix == "struct ":
             return match[0] + f"    pub _c_alignment: [u{alignment * 8}; 0],\n"
         return match[0] + "    _c_alignment: [],\n"
-    text = re.sub(r"(struct |-> )?\b(\w+) \{\n", align_record, text)
+    text = re.sub(r"(struct |-> )?\b(\w+) \{(?:\n|(?= [a-zA-Z_]\w*:))", align_record, text)
+    # RFU names begin at a four-byte-aligned offset following a 14-byte
+    # radio packet. Model the original aligned field without changing its type.
+    text = text.replace("pub struct RfuPlayerData {\n    pub data: RfuGameData,",
+                        "pub struct RfuPlayerData {\n    pub data: RfuGameData,\n"
+                        "    pub _name_alignment: [u32; 0],")
+    text = re.sub(r"(?<!struct )(?<!-> )\bRfuPlayerData \{(?=\s*data:)",
+                  "RfuPlayerData { _name_alignment: [],", text)
     # The native renderer requests a 16-byte-aligned array in gMain.
     text = text.replace("    pub oamBuffer: [OamData; 128],",
                         "    pub _oam_alignment: [u128; 0],\n    pub oamBuffer: [OamData; 128],")
-    text = re.sub(r"^( +)oamBuffer: ", r"\1_oam_alignment: [],\n\1oamBuffer: ", text, flags=re.M)
+    text = re.sub(r"^( +)oamBuffer: (?=\[)", r"\1_oam_alignment: [],\n\1oamBuffer: ", text, flags=re.M)
     if checks:
         text += '\n#[cfg(target_pointer_width = "64")]\nconst _: () = {\n'
         text += "    use core::mem::{align_of, offset_of, size_of};\n"

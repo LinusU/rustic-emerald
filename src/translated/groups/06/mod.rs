@@ -23,6 +23,9 @@ mod dynamic_placeholder_text_util;
 #[path = "../../egg_hatch.rs"]
 mod egg_hatch;
 #[rustfmt::skip]
+#[path = "../../ereader_helpers.rs"]
+mod ereader_helpers;
+#[rustfmt::skip]
 #[path = "../../ereader_screen.rs"]
 mod ereader_screen;
 #[rustfmt::skip]
@@ -37,3 +40,6 @@ mod evolution_graphics;
 #[rustfmt::skip]
 #[path = "../../evolution_scene.rs"]
 mod evolution_scene;
+#[rustfmt::skip]
+#[path = "../../faraway_island.rs"]
+mod faraway_island;

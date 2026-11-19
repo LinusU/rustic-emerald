@@ -1,27 +1,38 @@
 --- a/tools/native/native_engine.c
 +++ b/tools/native/native_engine.c
-@@ -33,5 +33,5 @@
+@@ -33,4 +33,4 @@
  struct NativeEngine { uint8_t *memory; };
 -unsigned char gNativeMemory[MEMORY_SIZE];
 +_Alignas(16) unsigned char gNativeMemory[MEMORY_SIZE] = {0};
  #ifdef __APPLE__
  extern uint8_t gameBssStart[] __asm__("section$start$__DATA$native_game");
- extern uint8_t gameBssEnd[] __asm__("section$end$__DATA$native_game");
-@@ -115,22 +115,16 @@
- }
+@@ -53,5 +53,5 @@
+     uintptr_t address = (uintptr_t)pointer;
+     if (!address) return 0;
+-    uintptr_t memory = (uintptr_t)activeEngine->memory;
++    uintptr_t memory = (uintptr_t)gNativeMemory;
+     if (address >= memory && address - memory < MEMORY_SIZE)
+         return address - memory;
+@@ -80,5 +80,5 @@
+ {
+     if (!word) return NULL;
+-    if (word < MEMORY_SIZE) return activeEngine->memory + word;
++    if (word < MEMORY_SIZE) return gNativeMemory + word;
+     unsigned int page = (uint32_t)word >> PAGE_BITS;
+     if (page >= pageCount) {
+@@ -116,20 +116,14 @@
  
  
 -NativeEngine *native_engine_create(void)
--{
++// Recreate the volatile cartridge and native globals while retaining flash.
++// This is called only after the game has returned from its current frame.
++void native_engine_reset(NativeEngine *engine)
+ {
 -    if (activeEngine) return NULL;
 -    NativeEngine *engine = calloc(1, sizeof(*engine));
 -    if (!engine) return NULL;
 -    engine->memory = gNativeMemory;
 -    memset(gNativeMemory, 0, sizeof(gNativeMemory));
-+// Recreate the volatile cartridge and native globals while retaining flash.
-+// This is called only after the game has returned from its current frame.
-+void native_engine_reset(NativeEngine *engine)
-+{
 +    memset(engine->memory, 0, FLASH_BASE);
 +    size_t afterFlash = FLASH_BASE + NATIVE_FLASH_SIZE;
 +    memset(engine->memory + afterFlash, 0, MEMORY_SIZE - afterFlash);
@@ -36,9 +47,7 @@
 -    activeEngine = engine;
      NativeInit_contest_ai_scripts();
      NativeInit_mystery_event_script_cmd_table();
-     NativeInit_multiboot_pokemon_colosseum();
-@@ -143,6 +137,22 @@
-     NativeInit_battle_scripts_2();
+@@ -144,4 +138,20 @@
      NativeInit_battle_ai_scripts();
      NativeInit_battle_anim_scripts();
 +}
@@ -59,4 +68,3 @@
 +    native_engine_reset(engine);
      memset(engine->memory + FLASH_BASE, 0xff, NATIVE_FLASH_SIZE);
      return engine;
- }

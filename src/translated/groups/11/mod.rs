@@ -8,8 +8,14 @@ mod mystery_event_menu;
 #[path = "../../mystery_event_msg.rs"]
 mod mystery_event_msg;
 #[rustfmt::skip]
+#[path = "../../mystery_gift_client.rs"]
+mod mystery_gift_client;
+#[rustfmt::skip]
 #[path = "../../mystery_gift_link.rs"]
 mod mystery_gift_link;
+#[rustfmt::skip]
+#[path = "../../mystery_gift_menu.rs"]
+mod mystery_gift_menu;
 #[rustfmt::skip]
 #[path = "../../mystery_gift_scripts.rs"]
 mod mystery_gift_scripts;
@@ -17,14 +23,26 @@ mod mystery_gift_scripts;
 #[path = "../../mystery_gift_server.rs"]
 mod mystery_gift_server;
 #[rustfmt::skip]
+#[path = "../../mystery_gift_view.rs"]
+mod mystery_gift_view;
+#[rustfmt::skip]
+#[path = "../../naming_screen.rs"]
+mod naming_screen;
+#[rustfmt::skip]
 #[path = "../../new_game.rs"]
 mod new_game;
 #[rustfmt::skip]
 #[path = "../../option_menu.rs"]
 mod option_menu;
 #[rustfmt::skip]
+#[path = "../../palette.rs"]
+mod palette;
+#[rustfmt::skip]
 #[path = "../../palette_util.rs"]
 mod palette_util;
 #[rustfmt::skip]
 #[path = "../../play_time.rs"]
 mod play_time;
+#[rustfmt::skip]
+#[path = "../../pokeball.rs"]
+mod pokeball;

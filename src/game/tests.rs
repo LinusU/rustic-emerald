@@ -5,8 +5,41 @@ unsafe extern "C" {
     fn NativeTestSave() -> i32;
     fn NativeTestLoad() -> i32;
     fn ClearSaveData();
+    fn CreateMon(
+        mon: *mut PartyPokemon,
+        species: u16,
+        level: u8,
+        iv: u8,
+        fixed_personality: u8,
+        personality: u32,
+        ot_type: u8,
+        ot_id: u32,
+    );
     static gBattleOutcome: u8;
     fn VarGet(id: u16) -> u16;
+}
+
+// The native C layout and the on-cartridge party record are both 100 bytes.
+// A fixed OT and personality make the ciphertext, moves, and stats comparable.
+#[repr(C, align(4))]
+struct PartyPokemon([u8; 100]);
+
+fn check_party_records() {
+    let mut records = Vec::with_capacity(386 * 3 * 100);
+    // 252–276 are unused internal Unown placeholders.
+    for species in (1..=251).chain(277..=411) {
+        for level in [5, 50, 100] {
+            let mut mon = PartyPokemon([0; 100]);
+            let personality = u32::from(species) * 65537 + u32::from(level);
+            unsafe { CreateMon(&mut mon, species, level, 31, 1, personality, 1, 0x12345678) };
+            records.extend_from_slice(&mon.0);
+        }
+    }
+    assert_eq!(
+        crate::replay::hash(&records),
+        0x80ebba10e18fd7af,
+        "party records differ from the C reference"
+    );
 }
 
 #[test]
@@ -42,6 +75,8 @@ fn mudkip_wins_birch_rescue_and_cartridge_save_survives_reboot() {
         3,
         "Birch gave the starter in his lab"
     );
+
+    check_party_records();
 
     // The native fixture calls Emerald's own save routine and populates two
     // values in SaveBlock1. Read them back after a fresh boot from disk.
