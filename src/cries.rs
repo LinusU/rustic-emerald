@@ -46,7 +46,8 @@ impl Voice {
 
     fn mix(&mut self, output: &mut [i16]) {
         let remaining = self.total_samples - self.position;
-        for frame in output.chunks_exact_mut(2).take(remaining as usize) {
+        let (frames, _) = output.as_chunks_mut::<2>();
+        for frame in frames.iter_mut().take(remaining as usize) {
             let mut sample = self.sample(self.speed);
             if let Some(chorus) = self.chorus_speed {
                 sample = (sample + self.sample(chorus)) * 0.5;
@@ -177,8 +178,9 @@ mod tests {
         RusticCryStart(0, -64, 120, 15360, 140, 0, 0, 0, start);
         let mut samples = [0; 4096];
         render(&mut samples);
-        assert!(samples.chunks_exact(2).any(|s| s[0] != 0));
-        assert!(samples.chunks_exact(2).all(|s| s[1] == 0));
+        let (stereo, _) = samples.as_chunks::<2>();
+        assert!(stereo.iter().any(|s| s[0] != 0));
+        assert!(stereo.iter().all(|s| s[1] == 0));
         assert_eq!(RusticCryPlaying(start + 2), 1);
         assert_eq!(RusticCryPlaying(start.wrapping_add(140)), 0);
         RusticCryStop();

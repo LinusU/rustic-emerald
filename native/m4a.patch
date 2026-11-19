@@ -4,9 +4,9 @@
  COMMON_DATA struct MusicPlayerInfo gMPlayInfo_SE3 = {0};
  
  #if WASM
-+enum RusticAudioAction { RUSTIC_START, RUSTIC_STOP, RUSTIC_PAUSE, RUSTIC_RESUME };
++enum RusticAudioAction { RUSTIC_START, RUSTIC_STOP, RUSTIC_PAUSE, RUSTIC_RESUME, RUSTIC_VOLUME, RUSTIC_PAN };
 +extern void RusticCryStopAll(void);
-+extern void RusticAudioEvent(u8 player, u8 action, u16 song);
++extern void RusticAudioEvent(u8 player, u8 action, u16 value);
  static u16 sWasmMPlayFrames[4];
  static u16 sWasmMPlaySongs[4];
  
@@ -54,3 +54,23 @@
      WasmMPlayStop(&gMPlayInfo_BGM);
      WasmMPlayStop(&gMPlayInfo_SE1);
      WasmMPlayStop(&gMPlayInfo_SE2);
+@@ -202,9 +214,17 @@
+ void m4aMPlayImmInit(struct MusicPlayerInfo *mplayInfo) {}
+ void m4aMPlayStop(struct MusicPlayerInfo *mplayInfo) { WasmMPlayStop(mplayInfo); }
+ void m4aMPlayTempoControl(struct MusicPlayerInfo *mplayInfo, u16 tempo) {}
+-void m4aMPlayVolumeControl(struct MusicPlayerInfo *mplayInfo, u16 trackBits, u16 volume) {}
++void m4aMPlayVolumeControl(struct MusicPlayerInfo *mplayInfo, u16 trackBits, u16 volume)
++{
++    if (trackBits == 0xFFFF)
++        RusticAudioEvent(WasmMPlayIndex(mplayInfo), RUSTIC_VOLUME, volume);
++}
+ void m4aMPlayPitchControl(struct MusicPlayerInfo *mplayInfo, u16 trackBits, s16 pitch) {}
+-void m4aMPlayPanpotControl(struct MusicPlayerInfo *mplayInfo, u16 trackBits, s8 pan) {}
++void m4aMPlayPanpotControl(struct MusicPlayerInfo *mplayInfo, u16 trackBits, s8 pan)
++{
++    if (trackBits == 0xFFFF)
++        RusticAudioEvent(WasmMPlayIndex(mplayInfo), RUSTIC_PAN, (u8)pan);
++}
+ void m4aMPlayModDepthSet(struct MusicPlayerInfo *mplayInfo, u16 trackBits, u8 modDepth) {}
+ void m4aMPlayLFOSpeedSet(struct MusicPlayerInfo *mplayInfo, u16 trackBits, u8 lfoSpeed) {}
+ void MPlayContinue(struct MusicPlayerInfo *mplayInfo) { WasmMPlayContinue(mplayInfo); }
