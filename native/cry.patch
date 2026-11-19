@@ -1,0 +1,113 @@
+--- a/src/sound.c
++++ b/src/sound.c
+@@ -25,8 +25,9 @@
+ 
+ COMMON_DATA bool8 gDisableMusic = 0;
+ 
+-extern struct ToneData gCryTable[];
+-extern struct ToneData gCryTable_Reverse[];
++extern void RusticCryStart(u16 cry, s8 pan, s8 volume, u32 pitch, u32 length, u32 release, u32 chorus, bool32 reverse, u32 frame);
++extern bool32 RusticCryPlaying(u32 frame);
++extern void RusticCryStop(void);
+ 
+ static void Task_Fanfare(u8 taskId);
+ static void CreateFanfareTask(void);
+@@ -373,9 +374,9 @@
+     u32 length;
+     u32 pitch;
+     u32 chorus;
+-    u32 index;
+-    u8 table;
+-
++
++    if (species == SPECIES_NONE || species >= NUM_SPECIES)
++        return;
+     species--;
+ 
+     // Set default values
+@@ -455,43 +456,8 @@
+         break;
+     }
+ 
+-    SetPokemonCryVolume(volume);
+-    SetPokemonCryPanpot(pan);
+-    SetPokemonCryPitch(pitch);
+-    SetPokemonCryLength(length);
+-    SetPokemonCryProgress(0);
+-    SetPokemonCryRelease(release);
+-    SetPokemonCryChorus(chorus);
+-    SetPokemonCryPriority(priority);
+-
+-    // This is a fancy way to get a cry of a Pokémon.
+-    // It creates 4 sets of 128 mini cry tables.
+-    // If you wish to expand Pokémon, you need to
+-    // append new cases to the switch.
+-    species = SpeciesToCryId(species);
+-    index = species % 128;
+-    table = species / 128;
+-
+-    #define GET_CRY(speciesIndex, tableId, reversed) \
+-        ((reversed) ? &gCryTable_Reverse[(128 * (tableId)) + (speciesIndex)] : &gCryTable[(128 * (tableId)) + (speciesIndex)])
+-
+-    switch (table)
+-    {
+-    case 0:
+-        gMPlay_PokemonCry = SetPokemonCryTone(GET_CRY(index, 0, reverse));
+-        break;
+-    case 1:
+-        gMPlay_PokemonCry = SetPokemonCryTone(GET_CRY(index, 1, reverse));
+-        break;
+-    case 2:
+-        gMPlay_PokemonCry = SetPokemonCryTone(GET_CRY(index, 2, reverse));
+-        break;
+-    case 3:
+-        gMPlay_PokemonCry = SetPokemonCryTone(GET_CRY(index, 3, reverse));
+-        break;
+-    }
+-
+-    #undef GET_CRY
++    RusticCryStart(SpeciesToCryId(species), pan, volume, pitch, length, release,
++                   chorus, reverse, gMain.vblankCounter1);
+ }
+ 
+ bool8 IsCryFinished(void)
+@@ -509,18 +475,18 @@
+ 
+ void StopCryAndClearCrySongs(void)
+ {
+-    m4aMPlayStop(gMPlay_PokemonCry);
++    RusticCryStop();
+     ClearPokemonCrySongs();
+ }
+ 
+ void StopCry(void)
+ {
+-    m4aMPlayStop(gMPlay_PokemonCry);
++    RusticCryStop();
+ }
+ 
+ bool8 IsCryPlayingOrClearCrySongs(void)
+ {
+-    if (IsPokemonCryPlaying(gMPlay_PokemonCry))
++    if (RusticCryPlaying(gMain.vblankCounter1))
+     {
+         return TRUE;
+     }
+@@ -533,7 +499,7 @@
+ 
+ bool8 IsCryPlaying(void)
+ {
+-    if (IsPokemonCryPlaying(gMPlay_PokemonCry))
++    if (RusticCryPlaying(gMain.vblankCounter1))
+         return TRUE;
+     else
+         return FALSE;
+@@ -547,7 +513,7 @@
+         return;
+     }
+ 
+-    if (!IsPokemonCryPlaying(gMPlay_PokemonCry))
++    if (!RusticCryPlaying(gMain.vblankCounter1))
+     {
+         m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
+         DestroyTask(taskId);
