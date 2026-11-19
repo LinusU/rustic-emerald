@@ -7,9 +7,9 @@ mod replay;
 mod rom;
 mod rtc;
 mod save;
-mod translated;
 
 use clap::Parser;
+use emerald_game as _;
 use std::{path::PathBuf, process::ExitCode};
 
 #[derive(Parser)]

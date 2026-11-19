@@ -245,6 +245,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "emerald-game"
+version = "0.1.0"
+dependencies = [
+ "c2rust-bitfields",
+]
+
+[[package]]
 name = "errno"
 version = "0.3.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -480,11 +487,11 @@ dependencies = [
 name = "rustic-emerald"
 version = "0.1.0"
 dependencies = [
- "c2rust-bitfields",
  "cc",
  "chrono",
  "clap",
  "dirs",
+ "emerald-game",
  "sdl2",
  "sha1",
  "tempfile",

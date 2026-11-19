@@ -7,7 +7,7 @@ description = "A playable Game Boy Advance Pokémon Emerald port, one Rust routi
 publish = false
 
 [dependencies]
-c2rust-bitfields = "=0.22.1"
+emerald-game = { path = "src/translated" }
 sha1 = "0.10.6"
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
 clap = { version = "=4.5.51", features = ["derive"] }
@@ -17,3 +17,7 @@ tempfile = "3.27"
 
 [build-dependencies]
 cc = "1"
+
+# The original C game uses -fwrapv for signed arithmetic.
+[profile.dev.package.emerald-game]
+overflow-checks = false

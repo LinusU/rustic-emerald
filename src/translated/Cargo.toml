@@ -1,0 +1,12 @@
+[package]
+name = "emerald-game"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.89"
+publish = false
+
+[lib]
+path = "mod.rs"
+
+[dependencies]
+c2rust-bitfields = "=0.22.1"

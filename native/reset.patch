@@ -1,5 +1,12 @@
 --- a/tools/native/native_engine.c
 +++ b/tools/native/native_engine.c
+@@ -33,5 +33,5 @@
+ struct NativeEngine { uint8_t *memory; };
+-unsigned char gNativeMemory[MEMORY_SIZE];
++_Alignas(16) unsigned char gNativeMemory[MEMORY_SIZE] = {0};
+ #ifdef __APPLE__
+ extern uint8_t gameBssStart[] __asm__("section$start$__DATA$native_game");
+ extern uint8_t gameBssEnd[] __asm__("section$end$__DATA$native_game");
 @@ -115,22 +115,16 @@
  }
  

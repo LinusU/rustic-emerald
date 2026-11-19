@@ -267,14 +267,14 @@ unsafe extern "C" fn LoadObjectEventIdPtrFromMovementScript(
     mut pObjEventId: *mut *mut u8_0,
 ) {
     let mut i: u8_0 = 0;
-    let ref mut fresh1 = *if !pObjEventId.is_null() {
+    let fresh1 = &raw mut *if !pObjEventId.is_null() {
         pObjEventId
     } else {
         &raw mut gNativeMemory as *mut ::core::ffi::c_uchar as *mut *mut u8_0
     };
-    *fresh1 = (&raw mut (*(&raw mut gTasks as *mut Task).offset(taskId as isize)).data
+    fresh1.write_unaligned((&raw mut (*(&raw mut gTasks as *mut Task).offset(taskId as isize)).data
         as *mut s16)
-        .offset(1 as ::core::ffi::c_int as isize) as *mut s16 as *mut u8_0;
+        .offset(1 as ::core::ffi::c_int as isize) as *mut s16 as *mut u8_0);
     i = 0 as u8_0;
     while (i as ::core::ffi::c_int) < moveScrId as ::core::ffi::c_int {
         i = i.wrapping_add(1);

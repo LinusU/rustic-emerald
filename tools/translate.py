@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Regenerate native game modules from the pinned C sources with C2Rust 0.22.1."""
 import argparse
+import fcntl
 import json
 import os
 from pathlib import Path
@@ -11,10 +12,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parent.parent
 VENDOR = ROOT / "vendor/pokeemerald"
 OUT = ROOT / "src/translated"
-UNITS = (
-    "blit", "event_data", "field_control_avatar", "math_util", "metatile_behavior",
-    "random", "script_movement", "task", "trig", "wild_encounter",
-)
+UNITS = (ROOT / "tools/rust-units.txt").read_text().splitlines()
 # A fixed freestanding LP64 target keeps system headers out of generated Rust.
 CLANG = [os.environ.get("CLANG", "clang"), "--target=aarch64-none-elf", "-ffreestanding"]
 FLAGS = ["-DMODERN=1", "-DWASM=1", "-DNATIVE=1", "-DNDEBUG", "-fwrapv",
@@ -76,12 +74,32 @@ def normalize(text, source):
     text = text.replace("#[no_mangle]", "#[unsafe(no_mangle)]")
     text = text.replace('extern "C" {', 'unsafe extern "C" {')
     text = text.replace("use ::c2rust_bitfields;", "use c2rust_bitfields::BitfieldStruct;")
+    text = re.sub(r', link_section = ("[^"]+")\)\]', r', unsafe(link_section = \1))]', text)
+    # C2Rust sometimes emits an extra usize-to-usize cast for the DMA helpers'
+    # sizeof operand. Normalize both equivalent spellings and their line wraps.
+    text = re.sub(r"size = \(size as usize\)\s*\.wrapping_div\("
+                  r"(::core::mem::size_of::<\w+>\(\))(?:\s+as usize)*\)"
+                  r"(?:\s+as u32_0)+;",
+                  r"size = (size as usize).wrapping_div(\1) as u32_0;", text)
 
     # C2Rust takes references during comparisons and when expanding GNU ?:.
     # A packed C pointer member can be copied, but cannot be borrowed by Rust.
     text = text.replace("gTasks[i as usize].func == func", "{ gTasks[i as usize].func } == func")
+    text = re.sub(r"(gSprites\[[^;\]]+\]\s*\.callback)(\s*==)", r"{ \1 }\2", text)
+    # Keep the C order of evaluation: compute the place, then evaluate the
+    # new value. C2Rust introduces these adjacent temporaries for assignments.
+    writes = r"let ref mut (fresh\d+) = ([^;]+);(\s*)\*\1 = ([^;]+);"
+    def store(match):
+        if match[1] in match[4] or re.search(r"\b" + match[1] + r"\b", text[match.end():]):
+            return match[0]
+        return f"let {match[1]} = &raw mut {match[2]};{match[3]}{match[1]}.write_unaligned({match[4]});"
+    text = re.sub(writes, store, text)
     refs = re.findall(r"let ref mut (fresh\d+) = \(\*if [^;]+?\}\)\s*\.\w+;", text)
     for name in refs:
+        # Only the null-tested pointer value is being copied. Preserve aliases
+        # to records: methods on those records may update live game state.
+        if not re.search(r"\(\*" + name + r"\)\s*\.is_null\(\)", text):
+            continue
         if re.search(r"\*" + name + r"\s*[-|&+*/]?=(?!=)", text):
             continue
         text = text.replace(f"let ref mut {name} =", f"let {name} =")
@@ -100,6 +118,11 @@ def normalize(text, source):
         if name not in layouts:
             continue
         size, alignment, offsets = layouts[name]
+        if alignment <= 4:
+            # C2Rust can discard pragma pack when it encounters an earlier
+            # forward declaration of the same record.
+            text = re.sub(r"#\[repr\(C\)\](\npub (?:struct|union) " + name + r" \{)",
+                          rf"#[repr(C, packed({alignment}))]\1", text)
         if "#[bitfield(" in body and alignment > 1:
             # The derive stores C bitfields as byte arrays. Restore their C
             # alignment, including in records nested inside packed save data.
@@ -107,6 +130,10 @@ def normalize(text, source):
                 f"    pub _c_alignment: [u{alignment * 8}; 0],\n"
                 if text[max(0, m.start() - 7):m.start()].endswith("struct ")
                 else "    _c_alignment: [],\n"), text)
+        if name == "Main":
+            # The native renderer requests a 16-byte-aligned OAM array.
+            text = text.replace("    pub oamBuffer: [OamData; 128],",
+                                "    pub _oam_alignment: [u128; 0],\n    pub oamBuffer: [OamData; 128],")
         checks.extend([f'assert!(size_of::<{name}>() == {size}, "size of {name}");',
                        f'assert!(align_of::<{name}>() == {alignment}, "alignment of {name}");'])
         fields = re.findall(r"^    pub (\w+):", body, re.M)
@@ -127,9 +154,18 @@ def main():
     version = subprocess.check_output(["c2rust-transpile", "--version"], text=True).strip()
     if version.split()[-1] != "0.22.1":
         raise SystemExit(f"Expected C2Rust 0.22.1, found {version}")
-    subprocess.run(["make", "-s", "-f", "make_tools.mk", "tools"], cwd=VENDOR, check=True)
-    subprocess.run(["make", "-s", "-f", "Makefile", "-f", "../../tools/build-core.mk",
-                    "NODEP=1", "generated", "wasm-assets"], cwd=VENDOR, check=True)
+    expected = {"mod.rs", *(unit + ".rs" for unit in UNITS)}
+    unexpected = sorted(path.name for path in OUT.glob("*.rs") if path.name not in expected)
+    if unexpected:
+        raise SystemExit("Unexpected Rust modules in src/translated: " + ", ".join(unexpected))
+    # build.rs uses the same file lock for the shared native assets and tools.
+    lock_path = VENDOR / "build/native/rustic-build.lock"
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    with lock_path.open("a+b") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        subprocess.run(["make", "-s", "-f", "make_tools.mk", "tools"], cwd=VENDOR, check=True)
+        subprocess.run(["make", "-s", "-f", "Makefile", "-f", "../../tools/build-core.mk",
+                        "NODEP=1", "generated", "wasm-assets"], cwd=VENDOR, check=True)
     with tempfile.TemporaryDirectory() as directory:
         tmp = Path(directory).resolve()
         generated = {}
@@ -142,8 +178,8 @@ def main():
                             "--translate-const-macros", "none", "--translate-fn-macros", "none", db],
                            check=True)
             generated[unit + ".rs"] = normalize(source.with_suffix(".rs").read_text(), source)
-        generated["mod.rs"] = ("// Generated from the C2Rust units listed in tools/translate.py.\n"
-                               "#![allow(warnings, clippy::all)]\n\n"
+        generated["mod.rs"] = ("// Generated from the C2Rust units listed in tools/rust-units.txt.\n"
+                               "#![allow(warnings, static_mut_refs, clippy::all)]\n\n"
                                + "".join(f"#[rustfmt::skip]\nmod {unit};\n" for unit in UNITS))
         stale = []
         for name, result in generated.items():

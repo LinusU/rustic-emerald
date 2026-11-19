@@ -1,6 +1,7 @@
 # Read after the upstream Makefile so the game and platform source lists match
 # the pinned native port. Each Rust module replaces one complete C unit.
-PORT_UNITS := $(shell cat ../../tools/rust-units.txt)
+# The cartridge clock is implemented directly by src/rtc.rs.
+PORT_UNITS := $(shell cat ../../tools/rust-units.txt) siirtc
 # Upstream's compiler stamp already invalidates every native object. Include
 # the deployment target and flags so differently configured builds cannot mix.
 NATIVE_CC_ID := $(NATIVE_CC_ID) $(NATIVE_CFLAGS) $(MACOSX_DEPLOYMENT_TARGET)

@@ -16,6 +16,12 @@ fn main() {
         env::var_os("TARGET"),
         "the native game build currently requires a host-target build"
     );
+    assert!(
+        env::var("CARGO_CFG_TARGET_POINTER_WIDTH").as_deref() == Ok("64")
+            && env::var("CARGO_CFG_TARGET_ENDIAN").as_deref() == Ok("little")
+            && env::var_os("CARGO_CFG_UNIX").is_some(),
+        "Emerald's generated game modules require a little-endian 64-bit Unix host"
+    );
 
     for input in [
         "tools/build-core.mk",

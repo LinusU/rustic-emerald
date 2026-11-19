@@ -1145,7 +1145,7 @@ pub struct PokemonSubstruct3 {
     pub metLevel_metGame_pokeball_otGender_hpIV_attackIV_defenseIV_speedIV_spAttackIV_spDefenseIV_isEgg_abilityNum_coolRibbon_beautyRibbon_cuteRibbon_smartRibbon_toughRibbon_championRibbon_winningRibbon_victoryRibbon_artistRibbon_effortRibbon_marineRibbon_landRibbon_skyRibbon_countryRibbon_nationalRibbon_earthRibbon_worldRibbon_unusedRibbons_modernFatefulEncounter: [u8; 10],
 }
 #[derive(Copy, Clone)]
-#[repr(C)]
+#[repr(C, packed(4))]
 pub union PokemonSubstruct {
     pub type0: PokemonSubstruct0,
     pub type1: PokemonSubstruct1,
@@ -1319,7 +1319,7 @@ pub struct MauvilleOldManTrader {
     pub language: [u8_0; 4],
 }
 #[derive(Copy, Clone)]
-#[repr(C)]
+#[repr(C, packed(2))]
 pub union OldMan {
     pub common: MauvilleManCommon,
     pub bard: MauvilleManBard,
