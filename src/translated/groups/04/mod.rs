@@ -14,6 +14,15 @@ mod battle_setup;
 #[path = "../../battle_tent.rs"]
 mod battle_tent;
 #[rustfmt::skip]
+#[path = "../../battle_tower.rs"]
+mod battle_tower;
+#[rustfmt::skip]
+#[path = "../../battle_transition.rs"]
+mod battle_transition;
+#[rustfmt::skip]
+#[path = "../../battle_transition_frontier.rs"]
+mod battle_transition_frontier;
+#[rustfmt::skip]
 #[path = "../../battle_tv.rs"]
 mod battle_tv;
 #[rustfmt::skip]
@@ -25,6 +34,12 @@ mod battle_util2;
 #[rustfmt::skip]
 #[path = "../../berry.rs"]
 mod berry;
+#[rustfmt::skip]
+#[path = "../../berry_blender.rs"]
+mod berry_blender;
+#[rustfmt::skip]
+#[path = "../../berry_crush.rs"]
+mod berry_crush;
 #[rustfmt::skip]
 #[path = "../../berry_fix_graphics.rs"]
 mod berry_fix_graphics;

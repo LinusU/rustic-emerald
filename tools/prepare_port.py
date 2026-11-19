@@ -89,3 +89,74 @@ def restore_assets(text, source):
     if assets:
         raise ValueError(f"missing Rust asset declaration in {source.name}: {next(iter(assets))}")
     return "".join(out) + text[cursor:]
+
+
+def aligned_globals(declarations):
+    """Extract the effective alignment, including attributes inherited from a header."""
+    result = {}
+    for decl in declarations:
+        if decl["kind"] != "VarDecl" or decl.get("storageClass") == "extern":
+            continue
+        for attr in decl.get("inner", ()):
+            if attr["kind"] == "AlignedAttr":
+                name = decl["name"]
+                value = int(attr["inner"][0]["value"])
+                result[name] = max(result.get(name, 1), value)
+    return result
+
+
+# Rust sets a static's alignment from its type. Keep that storage private so
+# pointer arithmetic, sizeof, and all existing uses see the original C type.
+# On ELF .size also describes the C object exactly when its allocation has
+# trailing padding, e.g. a one-byte message aligned to a four-byte boundary.
+ALIGNED_STATIC = """macro_rules! aligned_game_static {
+    ($(#[$attr:meta])* $vis:vis static mut $name:ident: $ty:ty;
+     $symbol:literal, $aligned:ident, $storage:ident, $init:ident) => {
+        unsafe extern "C" {
+            #[link_name = $symbol]
+            $vis static mut $name: $ty;
+        }
+        $(#[$attr])*
+        #[used]
+        #[cfg_attr(any(target_vendor = "apple", target_os = "windows"), unsafe(export_name = $symbol))]
+        static mut $storage: $aligned<$ty> = $aligned($init);
+        #[cfg(not(any(target_vendor = "apple", target_os = "windows")))]
+        core::arch::global_asm!(
+            concat!(".globl ", $symbol),
+            concat!(".set ", $symbol, ", {storage}"),
+            concat!(".size ", $symbol, ", {size}"),
+            storage = sym $storage, size = const core::mem::size_of::<$ty>(),
+        );
+    }
+}
+"""
+
+
+def preserve_static_alignment(text, unit, alignments):
+    if not alignments:
+        return text
+    decl = re.compile(r"^((?:#\[[^\n]+\]\n)*)((?:pub )?)static mut (\w+): ([^=]+?) =", re.M)
+    used = set()
+
+    def replace(match):
+        attrs, visibility, name, ty = match.groups()
+        if name not in alignments:
+            return match[0]
+        alignment = alignments[name]
+        used.add(alignment)
+        symbol = name if visibility else f"__rustic_{unit}_{name}"
+        if export := re.search(r'#\[unsafe\(export_name = "([^"]+)"\)\]', attrs):
+            symbol = export[1]
+        storage_attrs = re.sub(r"^#\[unsafe\((?:no_mangle|export_name = .*?)\)\]\n", "", attrs, flags=re.M)
+        storage = f"__RUSTIC_STORAGE_{name}"
+        initial = f"__RUSTIC_INIT_{name}"
+        return (f"aligned_game_static!(\n{storage_attrs}{visibility}static mut {name}: {ty};\n"
+                f'    "{symbol}", RusticAligned{alignment}, {storage}, {initial}\n);\n'
+                f"const {initial}: {ty} =")
+
+    text = decl.sub(replace, text)
+    if not used:
+        return text
+    types = "".join(f"#[repr(C, align({n}))]\nstruct RusticAligned{n}<T>(T);\n"
+                    for n in sorted(used))
+    return types + ALIGNED_STATIC + text

@@ -8,8 +8,17 @@ mod field_control_avatar;
 #[path = "../../field_door.rs"]
 mod field_door;
 #[rustfmt::skip]
+#[path = "../../field_effect.rs"]
+mod field_effect;
+#[rustfmt::skip]
+#[path = "../../field_effect_helpers.rs"]
+mod field_effect_helpers;
+#[rustfmt::skip]
 #[path = "../../field_message_box.rs"]
 mod field_message_box;
+#[rustfmt::skip]
+#[path = "../../field_player_avatar.rs"]
+mod field_player_avatar;
 #[rustfmt::skip]
 #[path = "../../field_poison.rs"]
 mod field_poison;
@@ -23,11 +32,17 @@ mod field_screen_effect;
 #[path = "../../field_special_scene.rs"]
 mod field_special_scene;
 #[rustfmt::skip]
+#[path = "../../field_specials.rs"]
+mod field_specials;
+#[rustfmt::skip]
 #[path = "../../field_tasks.rs"]
 mod field_tasks;
 #[rustfmt::skip]
 #[path = "../../field_weather.rs"]
 mod field_weather;
+#[rustfmt::skip]
+#[path = "../../field_weather_effect.rs"]
+mod field_weather_effect;
 #[rustfmt::skip]
 #[path = "../../fieldmap.rs"]
 mod fieldmap;

@@ -11,11 +11,17 @@ mod mail_data;
 #[path = "../../main.rs"]
 mod main;
 #[rustfmt::skip]
+#[path = "../../main_menu.rs"]
+mod main_menu;
+#[rustfmt::skip]
 #[path = "../../malloc.rs"]
 mod malloc;
 #[rustfmt::skip]
 #[path = "../../map_name_popup.rs"]
 mod map_name_popup;
+#[rustfmt::skip]
+#[path = "../../match_call.rs"]
+mod match_call;
 #[rustfmt::skip]
 #[path = "../../math_util.rs"]
 mod math_util;
@@ -41,8 +47,17 @@ mod mini_printf;
 #[path = "../../minigame_countdown.rs"]
 mod minigame_countdown;
 #[rustfmt::skip]
+#[path = "../../mirage_tower.rs"]
+mod mirage_tower;
+#[rustfmt::skip]
+#[path = "../../mon_markings.rs"]
+mod mon_markings;
+#[rustfmt::skip]
 #[path = "../../money.rs"]
 mod money;
+#[rustfmt::skip]
+#[path = "../../move_relearner.rs"]
+mod move_relearner;
 #[rustfmt::skip]
 #[path = "../../multiboot.rs"]
 mod multiboot;

@@ -3,7 +3,7 @@ name = "rustic-emerald"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.89"
-description = "A playable Game Boy Advance Pokémon Emerald port, one Rust routine at a time"
+description = "A native Rust desktop port of Pokémon Emerald"
 publish = false
 
 [features]

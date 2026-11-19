@@ -47,8 +47,17 @@ mod battle_anim_throw;
 #[path = "../../battle_anim_utility_funcs.rs"]
 mod battle_anim_utility_funcs;
 #[rustfmt::skip]
+#[path = "../../battle_anim_water.rs"]
+mod battle_anim_water;
+#[rustfmt::skip]
 #[path = "../../battle_arena.rs"]
 mod battle_arena;
 #[rustfmt::skip]
 #[path = "../../battle_bg.rs"]
 mod battle_bg;
+#[rustfmt::skip]
+#[path = "../../battle_controller_link_opponent.rs"]
+mod battle_controller_link_opponent;
+#[rustfmt::skip]
+#[path = "../../battle_controller_link_partner.rs"]
+mod battle_controller_link_partner;

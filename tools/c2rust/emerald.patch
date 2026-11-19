@@ -1,0 +1,177 @@
+diff --git a/c2rust-ast-exporter/src/AstExporter.cpp b/c2rust-ast-exporter/src/AstExporter.cpp
+index a81634ce65adfb8ccb307c8bcd98c5a20398cc51..10483828505659f570c9267b9a2867d9037e6e48 100644
+--- a/c2rust-ast-exporter/src/AstExporter.cpp
++++ b/c2rust-ast-exporter/src/AstExporter.cpp
+@@ -1216,13 +1216,25 @@ class TranslateASTVisitor final
+         }
+ 
+         std::vector<void *> childIds{expr, CS->getSubStmt()};
+-        encode_entry(CS, TagCaseStmt, childIds, [value](CborEncoder *extra) {
+-            cbor_encode_boolean(extra, value.isSigned());
+-            if (value.isSigned()) {
+-                cbor_encode_int(extra, value.getSExtValue());
+-            } else {
+-                cbor_encode_uint(extra, value.getZExtValue());
+-            }
++        // GNU range cases carry an inclusive, constant upper bound.
++        auto *upperExpr = CS->getRHS();
++        APSInt upper;
++        if (upperExpr && !evaluateConstantInt(upperExpr, upper)) {
++            printDiag(Context, DiagnosticsEngine::Error,
++                      "Upper bound of case range is not an integer.", CS);
++            abort();
++        }
++        encode_entry(CS, TagCaseStmt, childIds, [&](CborEncoder *extra) {
++            auto encodeBound = [&](const APSInt &bound) {
++                cbor_encode_boolean(extra, bound.isSigned());
++                if (bound.isSigned()) {
++                    cbor_encode_int(extra, bound.getSExtValue());
++                } else {
++                    cbor_encode_uint(extra, bound.getZExtValue());
++                }
++            };
++            encodeBound(value);
++            if (upperExpr) encodeBound(upper);
+         });
+         return true;
+     }
+diff --git a/c2rust-transpile/src/c_ast/conversion.rs b/c2rust-transpile/src/c_ast/conversion.rs
+index 59cc7bcfa892ceaf8e403fe3a276eb7b124dd6a5..777ee40b632889f6a16ae2f7d44392010a2deaff 100644
+--- a/c2rust-transpile/src/c_ast/conversion.rs
++++ b/c2rust-transpile/src/c_ast/conversion.rs
+@@ -517,7 +517,7 @@ impl ConversionContext {
+                 .c_stmts
+                 .values()
+                 .filter_map(|c| {
+-                    if let &CStmtKind::Case(expr, _, _) = &c.kind {
++                    if let &CStmtKind::Case(expr, ..) = &c.kind {
+                         Some(expr)
+                     } else {
+                         None
+@@ -1180,18 +1180,18 @@ impl ConversionContext {
+                     let substmt_old = node.children[1].expect("Case sub-statement not found");
+                     let substmt = self.visit_stmt(substmt_old);
+ 
+-                    let is_signed = from_value(node.extras[0].clone())
+-                        .expect("Case constant is_signed not found");
+-                    let cie = match is_signed {
+-                        false => ConstIntExpr::U(
+-                            from_value(node.extras[1].clone()).expect("Case constant not found"),
+-                        ),
+-                        true => ConstIntExpr::I(
+-                            from_value(node.extras[1].clone()).expect("Case constant not found"),
+-                        ),
++                    let bound = |index: usize| {
++                        let signed: bool = from_value(node.extras[index].clone())
++                            .expect("Case constant is_signed not found");
++                        let value = node.extras[index + 1].clone();
++                        if signed {
++                            ConstIntExpr::I(from_value(value).expect("Signed case constant not found"))
++                        } else {
++                            ConstIntExpr::U(from_value(value).expect("Unsigned case constant not found"))
++                        }
+                     };
+-
+-                    let case_stmt = CStmtKind::Case(expr, substmt, cie);
++                    let upper = (node.extras.len() > 2).then(|| bound(2));
++                    let case_stmt = CStmtKind::Case(expr, substmt, bound(0), upper);
+ 
+                     self.add_stmt(new_id, located(node, case_stmt));
+                     self.processed_nodes.insert(new_id, OTHER_STMT);
+diff --git a/c2rust-transpile/src/c_ast/iterators.rs b/c2rust-transpile/src/c_ast/iterators.rs
+index 38bcffe6a88dd4d294d8c55bc2eecb3b3f7929e7..812f5ce55fff0b78232a0e0e16416826b2ebcd10 100644
+--- a/c2rust-transpile/src/c_ast/iterators.rs
++++ b/c2rust-transpile/src/c_ast/iterators.rs
+@@ -193,7 +193,7 @@ fn immediate_stmt_children(kind: &CStmtKind) -> Vec<SomeId> {
+     match *kind {
+         Expr(e) => intos![e],
+         Label(s) => intos![s],
+-        Case(e, s, _) => intos![e, s],
++        Case(e, s, ..) => intos![e, s],
+         Default(s) => intos![s],
+ 
+         // Compound statements (6.8.2)
+@@ -338,6 +338,7 @@ pub fn immediate_children_all_types(context: &TypedAstContext, s_or_e: SomeId) -
+ pub struct DFExpr<'context> {
+     context: &'context TypedAstContext,
+     stack: Vec<SomeId>,
++    seen: std::collections::HashSet<SomeId>,
+ }
+ 
+ impl<'context> DFExpr<'context> {
+@@ -345,6 +346,7 @@ impl<'context> DFExpr<'context> {
+         DFExpr {
+             context,
+             stack: vec![start],
++            seen: std::collections::HashSet::new(),
+         }
+     }
+     pub fn prune(&mut self, n: usize) {
+@@ -356,7 +358,12 @@ impl<'context> DFExpr<'context> {
+ impl<'context> Iterator for DFExpr<'context> {
+     type Item = SomeId;
+     fn next(&mut self) -> Option<Self::Item> {
+-        let result = self.stack.pop();
++        let result = loop {
++            match self.stack.pop() {
++                Some(id) if !self.seen.insert(id) => continue,
++                item => break item,
++            }
++        };
+ 
+         if let Some(i) = result {
+             // Compute list of immediate children
+diff --git a/c2rust-transpile/src/c_ast/mod.rs b/c2rust-transpile/src/c_ast/mod.rs
+index 1f71e0b90283776ca38787b8caf471f1cf60aa73..6a23093f6a4699d06ab6a4b6b95584dfc226b065 100644
+--- a/c2rust-transpile/src/c_ast/mod.rs
++++ b/c2rust-transpile/src/c_ast/mod.rs
+@@ -901,7 +901,7 @@ impl TypedAstContext {
+ 
+         use CStmtKind::*;
+         match self[stmt].kind {
+-            Case(expr, stmt, _const_expr) => is_const_expr(expr) && is_const(stmt),
++            Case(expr, stmt, ..) => is_const_expr(expr) && is_const(stmt),
+             Default(stmt) => is_const(stmt),
+             Compound(ref stmts) => stmts.iter().copied().all(is_const),
+             Expr(expr) => is_const_expr(expr),
+@@ -2041,7 +2041,7 @@ pub enum CStmtKind {
+     //
+     // All of these have a `CStmtId` to represent the substatement that comes after them
+     Label(CStmtId),
+-    Case(CExprId, CStmtId, ConstIntExpr),
++    Case(CExprId, CStmtId, ConstIntExpr, Option<ConstIntExpr>),
+     Default(CStmtId),
+ 
+     // Compound statements (6.8.2)
+diff --git a/c2rust-transpile/src/cfg/mod.rs b/c2rust-transpile/src/cfg/mod.rs
+index 5e7d7a599f4a4c3f6a37bd10097a2580a97bbf5a..cef9f8ba822128c0cbe156e8ebc68c71d9c48084 100644
+--- a/c2rust-transpile/src/cfg/mod.rs
++++ b/c2rust-transpile/src/cfg/mod.rs
+@@ -1860,7 +1860,7 @@ impl CfgBuilder {
+                 Ok(None)
+             }
+ 
+-            CStmtKind::Case(case_expr, sub_stmt, cie) => {
++            CStmtKind::Case(case_expr, sub_stmt, cie, upper) => {
+                 self.last_per_stmt_mut().saw_unmatched_case = true;
+                 let this_label = Label::FromC(stmt_id, None);
+                 self.add_wip_block(wip, Jump(this_label.clone()));
+@@ -1892,6 +1892,18 @@ impl CfgBuilder {
+                     },
+                 };
+ 
++                let pat = if let Some(upper) = upper {
++                    let number = |value: ConstIntExpr| match value {
++                        ConstIntExpr::I(n) => n.to_string(),
++                        ConstIntExpr::U(n) => n.to_string(),
++                    };
++                    syn::parse::Parser::parse_str(
++                        Pat::parse_single, &format!("{}..={}", number(cie), number(upper)),
++                    ).expect("integer case range")
++                } else {
++                    pat
++                };
++
+                 self.switch_expr_cases
+                     .last_mut()
+                     .ok_or_else(|| {

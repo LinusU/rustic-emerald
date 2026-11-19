@@ -20,16 +20,16 @@ C_REFERENCE_UNITS := $(filter-out $(HOST_UNITS),$(GAME_UNITS))
 objects_for = $(addprefix $(NATIVE_OBJ_DIR)/,$(addsuffix .o,$(filter-out $(PATCH_UNITS),$1))) $(addprefix $(RUSTIC_DIR)/,$(addsuffix .o,$(filter $(PATCH_UNITS),$1)))
 # Native platform glue and generated maps/scripts are shared by both archives.
 PLATFORM_OBJECTS := $(NATIVE_OBJ_DIR)/native_game_save.o $(NATIVE_OBJ_DIR)/native_platform.o $(RUSTIC_DIR)/native_engine.o $(RUSTIC_DIR)/bios.o $(NATIVE_DATA_OBJS)
-CORE_OBJECTS := $(call objects_for,$(UNPORTED_UNITS)) $(PLATFORM_OBJECTS)
+CORE_OBJECTS := $(PLATFORM_OBJECTS)
 REFERENCE_OBJECTS := $(call objects_for,$(C_REFERENCE_UNITS)) $(PLATFORM_OBJECTS)
 
 .PHONY: native-rustic native-reference native-rustic-audit
-native-rustic: $(NATIVE_BUILD_DIR)/librustic_core.a $(NATIVE_BUILD_DIR)/librustic_test_support.a
+native-rustic: native-rustic-audit $(NATIVE_BUILD_DIR)/librustic_core.a $(NATIVE_BUILD_DIR)/librustic_test_support.a
 native-reference: $(NATIVE_BUILD_DIR)/librustic_reference.a $(NATIVE_BUILD_DIR)/librustic_test_support.a
 
-# Make this a normal prerequisite of native-rustic after migration is complete.
+# Enforce the full Rust inventory if the pinned upstream source list changes.
 native-rustic-audit:
-	$(if $(UNPORTED_UNITS),$(error Game units still compiled from C: $(UNPORTED_UNITS)),@echo All game translation units use Rust)
+	$(if $(UNPORTED_UNITS),$(error Game units missing Rust implementations: $(UNPORTED_UNITS)),@echo All game translation units use Rust)
 
 define core_archive
 $(NATIVE_BUILD_DIR)/lib$1.a: $2 ../../tools/build-core.mk ../../tools/rust-units.txt

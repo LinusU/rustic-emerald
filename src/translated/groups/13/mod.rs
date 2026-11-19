@@ -2,20 +2,35 @@
 #![allow(warnings, static_mut_refs, clippy::all)]
 
 #[rustfmt::skip]
+#[path = "../../pokenav_match_call_gfx.rs"]
+mod pokenav_match_call_gfx;
+#[rustfmt::skip]
 #[path = "../../pokenav_match_call_list.rs"]
 mod pokenav_match_call_list;
 #[rustfmt::skip]
 #[path = "../../pokenav_menu_handler.rs"]
 mod pokenav_menu_handler;
 #[rustfmt::skip]
+#[path = "../../pokenav_menu_handler_gfx.rs"]
+mod pokenav_menu_handler_gfx;
+#[rustfmt::skip]
+#[path = "../../pokenav_region_map.rs"]
+mod pokenav_region_map;
+#[rustfmt::skip]
 #[path = "../../pokenav_ribbons_list.rs"]
 mod pokenav_ribbons_list;
+#[rustfmt::skip]
+#[path = "../../pokenav_ribbons_summary.rs"]
+mod pokenav_ribbons_summary;
 #[rustfmt::skip]
 #[path = "../../post_battle_event_funcs.rs"]
 mod post_battle_event_funcs;
 #[rustfmt::skip]
 #[path = "../../random.rs"]
 mod random;
+#[rustfmt::skip]
+#[path = "../../rayquaza_scene.rs"]
+mod rayquaza_scene;
 #[rustfmt::skip]
 #[path = "../../record_mixing.rs"]
 mod record_mixing;

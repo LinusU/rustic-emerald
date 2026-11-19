@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the project's C2Rust with its recursive-type traversal fix under target/."""
+"""Build the project's pinned C2Rust under target/, including its Emerald fixes."""
 import fcntl
 import hashlib
 import os
@@ -35,7 +35,7 @@ def compiler_environment():
 
 
 def main():
-    patch = HERE / "recursive-types.patch"
+    patch = HERE / "emerald.patch"
     patch_id = hashlib.sha256(patch.read_bytes()).hexdigest()[:12]
     source = BUILD / f"source-{REVISION[:12]}-{patch_id}"
     binary = BUILD / "bin/c2rust-transpile"
@@ -46,11 +46,20 @@ def main():
             with tempfile.TemporaryDirectory(dir=BUILD) as stage:
                 checkout = Path(stage) / "source"
                 subprocess.run(["git", "clone", "--depth=1", "--branch", TAG, UPSTREAM, checkout], check=True)
-                commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=checkout, text=True).strip()
-                if commit != REVISION:
-                    raise SystemExit(f"Expected C2Rust {REVISION}, got {commit}")
-                subprocess.run(["git", "apply", patch], cwd=checkout, check=True)
+                subprocess.run(["git", "apply", "--index", patch], cwd=checkout, check=True)
                 checkout.rename(source)
+        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=source, text=True).strip()
+        if commit != REVISION:
+            raise SystemExit(f"Expected C2Rust {REVISION}, got {commit}")
+        # Check both the exact patch in the index and the files Cargo will read.
+        diff = subprocess.check_output(["git", "diff", "--cached", "--full-index", "--no-color",
+                                        "--src-prefix=a/", "--dst-prefix=b/"], cwd=source)
+        if diff != patch.read_bytes():
+            raise SystemExit(f"Unexpected C2Rust index contents in {source}")
+        subprocess.run(["git", "diff", "--quiet"], cwd=source, check=True)
+        unknown = subprocess.check_output(["git", "ls-files", "--others", "--exclude-standard"], cwd=source)
+        if unknown:
+            raise SystemExit(f"Unexpected untracked files in the pinned C2Rust source at {source}")
         subprocess.run(["cargo", "build", "--locked", "--release", "--package", "c2rust",
                         "--bin", "c2rust-transpile", "--target-dir", BUILD / "cargo"],
                        cwd=source, env=compiler_environment(), check=True)

@@ -5,8 +5,14 @@
 #[path = "../../blit.rs"]
 mod blit;
 #[rustfmt::skip]
+#[path = "../../braille.rs"]
+mod braille;
+#[rustfmt::skip]
 #[path = "../../braille_puzzles.rs"]
 mod braille_puzzles;
+#[rustfmt::skip]
+#[path = "../../cable_car.rs"]
+mod cable_car;
 #[rustfmt::skip]
 #[path = "../../cable_club.rs"]
 mod cable_club;
@@ -19,6 +25,12 @@ mod clock;
 #[rustfmt::skip]
 #[path = "../../coins.rs"]
 mod coins;
+#[rustfmt::skip]
+#[path = "../../confetti_util.rs"]
+mod confetti_util;
+#[rustfmt::skip]
+#[path = "../../contest.rs"]
+mod contest;
 #[rustfmt::skip]
 #[path = "../../contest_ai.rs"]
 mod contest_ai;
@@ -35,8 +47,14 @@ mod contest_link_util;
 #[path = "../../contest_painting.rs"]
 mod contest_painting;
 #[rustfmt::skip]
+#[path = "../../contest_util.rs"]
+mod contest_util;
+#[rustfmt::skip]
 #[path = "../../coord_event_weather.rs"]
 mod coord_event_weather;
+#[rustfmt::skip]
+#[path = "../../credits.rs"]
+mod credits;
 #[rustfmt::skip]
 #[path = "../../data.rs"]
 mod data;

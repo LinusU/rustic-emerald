@@ -8,6 +8,9 @@ mod union_room_chat;
 #[path = "../../union_room_player_avatar.rs"]
 mod union_room_player_avatar;
 #[rustfmt::skip]
+#[path = "../../use_pokeblock.rs"]
+mod use_pokeblock;
+#[rustfmt::skip]
 #[path = "../../util.rs"]
 mod util;
 #[rustfmt::skip]

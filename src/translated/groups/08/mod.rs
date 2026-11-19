@@ -20,6 +20,9 @@ mod fldeff_teleport;
 #[path = "../../fonts.rs"]
 mod fonts;
 #[rustfmt::skip]
+#[path = "../../frontier_pass.rs"]
+mod frontier_pass;
+#[rustfmt::skip]
 #[path = "../../frontier_util.rs"]
 mod frontier_util;
 #[rustfmt::skip]
@@ -34,6 +37,9 @@ mod graphics;
 #[rustfmt::skip]
 #[path = "../../gym_leader_rematch.rs"]
 mod gym_leader_rematch;
+#[rustfmt::skip]
+#[path = "../../hall_of_fame.rs"]
+mod hall_of_fame;
 #[rustfmt::skip]
 #[path = "../../heal_location.rs"]
 mod heal_location;

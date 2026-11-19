@@ -5,6 +5,9 @@
 #[path = "../../decompress.rs"]
 mod decompress;
 #[rustfmt::skip]
+#[path = "../../decoration.rs"]
+mod decoration;
+#[rustfmt::skip]
 #[path = "../../decoration_inventory.rs"]
 mod decoration_inventory;
 #[rustfmt::skip]
@@ -17,8 +20,17 @@ mod digit_obj_util;
 #[path = "../../diploma.rs"]
 mod diploma;
 #[rustfmt::skip]
+#[path = "../../dma3_manager.rs"]
+mod dma3_manager;
+#[rustfmt::skip]
+#[path = "../../dodrio_berry_picking.rs"]
+mod dodrio_berry_picking;
+#[rustfmt::skip]
 #[path = "../../dynamic_placeholder_text_util.rs"]
 mod dynamic_placeholder_text_util;
+#[rustfmt::skip]
+#[path = "../../easy_chat.rs"]
+mod easy_chat;
 #[rustfmt::skip]
 #[path = "../../egg_hatch.rs"]
 mod egg_hatch;
@@ -35,6 +47,9 @@ mod event_data;
 #[path = "../../event_object_lock.rs"]
 mod event_object_lock;
 #[rustfmt::skip]
+#[path = "../../event_object_movement.rs"]
+mod event_object_movement;
+#[rustfmt::skip]
 #[path = "../../evolution_graphics.rs"]
 mod evolution_graphics;
 #[rustfmt::skip]
@@ -43,3 +58,6 @@ mod evolution_scene;
 #[rustfmt::skip]
 #[path = "../../faraway_island.rs"]
 mod faraway_island;
+#[rustfmt::skip]
+#[path = "../../field_camera.rs"]
+mod field_camera;

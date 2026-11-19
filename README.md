@@ -1,6 +1,6 @@
 # Rustic Emerald
 
-Play Pokémon Emerald on the desktop with a Rust runtime, the original Hoenn maps and scripts, and multiple independent adventures. Game logic runs as native code. C2Rust translations and the remaining C functions call each other directly in the same process.
+Play Pokémon Emerald on the desktop with a Rust runtime, the original Hoenn maps and scripts, and multiple independent adventures. The game logic and graphics compositor run as native Rust code.
 
 ## Run
 
@@ -44,15 +44,15 @@ On macOS the default directory is `~/Library/Application Support/Rustic Emerald/
 
 ## Native port
 
-The pinned engine provides the game data, native pointer translation for Emerald's 32-bit scripts, graphics compositor and BIOS helpers. Cargo compiles the C units still in use and links them to the Rust game modules. Rust owns the window, input, audio mixing, cartridge clock, save selection and disk persistence. The MP2K synthesizer reads the original instrument bank and sequences from the verified cartridge. Pokémon cries use the corresponding PCM recordings in the decompilation.
+All 313 game translation units in the pinned Emerald source have Rust implementations. C2Rust generated 312 modules. The S-3511A cartridge clock uses the handwritten driver in `src/rtc.rs` to read desktop time. Cargo compiles the generated modules in parallel across 16 crates. The normal build checks the source inventory and links zero C objects from Emerald's `src/` directory.
 
-Of Emerald's 313 C game files, 21 now run as C2Rust-generated Rust. These include the battle script interpreter, trainer AI, starter selection, evolution, wild encounters and task scheduler. The cartridge clock has a separate handwritten Rust implementation. The other game files compile as native C and call Rust through the original C ABI.
+Rust owns the window, input, rendering, audio mixing, clock, save selection and disk persistence. The native support code maps 32-bit script addresses to host pointers, supplies BIOS services and serializes cartridge flash. The original maps and script bytecode remain game data. The MP2K synthesizer reads instruments and sequences from the verified cartridge, and cries use the PCM recordings in the decompilation.
 
-`tools/rust-units.txt` lists the translated files. Both the generator and the native build read that list, so each routine has one implementation in the binary. The generator writes to `src/translated/`, checks structure sizes, alignments and field offsets against Clang, and marks mutable game globals for reset.
+`tools/rust-units.txt` records the C2Rust inventory. During regeneration, Clang supplies structure sizes, alignments and field offsets for compile-time Rust assertions. Mutable globals are restored when the game resets. The port preserves two cartridge behaviors that relied on adjacent memory in C. Magnitude uses animation argument 15, and the Battle Factory fade reads color 5 of the interface palette.
 
 Normal builds use the committed translations. To regenerate them, install CMake, a C++ compiler, and LLVM 21 with its Clang development files. On macOS, run `brew install cmake llvm@21`. On Linux, set `LLVM_CONFIG_PATH` to the path of your LLVM 21 `llvm-config` executable if it is outside your search path.
 
-The bootstrap fetches C2Rust 0.22.1, verifies its Git revision, and applies the included fix for recursively defined C types. It builds the translator with locked Cargo dependencies and keeps the patched source and binary under `target/c2rust/`. Run these commands from the project directory.
+The bootstrap fetches C2Rust 0.22.1 and verifies its Git revision and local patch. The patch handles recursive C types and preserves inclusive ranges in Emerald's switch statements. The bootstrap builds the translator with locked Cargo dependencies and keeps its source and binary under `target/c2rust/`. Run these commands from the project directory.
 
 ```sh
 python3 tools/c2rust/bootstrap.py
@@ -61,7 +61,13 @@ python3 tools/translate.py --check
 cargo test --release
 ```
 
-The gameplay test follows the moving truck through Littleroot, picks Mudkip, wins the first battle and checks that Birch hands over the starter in his lab. It also writes a cartridge save, boots it again and verifies that a soft reset preserves it. The replay runner accepts the C reference build's input recordings and can write 240×160 PPM images for inspection.
+To compare the port with the independent C game build, run the following command. Both executables use the same input, clock and desktop devices. The comparison checks the framebuffer after every frame from the moving truck through Mudkip's first battle, Birch's lab and soft reset. The accompanying tests check 1,158 serialized party Pokémon across all 386 species at levels 5, 50 and 100, then write and reload an Emerald flash save.
+
+```sh
+python3 tools/compare-replay.py
+```
+
+To capture named checkpoints from the starter replay as 240×160 PPM images, run the replay directly.
 
 ```sh
 cargo run --release -- --replay vendor/pokeemerald/tools/wasm_replays/mudkip_starter.txt --capture-dir /tmp/emerald-frames

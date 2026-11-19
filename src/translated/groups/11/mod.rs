@@ -8,6 +8,12 @@ mod mystery_event_menu;
 #[path = "../../mystery_event_msg.rs"]
 mod mystery_event_msg;
 #[rustfmt::skip]
+#[path = "../../mystery_event_script.rs"]
+mod mystery_event_script;
+#[rustfmt::skip]
+#[path = "../../mystery_gift.rs"]
+mod mystery_gift;
+#[rustfmt::skip]
 #[path = "../../mystery_gift_client.rs"]
 mod mystery_gift_client;
 #[rustfmt::skip]
@@ -35,14 +41,23 @@ mod new_game;
 #[path = "../../option_menu.rs"]
 mod option_menu;
 #[rustfmt::skip]
+#[path = "../../overworld.rs"]
+mod overworld;
+#[rustfmt::skip]
 #[path = "../../palette.rs"]
 mod palette;
 #[rustfmt::skip]
 #[path = "../../palette_util.rs"]
 mod palette_util;
 #[rustfmt::skip]
+#[path = "../../party_menu.rs"]
+mod party_menu;
+#[rustfmt::skip]
 #[path = "../../play_time.rs"]
 mod play_time;
+#[rustfmt::skip]
+#[path = "../../player_pc.rs"]
+mod player_pc;
 #[rustfmt::skip]
 #[path = "../../pokeball.rs"]
 mod pokeball;

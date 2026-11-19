@@ -2,6 +2,9 @@
 #![allow(warnings, static_mut_refs, clippy::all)]
 
 #[rustfmt::skip]
+#[path = "../../AgbRfu_LinkManager.rs"]
+mod AgbRfu_LinkManager;
+#[rustfmt::skip]
 #[path = "../../agb_flash.rs"]
 mod agb_flash;
 #[rustfmt::skip]
@@ -40,6 +43,15 @@ mod battle_anim_dark;
 #[rustfmt::skip]
 #[path = "../../battle_anim_dragon.rs"]
 mod battle_anim_dragon;
+#[rustfmt::skip]
+#[path = "../../battle_anim_effects_1.rs"]
+mod battle_anim_effects_1;
+#[rustfmt::skip]
+#[path = "../../battle_anim_effects_2.rs"]
+mod battle_anim_effects_2;
+#[rustfmt::skip]
+#[path = "../../battle_anim_effects_3.rs"]
+mod battle_anim_effects_3;
 #[rustfmt::skip]
 #[path = "../../battle_anim_electric.rs"]
 mod battle_anim_electric;
