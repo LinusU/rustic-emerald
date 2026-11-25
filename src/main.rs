@@ -1,4 +1,6 @@
 mod audio;
+#[cfg(not(feature = "reference-c"))]
+mod bios;
 mod cries;
 mod desktop;
 mod game;

@@ -592,6 +592,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f6b464fbc74e149a392436b17d523f769e057cb6877f6a5c4618bc6f11800548"
 
 [[package]]
+name = "pokemon-sprite-compression"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "45c5f44deb7683fe71c28f7a41adceda1e5e6d079bb1e525edf9282c47aaa862"
+
+[[package]]
 name = "proc-macro2"
 version = "1.0.103"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -635,6 +641,7 @@ dependencies = [
  "clap",
  "dirs",
  "emerald-game",
+ "pokemon-sprite-compression",
  "sdl2",
  "sha1",
  "tempfile",

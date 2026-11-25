@@ -19,9 +19,9 @@ UNPORTED_UNITS := $(filter-out $(PORT_UNITS) $(HOST_UNITS),$(GAME_UNITS))
 C_REFERENCE_UNITS := $(filter-out $(HOST_UNITS),$(GAME_UNITS))
 objects_for = $(addprefix $(NATIVE_OBJ_DIR)/,$(addsuffix .o,$(filter-out $(PATCH_UNITS),$1))) $(addprefix $(RUSTIC_DIR)/,$(addsuffix .o,$(filter $(PATCH_UNITS),$1)))
 # Native platform glue and generated maps/scripts are shared by both archives.
-PLATFORM_OBJECTS := $(NATIVE_OBJ_DIR)/native_game_save.o $(NATIVE_OBJ_DIR)/native_platform.o $(RUSTIC_DIR)/native_engine.o $(RUSTIC_DIR)/bios.o $(NATIVE_DATA_OBJS)
-CORE_OBJECTS := $(PLATFORM_OBJECTS)
-REFERENCE_OBJECTS := $(call objects_for,$(C_REFERENCE_UNITS)) $(PLATFORM_OBJECTS)
+PLATFORM_OBJECTS := $(NATIVE_OBJ_DIR)/native_game_save.o $(NATIVE_OBJ_DIR)/native_platform.o $(RUSTIC_DIR)/native_engine.o $(NATIVE_DATA_OBJS)
+CORE_OBJECTS := $(PLATFORM_OBJECTS) $(RUSTIC_DIR)/bios_rustic.o
+REFERENCE_OBJECTS := $(call objects_for,$(C_REFERENCE_UNITS)) $(PLATFORM_OBJECTS) $(RUSTIC_DIR)/bios.o
 
 .PHONY: native-rustic native-reference native-rustic-audit
 native-rustic: native-rustic-audit $(NATIVE_BUILD_DIR)/librustic_core.a $(NATIVE_BUILD_DIR)/librustic_test_support.a
@@ -85,6 +85,13 @@ $(RUSTIC_DIR)/native_engine.o: $(RUSTIC_DIR)/native_engine.c $(NATIVE_ENGINE_H) 
 $(RUSTIC_DIR)/bios.o: tools/native/bios.c ../../tools/build-core.mk $(NATIVE_CC_STAMP)
 	@mkdir -p $(dir $@)
 	$(NATIVE_CC) $(NATIVE_CFLAGS) -DSoftReset=RusticUnusedSoftReset -c $< -o $@
+
+# Rust supplies the LZ77 entry points in the port. Keep the existing bytewise
+# decoder available for streams that require clipping the final match.
+$(RUSTIC_DIR)/bios_rustic.o: tools/native/bios.c ../../tools/build-core.mk $(NATIVE_CC_STAMP)
+	@mkdir -p $(dir $@)
+	$(NATIVE_CC) $(NATIVE_CFLAGS) -DSoftReset=RusticUnusedSoftReset \
+		-DLZ77UnCompWram=RusticLegacyLz77 -DLZ77UnCompVram=RusticUnusedLz77Vram -c $< -o $@
 
 # Materialize preprocessed translation units (including C objects replaced by
 # Rust) for regenerating Rust or inspecting an ABI difference.

@@ -75,7 +75,7 @@ To capture named checkpoints from the starter replay as 240×160 PPM images, run
 cargo run --release -- --replay vendor/pokeemerald/tools/wasm_replays/mudkip_starter.txt --capture-dir /tmp/emerald-frames
 ```
 
-The cartridge audio test can be run with `cargo test --release -- --ignored`. Link cable and wireless multiplayer are outside the current desktop runtime.
+The cartridge audio and sprite decompression tests can be run with `cargo test --release -- --ignored`. Link cable and wireless multiplayer are outside the current desktop runtime.
 
 ## Credits
 

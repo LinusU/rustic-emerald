@@ -8,12 +8,13 @@ publish = false
 
 [features]
 default = ["rust-game"]
-rust-game = ["dep:emerald-game"]
+rust-game = ["dep:emerald-game", "dep:pokemon-sprite-compression"]
 # Developer oracle built by tools/compare-replay.py.
 reference-c = []
 
 [dependencies]
 emerald-game = { path = "src/translated", optional = true }
+pokemon-sprite-compression = { version = "0.1.3", optional = true }
 sha1 = "0.10.6"
 chrono = { version = "0.4", default-features = false, features = ["clock"] }
 clap = { version = "=4.5.51", features = ["derive"] }
