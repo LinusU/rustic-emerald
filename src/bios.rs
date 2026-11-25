@@ -1,22 +1,19 @@
 use std::{ptr, slice};
 
-unsafe extern "C" {
-    fn RusticLegacyLz77(src: *const u8, dest: *mut u8);
-}
-
 // The BIOS ABI supplies a pointer to a readable stream and writable output,
 // but no compressed length. Walk the tokens to find the slice's exact end.
 unsafe fn lz77_uncomp(src: *const u8, dest: *mut u8) {
     unsafe {
         let header = src.cast::<[u8; 4]>().read();
         let mut remaining = u32::from_le_bytes([header[1], header[2], header[3], 0]) as usize;
-        let mut input_len = 4;
-
-        if header[0] != 0x10 {
-            RusticLegacyLz77(src, dest);
+        // Vanilla Emerald passes raw trainer back sprites whose first
+        // four bytes look like a zero-length header to the BIOS.
+        if remaining == 0 {
             return;
         }
+        assert_eq!(header[0], 0x10, "invalid LZ10 compression type");
 
+        let mut input_len = 4;
         while remaining != 0 {
             let flags = src.add(input_len).read();
             input_len += 1;
@@ -40,9 +37,7 @@ unsafe fn lz77_uncomp(src: *const u8, dest: *mut u8) {
 
         let decoded =
             pokemon_sprite_compression::gen3::decompress(slice::from_raw_parts(src, input_len));
-        if !decoded.is_empty() {
-            ptr::copy_nonoverlapping(decoded.as_ptr(), dest, decoded.len());
-        }
+        ptr::copy_nonoverlapping(decoded.as_ptr(), dest, decoded.len());
     }
 }
 
@@ -61,6 +56,17 @@ mod tests {
     use super::*;
     use sha1::{Digest, Sha1};
     use std::path::Path;
+
+    #[test]
+    fn zero_length_headers_leave_the_destination_untouched() {
+        for input in [[0; 4], [0x10, 0, 0, 0]] {
+            for decompress in [LZ77UnCompWram, LZ77UnCompVram] {
+                let mut output = [0xaa; 4];
+                unsafe { decompress(input.as_ptr(), output.as_mut_ptr()) };
+                assert_eq!(output, [0xaa; 4]);
+            }
+        }
+    }
 
     #[test]
     fn clips_a_final_match_to_the_declared_size() {

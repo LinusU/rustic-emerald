@@ -30,6 +30,7 @@ fn main() {
         "native/cry.patch",
         "native/heap.patch",
         "native/reset.patch",
+        "native/bios.patch",
         "native/reset-keys.patch",
         "vendor/pokeemerald/Makefile",
         "vendor/pokeemerald/src",

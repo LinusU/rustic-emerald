@@ -1,0 +1,46 @@
+--- a/tools/native/bios.c
++++ b/tools/native/bios.c
+@@ -62,34 +62,7 @@
+         memmove((uint8_t *)dst + i * size, (uint8_t *)from, size);
+     }
+ }
+
+-static void lz77(uintptr_t src, uintptr_t dst)
+-{
+-    uint32_t size = (*(uint8_t *)(src + 1)) | ((*(uint8_t *)(src + 2)) << 8) | ((*(uint8_t *)(src + 3)) << 16);
+-    uintptr_t s = src + 4;
+-    uintptr_t d = dst;
+-    uintptr_t end = dst + size;
+-
+-
+-    while (d < end) {
+-        uint8_t flags = (*(uint8_t *)(s++));
+-        for (int bit = 7; bit >= 0 && d < end; bit--) {
+-            if (flags & (1 << bit)) {
+-                uint32_t pair = ((uint32_t)(*(uint8_t *)(s)) << 8) | (*(uint8_t *)(s + 1));
+-                s += 2;
+-                uint32_t length = (pair >> 12) + 3;
+-                uint32_t disp = (pair & 0xfff) + 1;
+-                while (length-- && d < end) {
+-                    (*(uint8_t *)(d)) = (*(uint8_t *)(d - disp));
+-                    d++;
+-                }
+-            } else {
+-                (*(uint8_t *)(d++)) = (*(uint8_t *)(s++));
+-            }
+-        }
+-    }
+-}
+-
+ static void rl(uintptr_t src, uintptr_t dst)
+ {
+     uint32_t size = (*(uint8_t *)(src + 1)) | ((*(uint8_t *)(src + 2)) << 8) | ((*(uint8_t *)(src + 3)) << 16);
+@@ -260,8 +233,6 @@
+ void CpuFastSet(uintptr_t src, uintptr_t dest, uint32_t mode) { copy_units(src, dest, mode & 0x1fffff, 4, (mode >> 24) & 1); }
+ void CpuSet(uintptr_t src, uintptr_t dest, uint32_t mode) { copy_units(src, dest, mode & 0x1fffff, ((mode >> 26) & 1) ? 4 : 2, (mode >> 24) & 1); }
+ uint32_t Div(uint32_t num, uint32_t den) { return den ? (uint32_t)((int32_t)num / (int32_t)den) : 0; }
+-void LZ77UnCompVram(uintptr_t src, uintptr_t dest) { lz77(src, dest); }
+-void LZ77UnCompWram(uintptr_t src, uintptr_t dest) { lz77(src, dest); }
+ void ObjAffineSet(uintptr_t src, uintptr_t dest, uint32_t count, uint32_t offset) { obj_affine_set(src, dest, count, offset); }
+ void WasmCopyOamMatrices(uintptr_t src, uintptr_t dest, uintptr_t dummy, uint32_t count, uint32_t limit, uint32_t end) { copy_oam_matrices(src, dest, dummy, count, limit, end); }
+ void RLUnCompVram(uintptr_t src, uintptr_t dest) { rl(src, dest); }
