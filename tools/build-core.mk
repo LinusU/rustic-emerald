@@ -86,8 +86,8 @@ $(RUSTIC_DIR)/bios.o: tools/native/bios.c ../../tools/build-core.mk $(NATIVE_CC_
 	@mkdir -p $(dir $@)
 	$(NATIVE_CC) $(NATIVE_CFLAGS) -DSoftReset=RusticUnusedSoftReset -c $< -o $@
 
-# Rust supplies the LZ77 entry points in the port. Keep the existing bytewise
-# decoder available for streams that require clipping the final match.
+# Rust supplies the LZ77 entry points in the port. Keep the bytewise decoder
+# available for calls with a header type other than LZ10.
 $(RUSTIC_DIR)/bios_rustic.o: tools/native/bios.c ../../tools/build-core.mk $(NATIVE_CC_STAMP)
 	@mkdir -p $(dir $@)
 	$(NATIVE_CC) $(NATIVE_CFLAGS) -DSoftReset=RusticUnusedSoftReset \

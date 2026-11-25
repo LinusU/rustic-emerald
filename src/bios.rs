@@ -28,13 +28,9 @@ unsafe fn lz77_uncomp(src: *const u8, dest: *mut u8) {
                     let length = usize::from(src.add(input_len).read() >> 4) + 3;
                     input_len += 2;
 
-                    // The native BIOS permits a final match that runs past
-                    // the declared output size and clips it at that boundary.
-                    if length > remaining {
-                        RusticLegacyLz77(src, dest);
-                        return;
-                    }
-                    remaining -= length;
+                    // Include the whole token. The decoder clips the bytes
+                    // it produces at the declared output size.
+                    remaining = remaining.saturating_sub(length);
                 }
                 if remaining == 0 {
                     break;

@@ -593,9 +593,9 @@ checksum = "f6b464fbc74e149a392436b17d523f769e057cb6877f6a5c4618bc6f11800548"
 
 [[package]]
 name = "pokemon-sprite-compression"
-version = "0.1.3"
+version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "45c5f44deb7683fe71c28f7a41adceda1e5e6d079bb1e525edf9282c47aaa862"
+checksum = "6ff2ea0c65bd9a725b7bdc42ab74c1d09b11597678c9fa894ee2e392457abdeb"
 
 [[package]]
 name = "proc-macro2"
